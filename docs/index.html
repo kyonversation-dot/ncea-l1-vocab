@@ -180,6 +180,57 @@ const KEY = "ncea-l1-practice-v2";
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
 
+/* Put furigana over the kanji only, never over kana that already reads itself.
+   女の人 / おんなの ひと -> <ruby>女<rt>おんな</rt></ruby>の<ruby>人<rt>ひと</rt></ruby>
+   マーオリ語 / マーオリご -> マーオリ<ruby>語<rt>ご</rt></ruby>
+   Falls back to whole-word furigana if the kana cannot be lined up. */
+const HAS_KANJI = /[\u4e00-\u9fff]/;
+function ruby(word, reading){
+  const whole = () => "<ruby>" + esc(word) + "<rt>"
+                    + esc(String(reading).replace(/\u3000/g, " ")) + "</rt></ruby>";
+  if (!reading || reading === word) return esc(word);
+  const rd = String(reading).replace(/\u3000/g, " ");
+
+  // split the word into runs of kanji and runs of everything else
+  const toks = [];
+  for (const ch of word){
+    const k = HAS_KANJI.test(ch);
+    if (toks.length && toks[toks.length-1].k === k) toks[toks.length-1].t += ch;
+    else toks.push({k, t: ch});
+  }
+  if (toks.length === 1 && toks[0].k) return whole();
+
+  let pos = 0, out = "";
+  for (let i = 0; i < toks.length; i++){
+    const tok = toks[i];
+    if (!tok.k){                                  // kana: find it in the reading
+      const want = tok.t.replace(/\u3000/g, " ").trim();
+      if (want){
+        const at = rd.indexOf(want, pos);
+        if (at < 0) return whole();
+        pos = at + want.length;
+      }
+      out += esc(tok.t);
+    } else {                                      // kanji: reading runs to the next kana
+      const next = toks[i+1];
+      let end = rd.length;
+      if (next){
+        const want = next.t.replace(/\u3000/g, " ").trim();
+        if (want){
+          const at = rd.indexOf(want, pos);
+          if (at < 0) return whole();
+          end = at;
+        }
+      }
+      const r = rd.slice(pos, end).trim();
+      if (!r) return whole();
+      out += "<ruby>" + esc(tok.t) + "<rt>" + esc(r) + "</rt></ruby>";
+      pos = end;
+    }
+  }
+  return out;
+}
+
 const MODES = {
   kanji: [["reading","Kanji → reading"],["meaning","Kanji → meaning"],
           ["cloze","Fill the sentence"],["en2ja","English → Japanese"]],
@@ -283,10 +334,9 @@ function show(){
   $("promptEn").hidden = !showEn;
   $("promptEn").textContent = showEn ? q.exEn : "";
 
-  /* the answer is shown the way the exam shows it: furigana above the word */
-  $("ansReading").innerHTML = (q.kana && q.kana!==q.w)
-    ? "<ruby>"+esc(q.w)+"<rt>"+esc(q.kana)+"</rt></ruby>"
-    : esc(q.w);
+  /* the answer is shown the way the exam shows it: furigana above the word,
+     and only above the kanji — the kana and katakana already read themselves */
+  $("ansReading").innerHTML = ruby(q.w, q.kana);
   $("ansMeaning").textContent = q.en||"";
   $("ansExample").innerHTML = q.ex
     ? esc(q.ex).replace(esc(q.w), "<b>"+esc(q.w)+"</b>")
