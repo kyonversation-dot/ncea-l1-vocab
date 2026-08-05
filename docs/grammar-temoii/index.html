@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Practice for the Japanese grammar patterns -temo ii desu (permission) and -te wa ikemasen (prohibition), NCEA Level 1.">
+<meta name="theme-color" content="#14795d">
+<title>〜ても いいです ／ 〜ては いけません れんしゅう</title>
+<style>
+  :root{
+    --ground:#eef1f6; --card:#ffffff; --card-border:#e7ebf0;
+    --ink:#22303f; --ink-soft:#5b6773; --muted:#98a2ae;
+    --accent:#14795d; --accent-ink:#ffffff;
+    --tab-bg:#e4e8ee; --tab-ink:#55606d;
+    --banner-bg:#e9f8f0; --banner-edge:#14795d; --banner-ink:#2f6d56;
+    --reveal-bg:#f3faf7; --reveal-ink:#155f49; --reveal-edge:#bfe6d6;
+    --tag-bg:#fdf1cf; --tag-ink:#8a6a12;
+    --shadow:rgba(30,50,80,.07);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ground:#10161d; --card:#1a2531; --card-border:#26333f;
+      --ink:#e8eef4; --ink-soft:#a9b5c1; --muted:#6f7d8a;
+      --accent:#3fbf92; --accent-ink:#06231a;
+      --tab-bg:#222f3b; --tab-ink:#a9b5c1;
+      --banner-bg:#14261f; --banner-edge:#3fbf92; --banner-ink:#8fdcbf;
+      --reveal-bg:#152a22; --reveal-ink:#8fdcbf; --reveal-edge:#2c5344;
+      --tag-bg:#3a3320; --tag-ink:#e8cf8e;
+      --shadow:rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#eef1f6; --card:#ffffff; --card-border:#e7ebf0;
+    --ink:#22303f; --ink-soft:#5b6773; --muted:#98a2ae;
+    --accent:#14795d; --accent-ink:#ffffff;
+    --tab-bg:#e4e8ee; --tab-ink:#55606d;
+    --banner-bg:#e9f8f0; --banner-edge:#14795d; --banner-ink:#2f6d56;
+    --reveal-bg:#f3faf7; --reveal-ink:#155f49; --reveal-edge:#bfe6d6;
+    --tag-bg:#fdf1cf; --tag-ink:#8a6a12;
+    --shadow:rgba(30,50,80,.07);
+  }
+  :root[data-theme="dark"]{
+    --ground:#10161d; --card:#1a2531; --card-border:#26333f;
+    --ink:#e8eef4; --ink-soft:#a9b5c1; --muted:#6f7d8a;
+    --accent:#3fbf92; --accent-ink:#06231a;
+    --tab-bg:#222f3b; --tab-ink:#a9b5c1;
+    --banner-bg:#14261f; --banner-edge:#3fbf92; --banner-ink:#8fdcbf;
+    --reveal-bg:#152a22; --reveal-ink:#8fdcbf; --reveal-edge:#2c5344;
+    --tag-bg:#3a3320; --tag-ink:#e8cf8e;
+    --shadow:rgba(0,0,0,.35);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ground); color:var(--ink);
+    font-family:"Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic","Meiryo","Noto Sans JP",system-ui,sans-serif;
+    line-height:1.75; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:22px 18px 64px;}
+
+  h1{
+    font-size:1.05rem; font-weight:700; color:var(--ink-soft);
+    text-align:center; margin:4px 0 18px; letter-spacing:.02em;
+  }
+
+  /* tabs */
+  .tabs{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:20px;}
+  .tab{
+    appearance:none; border:none; cursor:pointer;
+    font:inherit; font-weight:700; font-size:.95rem;
+    padding:9px 20px; border-radius:999px;
+    background:var(--tab-bg); color:var(--tab-ink);
+    transition:background .15s, color .15s, transform .05s;
+  }
+  .tab:hover{filter:brightness(.98)}
+  .tab:active{transform:translateY(1px)}
+  .tab[aria-selected="true"]{background:var(--accent); color:var(--accent-ink);}
+  .tab:focus-visible{outline:3px solid var(--accent); outline-offset:2px;}
+
+  /* instruction banner */
+  .banner{
+    background:var(--banner-bg); color:var(--banner-ink);
+    border-left:4px solid var(--banner-edge); border-radius:8px;
+    padding:12px 16px; margin-bottom:18px; font-size:.95rem; font-weight:500;
+  }
+
+  /* cards */
+  .cards{display:flex; flex-direction:column; gap:14px;}
+  .card{
+    background:var(--card); border:1px solid var(--card-border);
+    border-radius:14px; padding:18px 20px; box-shadow:0 2px 10px var(--shadow);
+    cursor:pointer; transition:border-color .15s, box-shadow .15s;
+  }
+  .card:hover{border-color:var(--accent);}
+  .card:focus-visible{outline:3px solid var(--accent); outline-offset:2px;}
+  .card.open{border-color:var(--reveal-edge);}
+  .prompt{font-size:1.18rem; font-weight:600; color:var(--ink); margin:0;}
+  .prompt .en{font-size:1.06rem; font-style:normal; color:var(--ink);}
+  .en2{margin:7px 0 0; font-size:1.02rem; font-weight:500; color:var(--ink-soft);}
+  .tag{
+    display:inline-block; vertical-align:middle; margin-left:8px;
+    background:var(--tag-bg); color:var(--tag-ink);
+    font-size:.72rem; font-weight:700; padding:2px 9px; border-radius:6px;
+  }
+  .cue{
+    display:flex; align-items:center; gap:6px;
+    margin-top:10px; color:var(--muted); font-size:.82rem; font-weight:500;
+  }
+  .cue .hint{color:var(--muted);}
+  .answer{
+    display:none; margin-top:12px; padding:12px 14px;
+    background:var(--reveal-bg); color:var(--reveal-ink);
+    border-radius:10px; font-size:1.08rem; font-weight:600;
+  }
+  .card.open .answer{display:block; animation:pop .18s ease;}
+  .card.open .cue{display:none;}
+  @keyframes pop{from{opacity:0; transform:translateY(-3px)} to{opacity:1; transform:none}}
+  @media (prefers-reduced-motion:reduce){.card.open .answer{animation:none}}
+
+  .foot{display:flex; justify-content:center; margin-top:26px;}
+  .closeall{
+    appearance:none; border:none; cursor:pointer; font:inherit; font-weight:700;
+    color:var(--tab-ink); background:var(--tab-bg);
+    padding:11px 26px; border-radius:999px;
+  }
+  .closeall:hover{filter:brightness(.98)}
+  .closeall:focus-visible{outline:3px solid var(--accent); outline-offset:2px;}
+
+  .panel[hidden]{display:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>〜ても いいです　／　〜ては いけません　れんしゅう</h1>
+
+  <div class="tabs" role="tablist" aria-label="ステップ">
+    <button class="tab" role="tab" id="tab-0" aria-controls="panel-0" aria-selected="true">① 読む</button>
+    <button class="tab" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="false">② ます形から 書きかえる</button>
+    <button class="tab" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false">③ ことばを 入れかえる</button>
+    <button class="tab" role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false">④ ても？ ては？</button>
+  </div>
+
+  <div class="banner" id="banner"></div>
+
+  <div class="panel" id="panel-0" role="tabpanel" aria-labelledby="tab-0"><div class="cards"></div></div>
+  <div class="panel" id="panel-1" role="tabpanel" aria-labelledby="tab-1" hidden><div class="cards"></div></div>
+  <div class="panel" id="panel-2" role="tabpanel" aria-labelledby="tab-2" hidden><div class="cards"></div></div>
+  <div class="panel" id="panel-3" role="tabpanel" aria-labelledby="tab-3" hidden><div class="cards"></div></div>
+
+  <div class="foot"><button class="closeall" id="closeall">ぜんぶ とじる</button></div>
+</div>
+
+<script>
+  const BANNERS = [
+    "文を 読んで、いみを 英語で 言いましょう。クリックで いみが 出ます。",
+    "ます形を 見て、「ても いいです」か「ては いけません」に 書きかえましょう。クリックで 答えが 出ます。",
+    "形は いつも 同じです。ことばを 入れかえて 文を 作りましょう。クリックで 答えが 出ます。",
+    "「ても」ですか、「ては」ですか。クリックで 答えが 出ます。"
+  ];
+
+  // ① 読む : prompt = 日本語文 / answer = いみ(英語)
+  const READ = [
+    {p:"ここで しゃしんを とっても いいです。", a:"You may take photos here.", hint:"きょか（permission）"},
+    {p:"おてらの 中で しゃしんを とっては いけません。", a:"You must not take photos inside the temple.", hint:"きんし（prohibition）"},
+    {p:"でんしゃの 中で でんわで はなしては いけません。", a:"You must not talk on the phone on the train.", hint:"日本の マナー"},
+    {p:"こうえんで サッカーを しても いいです。", a:"You may play soccer in the park."},
+    {p:"じゅぎょう中に おかしを たべては いけません。", a:"You must not eat snacks during the lesson.", hint:"じゅぎょう中 = during a lesson"},
+    {p:"ともだちの うちに おみやげを もっていっても いいです。", a:"You may take a souvenir to your friend's house.", hint:"もっていきます → もっていって"},
+    {p:"うちの 中で くつを はいては いけません。げんかんで ぬぎます。", a:"You must not wear shoes inside the house. You take them off at the entrance.", tag:"むずかしい", hint:"はきます → はいて"},
+    {p:"としょかんは しずかですから、ここで はなしては いけません。", a:"The library is quiet, so you must not talk here.", tag:"むずかしい", hint:"から（りゆう）＋ きんし"}
+  ];
+
+  // ② 形を作る : prompt = もとの文 ＋ ○/✕ / answer = 完成した文
+  const FORM = [
+    {p:"たべます　→　○（いい）", a:"たべても いいです", hint:"る／れ・え の どうし ＝ ます を とって て"},
+    {p:"のみます　→　✕（だめ）", a:"のんでは いけません", hint:"み → んで"},
+    {p:"とります　→　✕（だめ）", a:"とっては いけません", hint:"り → って"},
+    {p:"はいります　→　○（いい）", a:"はいっても いいです", hint:"り → って"},
+    {p:"ぬぎます　→　○（いい）", a:"ぬいでも いいです", hint:"ぎ → いで"},
+    {p:"はきます　→　✕（だめ）", a:"はいては いけません", hint:"き → いて"},
+    {p:"はなします　→　✕（だめ）", a:"はなしては いけません", hint:"し → して"},
+    {p:"まちます　→　○（いい）", a:"まっても いいです", hint:"ち → って"},
+    {p:"およぎます　→　✕（だめ）", a:"およいでは いけません", hint:"ぎ → いで"},
+    {p:"します　→　✕（だめ）", a:"しては いけません", hint:"ふきそく（irregular）"},
+    {p:"きます（come）　→　○（いい）", a:"きても いいです", tag:"むずかしい", hint:"ふきそく（irregular）"},
+    {p:"★ならべて 見ましょう　とります　→　○？　✕？", a:"とっても いいです　／　とっては いけません　←　ちがいは「ても」と「ては」の 2つの おとだけ", tag:"たいせつ", hint:"ここが しけんの ポイント"}
+  ];
+
+  // ③ ことばを 入れかえる : 形は固定・スロットだけ差し替え（作文ではない）
+  const WRITE = [
+    {p:"【ばしょ】で 【もの】を 【どうし】　＝　いつも この 形です", a:"こうえん ／ サッカー ／ します　→　こうえんで サッカーを しても いいです。", tag:"たいせつ", hint:"まず 形を 見る"},
+    {p:"としょかん ／ おかし ／ たべます　→　✕", a:"としょかんで おかしを たべては いけません。（You must not eat snacks in the library.）", hint:"たべます → たべて"},
+    {p:"きょうしつ ／ しゃしん ／ とります　→　✕", a:"きょうしつで しゃしんを とっては いけません。（You must not take photos in the classroom.）", hint:"とります → とって"},
+    {p:"ホテルの へや ／ ゲーム ／ します　→　○", a:"ホテルの へやで ゲームを しても いいです。（You may play games in the hotel room.）", hint:"します → して"},
+    {p:"でんしゃの 中 ／ ジュース ／ のみます　→　✕", a:"でんしゃの 中で ジュースを のんでは いけません。（You must not drink juice on the train.）", hint:"のみます → のんで"},
+    {p:"うち ／ くつ ／ ぬぎます　→　○", a:"うちで くつを ぬいでも いいです。（You may take your shoes off at home.）", hint:"ぬぎます → ぬいで"},
+    {p:"こうえん ／ ピクニック ／ します　→　○", a:"こうえんで ピクニックを しても いいです。（You may have a picnic in the park.）"},
+    {p:"おてら ／ くつ ／ はきます　→　✕", a:"おてらで くつを はいては いけません。（You must not wear shoes in the temple.）", hint:"はきます → はいて"},
+    {p:"じゅぎょう中 ／ でんわ ／ つかいます　→　✕", a:"じゅぎょう中に でんわを つかっては いけません。（You must not use your phone during the lesson.）", tag:"ちゅうい", hint:"★じゅぎょう中は「で」ではなく「に」"},
+    {p:"としょかん ／ ともだち ／ まちます　→　○", a:"としょかんで ともだちを まっても いいです。（You may wait for your friend in the library.）", hint:"まちます → まって"}
+  ];
+
+  // ④ ても？ ては？ : NZ と 日本 で くらべる（＝しけんの 型）
+  const CHOICE = [
+    {p:"【日本】おてらの 中です。しゃしんを…？", en:"You are inside a temple in Japan. \"May I take photos?\"", a:"いいえ、しゃしんを とっては いけません。（No, you must not take photos.）", hint:"きんし"},
+    {p:"【ニュージーランド】こうえんです。しゃしんを…？", en:"You are in a park in New Zealand. \"May I take photos?\"", a:"はい、しゃしんを とっても いいです。（Yes, you may take photos.）", hint:"きょか"},
+    {p:"【日本】うちの 中です。くつを…？", en:"You are inside a house in Japan. \"May I keep my shoes on?\"", a:"いいえ、くつを はいては いけません。くつを ぬぎます。（No, you must not. You take them off.）", hint:"はきます → はいて"},
+    {p:"【日本】でんしゃの 中です。でんわで…？", en:"You are on a train in Japan. \"May I talk on the phone?\"", a:"いいえ、でんわで はなしては いけません。（No, you must not talk on the phone.）", hint:"はなします → はなして"},
+    {p:"【ニュージーランド】でんしゃの 中です。でんわで…？", en:"You are on a train in New Zealand. \"May I talk on the phone?\"", a:"はい、でんわで はなしても いいです。（Yes, you may.）　←　★ちがうのは 国です。文の 形は 同じ", tag:"たいせつ", hint:"上と くらべる"},
+    {p:"★しけんの ポイント：「たべても いいです」と「たべては いけません」", en:"What is the only difference between these two?", a:"ちがうのは「ても」と「ては」だけ。ここを 聞きまちがえると いみが 逆（ぎゃく）に なります。（Only 2 sounds — mishear them and the meaning flips.）", tag:"たいせつ", hint:"聴解（リスニング）で 毎年 出ます"}
+  ];
+
+  const DATA = [READ, FORM, WRITE, CHOICE];
+  const IDX = [0,1,2,3];
+  const panels = IDX.map(i => document.getElementById("panel-"+i));
+  const tabs = IDX.map(i => document.getElementById("tab-"+i));
+
+  function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+  function render(){
+    DATA.forEach((set, i) => {
+      const box = panels[i].querySelector(".cards");
+      box.innerHTML = set.map(item => {
+        const isEnPrompt = (i === 2);
+        const tag = item.tag ? `<span class="tag">${esc(item.tag)}</span>` : "";
+        const hint = item.hint ? `<span class="hint">（${esc(item.hint)}）</span>` : "";
+        const pInner = isEnPrompt ? `<span class="en">${esc(item.p)}</span>` : esc(item.p);
+        const en2 = item.en ? `<p class="en2">${esc(item.en)}</p>` : "";
+        return `<div class="card" tabindex="0" role="button" aria-expanded="false">
+            <p class="prompt">${pInner}${tag}</p>
+            ${en2}
+            <div class="cue">▶ クリック ${hint}</div>
+            <div class="answer">${esc(item.a)}</div>
+          </div>`;
+      }).join("");
+    });
+  }
+
+  function toggle(card){
+    const open = card.classList.toggle("open");
+    card.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+
+  document.addEventListener("click", e => {
+    const card = e.target.closest(".card");
+    if(card){ toggle(card); }
+  });
+  document.addEventListener("keydown", e => {
+    if((e.key === "Enter" || e.key === " ") && e.target.classList.contains("card")){
+      e.preventDefault(); toggle(e.target);
+    }
+  });
+
+  function selectTab(idx){
+    tabs.forEach((t,i) => t.setAttribute("aria-selected", i === idx ? "true" : "false"));
+    panels.forEach((p,i) => p.hidden = i !== idx);
+    document.getElementById("banner").textContent = BANNERS[idx];
+  }
+  tabs.forEach((t,i) => t.addEventListener("click", () => selectTab(i)));
+
+  document.getElementById("closeall").addEventListener("click", () => {
+    document.querySelectorAll(".card.open").forEach(c => {
+      c.classList.remove("open"); c.setAttribute("aria-expanded","false");
+    });
+  });
+
+  render();
+  selectTab(0);
+</script>
+</body>
+</html>
