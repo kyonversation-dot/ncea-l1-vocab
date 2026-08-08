@@ -117,6 +117,9 @@
   .stack{display:flex;flex-direction:column;gap:12px}
   .back{background:none;border:0;color:var(--accent);font:inherit;font-size:.8rem;cursor:pointer;
         padding:0;align-self:flex-start}
+  /* keep this last: the sections are switched with the hidden attribute, and any
+     author-level display (.stack above) beats the browser's [hidden]{display:none} */
+  [hidden]{display:none !important}
 </style>
 
 <div class="wrap">
