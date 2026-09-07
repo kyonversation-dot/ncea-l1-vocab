@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>かえでさんの いちにち</title>
+<style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}
+.backbar{max-width:840px;margin:0 auto;padding:14px 20px 0}
+.backbar a{font:600 13px Archivo,system-ui,sans-serif;letter-spacing:.04em;color:#2E4374;text-decoration:none}
+.backbar a:hover{text-decoration:underline}
+@media (prefers-color-scheme:dark){.backbar a{color:#93A9DE}}
+</style></head><body>
+<div class="backbar"><a href="../">&larr; All listening</a></div>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<style>
+  :root{
+    --paper:#FCFCFA; --card:#FFFFFF; --ink:#1B1F2A; --muted:#5A6274;
+    --faint:#818A9C; --rule:#C9CEDA; --hair:#E4E7EE; --ai:#2E4374;
+    --ai-soft:#E9EDF6; --ai-line:#B9C4DD; --warn:#8A5A1E; --warn-soft:#FBF2E2;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#14161C; --card:#1B1E26; --ink:#E7E9EF; --muted:#A3AABB;
+      --faint:#7C8496; --rule:#3A404F; --hair:#2A2F3A; --ai:#93A9DE;
+      --ai-soft:#202634; --ai-line:#3E4A66; --warn:#D9AC6B; --warn-soft:#241E14;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#14161C; --card:#1B1E26; --ink:#E7E9EF; --muted:#A3AABB;
+    --faint:#7C8496; --rule:#3A404F; --hair:#2A2F3A; --ai:#93A9DE;
+    --ai-soft:#202634; --ai-line:#3E4A66; --warn:#D9AC6B; --warn-soft:#241E14;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:"Source Serif 4","Iowan Old Style",Georgia,serif;
+    font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;
+  }
+  .sheet{max-width:840px;margin:0 auto;padding:0 20px 72px;}
+
+  .band{background:var(--ai);color:#fff;margin:0 -20px 26px;padding:24px 20px 20px;}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .band{background:#232B3D;}
+  }
+  :root[data-theme="dark"] .band{background:#232B3D;}
+  .code{
+    font-family:Archivo,system-ui,sans-serif;font-weight:700;font-size:12px;
+    letter-spacing:.18em;text-transform:uppercase;opacity:.8;
+  }
+  h1{
+    font-family:"Noto Sans JP","Hiragino Sans",sans-serif;font-weight:700;
+    font-size:clamp(25px,4.4vw,34px);line-height:1.25;margin:8px 0 4px;text-wrap:balance;
+  }
+  .band .en{font-family:Archivo,sans-serif;font-weight:600;font-size:14px;opacity:.85;letter-spacing:.02em;}
+  .std{font-size:13.5px;opacity:.8;margin:10px 0 0;max-width:56ch;line-height:1.45;}
+
+  h2{
+    font-family:Archivo,system-ui,sans-serif;font-weight:700;font-size:13px;
+    letter-spacing:.15em;text-transform:uppercase;color:var(--ai);margin:0 0 12px;
+  }
+  section{margin:0 0 34px;}
+
+  .notice{
+    background:var(--warn-soft);border-left:3px solid var(--warn);
+    padding:12px 16px;margin:0 0 28px;font-size:13.5px;color:var(--warn);line-height:1.5;
+  }
+  .notice strong{font-family:Archivo,sans-serif;font-weight:700;letter-spacing:.04em;}
+
+  /* ---- the write-here link ---- */
+  .writehere{
+    display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;
+    border:2px solid var(--ai);padding:16px 18px;margin:0 0 32px;
+  }
+  .writehere p{margin:0;font-size:15px;max-width:46ch;}
+  .writehere a{
+    font-family:Archivo,sans-serif;font-weight:700;font-size:14px;letter-spacing:.04em;
+    background:var(--ai);color:#fff;text-decoration:none;padding:11px 20px;white-space:nowrap;
+  }
+  .writehere a:hover{opacity:.88;}
+  .writehere a:focus-visible{outline:3px solid var(--warn);outline-offset:2px;}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .writehere a{background:var(--ai);color:#14161C;}
+  }
+  :root[data-theme="dark"] .writehere a{background:var(--ai);color:#14161C;}
+
+  /* ---- passage + players ---- */
+  .passage{border-top:2px solid var(--ink);padding-top:16px;}
+  .passage-label{
+    font-family:Archivo,sans-serif;font-weight:700;font-size:12px;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--ai);margin-bottom:8px;
+  }
+  .context{margin:0 0 6px;max-width:62ch;}
+  .gloss{
+    border:1px solid var(--rule);padding:11px 15px;margin-top:16px;
+    font-size:13.5px;color:var(--muted);
+  }
+  .gloss b{
+    font-family:Archivo,sans-serif;font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink);display:block;margin-bottom:4px;
+  }
+
+  .players{display:flex;flex-direction:column;gap:14px;margin-top:22px;}
+  .track{
+    background:var(--card);border:1px solid var(--rule);padding:14px 16px;
+  }
+  .track-head{
+    display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:10px;
+  }
+  .track-name{
+    font-family:Archivo,sans-serif;font-weight:700;font-size:14px;
+    letter-spacing:.05em;color:var(--ink);
+  }
+  .track-len{
+    font-family:Archivo,sans-serif;font-size:12px;color:var(--faint);
+    font-variant-numeric:tabular-nums;letter-spacing:.04em;
+  }
+  audio{width:100%;height:38px;display:block;}
+  .plays{
+    font-family:Archivo,sans-serif;font-size:11.5px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--faint);margin-top:8px;min-height:1em;
+  }
+
+  /* ---- question ---- */
+  .q{border-top:2px solid var(--ink);padding-top:16px;margin-top:34px;}
+  .q-num{
+    font-family:Archivo,sans-serif;font-weight:700;font-size:13px;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--ai);margin-bottom:16px;
+  }
+  .part{margin-bottom:22px;}
+  .part:last-child{margin-bottom:0;}
+  .part-q{display:flex;gap:12px;align-items:baseline;}
+  .part-q .letter{
+    font-family:Archivo,sans-serif;font-weight:700;font-size:15px;color:var(--ai);flex:none;
+  }
+  .part-q .text{font-size:17px;line-height:1.45;max-width:58ch;}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0 0 27px;}
+  .cols div{
+    background:var(--ai-soft);border:1px solid var(--ai-line);padding:10px 13px;
+    font-family:Archivo,sans-serif;font-weight:600;font-size:13.5px;color:var(--ai);
+  }
+
+  .sweep{
+    display:flex;flex-wrap:wrap;gap:7px;margin-top:12px;
+  }
+  .sweep span{
+    font-family:Archivo,sans-serif;font-size:11.5px;font-weight:600;
+    letter-spacing:.07em;text-transform:uppercase;
+    border:1px solid var(--rule);color:var(--muted);padding:4px 10px;
+  }
+
+  footer{border-top:1px solid var(--hair);padding-top:16px;margin-top:34px;font-size:12.5px;color:var(--faint);line-height:1.6;}
+
+  @media (max-width:640px){ .cols{grid-template-columns:1fr;margin-left:0;} }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 18px;}
+  .steps.two{grid-template-columns:repeat(2,1fr);max-width:52%;margin:14px 0 0;}
+  @media (max-width:680px){ .steps{grid-template-columns:repeat(2,1fr);} .steps.two{max-width:none;} }
+  .later{margin:0 0 24px;border-top:1px solid var(--hair);padding-top:14px;}
+  .later summary{font-family:Archivo,system-ui,sans-serif;font-size:11.5px;font-weight:700;
+    letter-spacing:.13em;text-transform:uppercase;color:var(--faint);cursor:pointer;}
+  .later summary:hover{color:var(--ai);}
+  .later .laterwhy{font-size:13.5px;line-height:1.6;color:var(--muted);margin:10px 0 0;max-width:64ch;}
+  .step{background:none;border:0;padding:0;text-align:left;cursor:pointer;}
+  .step .rule{height:3px;background:var(--hair);border-radius:2px;margin-bottom:7px;}
+  .step.on .rule{background:var(--ai);}
+  .step .lbl{font-family:Archivo,system-ui,sans-serif;font-size:10.5px;font-weight:700;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--faint);}
+  .step.on .lbl{color:var(--ai);}
+  .step .jp{display:block;font-family:"Noto Sans JP","Hiragino Sans",sans-serif;
+    font-size:14px;font-weight:700;color:var(--muted);margin-top:2px;}
+  .step.on .jp{color:var(--ink);}
+  .guide{background:var(--ai-soft);border:1px solid var(--ai-line);padding:14px 18px;
+    margin:0 0 26px;border-radius:4px;font-size:14px;line-height:1.65;}
+  .guide b{font-family:Archivo,sans-serif;letter-spacing:.04em;}
+  #p0{margin:0 0 26px;}
+  #p0 .askwhy{font-size:13.5px;line-height:1.6;color:var(--muted);margin:0 0 10px;max-width:64ch;}
+  ol.asklist{margin:0;padding-left:20px;}
+  ol.asklist li{margin:5px 0;font-size:14.5px;line-height:1.6;}
+  .playcount{font-family:Archivo,sans-serif;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--faint);margin-top:6px;}
+  .secans{margin-top:12px;}
+  .secans label{display:block;font-family:Archivo,system-ui,sans-serif;font-size:11px;font-weight:700;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin:0 0 6px;}
+  .script{margin-top:12px;padding:12px 14px;border-left:3px solid var(--ai-line);
+    background:var(--card);border-radius:0 4px 4px 0;}
+  .ln{padding:8px 10px;border-radius:4px;cursor:pointer;transition:background .12s ease;}
+  .ln:hover{background:var(--ai-soft);}
+  .ln.on{background:var(--ai);}
+  .ln p{margin:0;}
+  .ln .ja{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;font-size:15.5px;line-height:1.9;}
+  .ln .ja.cont{padding-left:2.1em;}
+  .ln .en2{font-size:13.5px;line-height:1.5;color:var(--muted);margin:1px 0 9px;padding-left:2.1em;}
+  .ln .en2:last-child{margin-bottom:0;}
+  .ln.on .ja{color:#fff;} .ln.on .en2{color:rgba(255,255,255,.78);}
+  .ln.on .who{color:rgba(255,255,255,.7);}
+  .noen .en2{display:none;}
+  .who{display:inline-block;min-width:2.1em;font-family:Archivo,sans-serif;font-size:11px;
+    font-weight:700;letter-spacing:.1em;color:var(--faint);vertical-align:2px;}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  @media (max-width:680px){ .cols{grid-template-columns:1fr;} }
+  .qa{margin:0 0 26px;}
+  .qa h3{font-family:Archivo,system-ui,sans-serif;font-size:13px;font-weight:700;
+    letter-spacing:.05em;color:var(--ai);margin:0 0 9px;}
+  .col h4,.mq h4{font-family:Archivo,system-ui,sans-serif;font-size:12px;font-weight:700;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin:0 0 7px;}
+  textarea{width:100%;background:var(--card);color:var(--ink);border:1px solid var(--rule);
+    border-radius:4px;padding:12px 14px;font-family:"Noto Sans JP","Hiragino Sans",sans-serif;
+    font-size:15px;line-height:1.9;resize:vertical;}
+  .tallish{min-height:200px;} .shortish{min-height:110px;}
+  textarea:focus{outline:2px solid var(--ai-line);outline-offset:1px;}
+  .tally{font-family:Archivo,sans-serif;font-size:12px;color:var(--muted);margin-top:6px;}
+  .mq{margin:0 0 30px;padding:16px 18px;background:var(--card);border:1px solid var(--hair);border-radius:5px;}
+  .mq h3{font-family:Archivo,sans-serif;font-size:13px;font-weight:700;letter-spacing:.05em;
+    color:var(--ai);margin:0 0 12px;}
+  ul.model{margin:0;padding-left:18px;} ul.model li{margin:5px 0;font-size:14.5px;line-height:1.6;}
+  .cat{display:inline-block;min-width:4.6em;font-family:Archivo,sans-serif;font-size:10px;
+    font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);}
+  .trap{background:var(--warn-soft);border-left:3px solid var(--warn);color:var(--warn);
+    padding:10px 14px;margin:14px 0 0;font-size:13.5px;line-height:1.55;}
+  .mine{background:var(--paper);border:1px dashed var(--rule);border-radius:4px;padding:11px 14px;
+    margin:0 0 14px;font-size:14px;line-height:1.7;white-space:pre-wrap;color:var(--muted);}
+  .mine em{font-style:normal;font-family:Archivo,sans-serif;font-size:11px;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--faint);display:block;margin-bottom:4px;}
+  .bands{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 20px;}
+  @media (max-width:680px){ .bands{grid-template-columns:1fr;} }
+  .band{text-align:left;background:var(--card);border:1px solid var(--rule);border-radius:5px;
+    padding:13px 15px;cursor:pointer;font:inherit;color:var(--ink);}
+  .band:hover{border-color:var(--ai-line);}
+  .band.on{border-color:var(--ai);box-shadow:inset 0 0 0 1px var(--ai);background:var(--ai-soft);}
+  .band .bn{display:block;font-family:Archivo,sans-serif;font-weight:700;font-size:14px;
+    letter-spacing:.03em;color:var(--ai);}
+  .band .bw{display:block;font-family:Archivo,sans-serif;font-size:10.5px;letter-spacing:.11em;
+    text-transform:uppercase;color:var(--faint);margin:2px 0 7px;}
+  .band .bt{display:block;font-size:13px;line-height:1.5;color:var(--muted);}
+  .bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:26px 0 0;}
+  button.act{font-family:Archivo,system-ui,sans-serif;font-weight:600;font-size:13px;
+    letter-spacing:.04em;padding:9px 16px;border-radius:4px;border:1px solid var(--ai);
+    background:var(--ai);color:#fff;cursor:pointer;}
+  button.ghost{background:transparent;color:var(--ai);}
+  .saved{font-size:12.5px;color:var(--faint);}
+</style>
+<div class="sheet">
+  <div class="band">
+    <div class="code">Level 1 Japanese &nbsp;·&nbsp; 91959 &nbsp;·&nbsp; Listening practice</div>
+    <h1>かえでさんの いちにち</h1>
+    <div class="en">Kaede's day</div>
+    <p class="std">Demonstrate understanding of spoken Japanese related to everyday contexts.</p>
+  </div>
+
+  <div class="notice"><strong>PRACTICE.</strong> Not an NZQA paper, and not officially marked. Play anything as many times as you like. What you type stays on this device.</div>
+
+  <div class="writehere">
+    <p>Write your answers in the document. Keep it open beside this page.</p>
+    <a href="https://docs.google.com/document/d/1n-G1-yPnHv1DAFJH0EPJ8HuqlEekpQ2cUF63ftbc9xI/edit" target="_blank" rel="noopener">Open the answer sheet</a>
+  </div>
+
+  <div class="steps">
+    <button class="step on" data-p="1"><div class="rule"></div><span class="lbl">1 &middot; Listen</span><span class="jp">きく</span></button>
+    <button class="step" data-p="2"><div class="rule"></div><span class="lbl">2 &middot; Answer</span><span class="jp">こたえる</span></button>
+    <button class="step" data-p="3"><div class="rule"></div><span class="lbl">3 &middot; Follow</span><span class="jp">おいかける</span></button>
+    <button class="step" data-p="4"><div class="rule"></div><span class="lbl">4 &middot; Meaning</span><span class="jp">いみ</span></button>
+  </div>
+
+  <details class="later">
+    <summary>Closer to the exam &nbsp;&middot;&nbsp; two more passes</summary>
+    <p class="laterwhy">These two are for the month before the exam, once your ear is already doing most of the work. If you are still building it, stay on 1&ndash;4 &mdash; opening the answers too early is the fastest way to stop your listening improving.</p>
+    <div class="steps two">
+      <button class="step" data-p="5"><div class="rule"></div><span class="lbl">5 &middot; Example</span><span class="jp">れい</span></button>
+      <button class="step" data-p="6"><div class="rule"></div><span class="lbl">6 &middot; Judge</span><span class="jp">はんだん</span></button>
+    </div>
+  </details>
+
+  <div class="guide" id="guide"></div>
+
+  <section id="p0">
+    <h2>Read these before you listen</h2>
+    <p class="askwhy">In the real exam the questions are printed in front of you before the audio starts. Know what you are listening for.</p>
+    <ol class="asklist">
+      <li>What Kaede does, and what her family does</li>
+      <li>How does Kaede feel about her school subjects, and why?</li>
+      <li>Which day does Kaede like best, and why?</li>
+    </ol>
+  </section>
+
+  <section class="passage">
+    <div class="passage-label">The passage</div>
+    <p class="context">Tama, a student from Aotearoa New Zealand, is talking to his Japanese friend Kaede about her day in Japan. The conversation is in four sections.</p>
+    <div class="gloss"><b>Glossed vocabulary</b> None. Every word in this passage is on the Level 1 Japanese Vocabulary List.</div>
+    <div class="players"><div class="track" data-s="1"><div class="track-head"><span class="track-name">Section 1</span><span class="track-len">4 turns</span></div><audio controls preload="none" src="audio/section1.mp3"></audio><div class="playcount">not played yet</div><div class="secans" hidden><label for="s1">What you heard in section 1</label><textarea id="s1" class="shortish" placeholder="Write it here, while it is still in your head."></textarea></div><div class="script" hidden><div class="ln" data-i="0"><p class="ja"><span class="who">A</span>かえでさん、 まいにち なんじに おきますか。</p><p class="en2">Kaede, what time do you get up every day?</p></div><div class="ln" data-i="1"><p class="ja"><span class="who">B</span>ろくじ さんじゅっぷんに おきます。</p><p class="en2">I get up at half past six.</p></div><div class="ln" data-i="2"><p class="ja"><span class="who">A</span>はやいですね。</p><p class="en2">That&#x27;s early.</p><p class="ja cont">どうしてですか。</p><p class="en2">Why is that?</p></div><div class="ln" data-i="3"><p class="ja"><span class="who">B</span>がっこうまで でんしゃで よんじゅっぷん かかりますから、 はやく おきます。</p><p class="en2">It takes forty minutes to get to school by train, so I get up early.</p><p class="ja cont">あさごはんは おにいさんと たべます。</p><p class="en2">I have breakfast with my older brother.</p><p class="ja cont">おにいさんは だいがくせいです。</p><p class="en2">My older brother is a university student.</p><p class="ja cont">おばあさんが ごはんと たまごを つくりますから、 まいにち おいしいです。</p><p class="en2">My grandmother makes the rice and the eggs, so it&#x27;s delicious every day.</p></div></div></div><div class="track" data-s="2"><div class="track-head"><span class="track-name">Section 2</span><span class="track-len">4 turns</span></div><audio controls preload="none" src="audio/section2.mp3"></audio><div class="playcount">not played yet</div><div class="secans" hidden><label for="s2">What you heard in section 2</label><textarea id="s2" class="shortish" placeholder="Write it here, while it is still in your head."></textarea></div><div class="script" hidden><div class="ln" data-i="0"><p class="ja"><span class="who">A</span>おべんとうも もっていきますか。</p><p class="en2">Do you take a packed lunch as well?</p></div><div class="ln" data-i="1"><p class="ja"><span class="who">B</span>はい。</p><p class="en2">Yes.</p><p class="ja cont">わたしは りょうりが へたですから、 おばあさんが おべんとうも つくります。</p><p class="en2">I&#x27;m bad at cooking, so my grandmother makes my lunch too.</p><p class="ja cont">おばあさんは りょうりが とても じょうずです。</p><p class="en2">My grandmother is very good at cooking.</p></div><div class="ln" data-i="2"><p class="ja"><span class="who">A</span>がっこうは なんじに はじまりますか。</p><p class="en2">What time does school start?</p></div><div class="ln" data-i="3"><p class="ja"><span class="who">B</span>はちじ さんじゅっぷんに はじまって、 さんじ さんじゅっぷんに おわります。</p><p class="en2">It starts at half past eight and finishes at half past three.</p><p class="ja cont">ひるやすみに ともだちと おべんとうを たべたり、 としょかんで ほんを よんだり します。</p><p class="en2">At lunchtime I do things like eat my lunch with friends and read books in the library.</p></div></div></div><div class="track" data-s="3"><div class="track-head"><span class="track-name">Section 3</span><span class="track-len">4 turns</span></div><audio controls preload="none" src="audio/section3.mp3"></audio><div class="playcount">not played yet</div><div class="secans" hidden><label for="s3">What you heard in section 3</label><textarea id="s3" class="shortish" placeholder="Write it here, while it is still in your head."></textarea></div><div class="script" hidden><div class="ln" data-i="0"><p class="ja"><span class="who">A</span>いちばん すきな かもくは なんですか。</p><p class="en2">What&#x27;s your favourite subject?</p></div><div class="ln" data-i="1"><p class="ja"><span class="who">B</span>おんがくが いちばん すきです。</p><p class="en2">I like music best.</p><p class="ja cont">うたを うたいますから、 たのしいです。</p><p class="en2">We sing songs, so it&#x27;s fun.</p></div><div class="ln" data-i="2"><p class="ja"><span class="who">A</span>むずかしい かもくは ありますか。</p><p class="en2">Are there any subjects that are difficult?</p></div><div class="ln" data-i="3"><p class="ja"><span class="who">B</span>りかは とても むずかしいです。</p><p class="en2">Science is very difficult.</p><p class="ja cont">すうがくは りかより かんたんですから、 すきです。</p><p class="en2">Maths is easier than science, so I like it.</p><p class="ja cont">えいごは あまり すきじゃないです。</p><p class="en2">I don&#x27;t like English very much.</p></div></div></div><div class="track" data-s="4"><div class="track-head"><span class="track-name">Section 4</span><span class="track-len">4 turns</span></div><audio controls preload="none" src="audio/section4.mp3"></audio><div class="playcount">not played yet</div><div class="secans" hidden><label for="s4">What you heard in section 4</label><textarea id="s4" class="shortish" placeholder="Write it here, while it is still in your head."></textarea></div><div class="script" hidden><div class="ln" data-i="0"><p class="ja"><span class="who">A</span>がっこうの あとで、 なにを しますか。</p><p class="en2">What do you do after school?</p></div><div class="ln" data-i="1"><p class="ja"><span class="who">B</span>げつようびと もくようびに ぶかつが あります。</p><p class="en2">I have club on Mondays and Thursdays.</p><p class="ja cont">ぶかつで バスケットボールを しますから、 とても たのしいです。</p><p class="en2">We play basketball at club, so it&#x27;s a lot of fun.</p><p class="ja cont">こんしゅうの どようびに しあいが あります。</p><p class="en2">There&#x27;s a match this Saturday.</p></div><div class="ln" data-i="2"><p class="ja"><span class="who">A</span>にちようびは どうですか。</p><p class="en2">What about Sundays?</p></div><div class="ln" data-i="3"><p class="ja"><span class="who">B</span>にちようびだけ やすみです。</p><p class="en2">Sunday is my only day off.</p><p class="ja cont">あさ じゅうじまで ねます。</p><p class="en2">I sleep until ten in the morning.</p><p class="ja cont">それから、 おばあさんと かいものを します。</p><p class="en2">Then I go shopping with my grandmother.</p><p class="ja cont">わたしは にちようびが いちばん すきです。</p><p class="en2">I like Sundays best.</p></div></div></div></div>
+  </section>
+
+  <section id="p2" hidden>
+    <h2>Your answers</h2>
+    <div class="qa">
+      <h3>(a) What Kaede does, and what her family does</h3>
+      <div class="cols">
+        <div class="col"><h4>Kaede herself</h4><textarea id="a" class="tallish" placeholder="One thing per line…"></textarea><div class="tally" id="ta">0 lines</div></div>
+        <div class="col"><h4>Her family</h4><textarea id="b" class="tallish" placeholder="One thing per line…"></textarea><div class="tally" id="tb">0 lines</div></div>
+      </div>
+    </div>
+    <div class="qa">
+      <h3>(b) How does Kaede feel about her school subjects, and why?</h3>
+      <textarea id="qb" class="shortish" placeholder="Answer in English, te reo Māori, or Japanese."></textarea>
+    </div>
+    <div class="qa">
+      <h3>(c) Which day does Kaede like best, and why?</h3>
+      <textarea id="qc" class="shortish" placeholder="She says which day. She never says why — build the reason yourself."></textarea>
+    </div>
+  </section>
+
+  <section id="p5" hidden>
+    <h2>Example answers</h2>
+    <div id="mine5"></div>
+    <div class="mq"><h3>(a) What Kaede does, and what her family does</h3><div class="cols"><div><h4>Kaede herself</h4><ul class="model"><li><span class="cat">when</span>Gets up at 6:30</li><li><span class="cat">why</span>Gets up early because school is forty minutes away by train</li><li><span class="cat">where</span>Goes to school by train</li><li><span class="cat">what</span>Eats breakfast with her older brother</li><li><span class="cat">what</span>Takes a packed lunch</li><li><span class="cat">when</span>Classes start at 8:30</li><li><span class="cat">when</span>Classes finish at 3:30</li><li><span class="cat">what</span>Eats her lunch with friends at lunchtime</li><li><span class="cat">where</span>Reads books in the library</li><li><span class="cat">when</span>Does homework at home Monday to Friday</li><li><span class="cat">when</span>Club is on Mondays and Thursdays</li><li><span class="cat">when</span>There is a match this Saturday</li><li><span class="cat">what</span>Plays basketball at club</li><li><span class="cat">feeling</span>Club is a lot of fun because she plays basketball</li><li><span class="cat">when</span>Sunday is her only day off, and she sleeps until 10 in the morning</li><li><span class="cat">what</span>Goes shopping with her grandmother</li></ul></div><div><h4>Her family</h4><ul class="model"><li><span class="cat">who</span>Her GRANDMOTHER makes the rice and the eggs for breakfast</li><li><span class="cat">feeling</span>So it is delicious every day</li><li><span class="cat">who</span>Her older brother is a university student — he only eats breakfast with her</li><li><span class="cat">why</span>Her grandmother makes her packed lunch too, because Kaede is bad at cooking</li><li><span class="cat">feeling</span>Her grandmother is very good at cooking</li></ul></div></div><p class="trap">If you wrote that Kaede makes her own lunch, or that her brother makes breakfast, the subject slipped. Tracking WHO does WHAT is the whole point of this one.</p></div><div class="mq"><h3>(b) How does Kaede feel about her school subjects, and why?</h3><ul class="model"><li>Music is her favourite subject</li><li><span class="cat">why</span>Because they sing songs, so it is fun</li><li>Science is very difficult</li><li>Maths is EASIER than science — check you did not write it the other way round</li><li><span class="cat">why</span>So she likes maths</li><li>She does not like English very much</li></ul></div><div class="mq"><h3>(c) Which day does Kaede like best, and why?</h3><p class="trap">The answer is Sunday. She says so — but she never says why. You have to build the reason yourself out of all four sections. One connection is already good. Three or more and you are reaching Excellence.</p><ul class="model"><li>On weekdays she is up at 6:30, because school is forty minutes away</li><li>On weekdays she does homework at home</li><li>There is a match on Saturday</li><li>Sunday is her ONLY day off — she can sleep until 10</li><li>On Sunday she goes shopping with her grandmother, so she spends it with someone she likes</li></ul></div>
+  </section>
+
+  <section id="p6" hidden>
+    <h2>Judge your own answer</h2>
+    <div class="bands"><button class="band" data-b="A"><span class="bn">Achievement</span><span class="bw">understanding</span><span class="bt">Correct pieces. You have listed things that are genuinely in the conversation, even if they are separate facts rather than a joined-up picture.</span></button><button class="band" data-b="M"><span class="bn">Merit</span><span class="bw">sound understanding</span><span class="bt">Accurate, specific detail — especially numbers, days and times — and you have joined a fact to its reason (she does X because Y).</span></button><button class="band" data-b="E"><span class="bn">Excellence</span><span class="bw">thorough understanding</span><span class="bt">You have covered the whole conversation and built a conclusion out of it, using evidence from more than one section. A few mistakes can remain and it is still Excellence.</span></button></div>
+    <div class="qa">
+      <h3>Why that band?</h3>
+      <textarea id="why" class="shortish" placeholder="Point at your own answer. What is in it that makes it that band — and what is missing that would make it the next one up?"></textarea>
+    </div>
+    <div class="qa">
+      <h3>What will you do next time?</h3>
+      <textarea id="next" class="shortish" placeholder="One thing. For example: write down every number I hear, or check who is doing the action before I write it."></textarea>
+    </div>
+  </section>
+
+  <div class="bar">
+    <button class="act" id="dl">Save my notes</button>
+    <button class="act ghost" id="clr">Clear and start again</button>
+    <span class="saved" id="st"></span>
+  </div>
+</div>
+<script>
+window.__TIMING__ = [[{"start": 0.0, "end": 4.584}, {"start": 4.934, "end": 8.822}, {"start": 9.172, "end": 13.684}, {"start": 14.034, "end": 35.874}], [{"start": 0.0, "end": 3.432}, {"start": 3.782, "end": 16.982}, {"start": 17.332, "end": 21.028}, {"start": 21.378, "end": 36.33}], [{"start": 0.0, "end": 3.792}, {"start": 4.142, "end": 12.062}, {"start": 12.412, "end": 15.916}, {"start": 16.266, "end": 29.514}], [{"start": 0.0, "end": 4.248}, {"start": 4.598, "end": 19.934}, {"start": 20.284, "end": 23.284}, {"start": 23.634, "end": 39.786}]];
+
+(function(){
+  var T = window.__TIMING__ || [], K = "kaede-practice-v5";
+  var $ = function(id){ return document.getElementById(id); };
+  var F = ["a","b","qb","qc","why","next","s1","s2","s3","s4"];
+  var GUIDE = $("guide"), ST = $("st");
+
+  var GUIDES = {
+    1:"<b>1 &middot; First listening — take a memo.</b> Play a section right through, then write into the box under that section while it is still in your head. Single words, numbers, a name. Read the three questions above first, so you know what you are listening for. This is the same job as the first play-through in the real exam: get the shape of the whole thing, not the detail.",
+    2:"<b>2 &middot; Second, third and fourth listening — answer the questions.</b> In the real exam you get three more plays, section by section, and that is when you fill in the detail. Replay each section and answer below. Still no script.",
+    3:"<b>3 &middot; With the Japanese text.</b> Play a section and the line being spoken lights up, so you can see exactly where you are. Tap any line to jump to it. Stay here until the sounds separate into words. No English yet — if it were on the screen your eyes would go there and the Japanese would stop doing any work.",
+    4:"<b>4 &middot; With the English.</b> Each Japanese sentence now has its English underneath. Use it for the parts that still would not come. Then go back to pass 2 and add what you missed.",
+    5:"<b>5 &middot; Example answers.</b> <i>For the month before the exam.</i> What you wrote is at the top, a full answer underneath. You are not looking for a score — you are looking for WHICH KIND of thing you keep missing: times, or who did it, or the reason.",
+    6:"<b>6 &middot; Judge it yourself.</b> <i>For the month before the exam.</i> Decide which band your answer reaches, then say why. Writing the reason is the part that teaches you — it makes you compare your own words against the criteria instead of guessing."
+  };
+
+  function nl(t){ return t.split("\n").filter(function(s){return s.trim().length>0;}).length; }
+  function tally(){
+    $("ta").textContent = nl($("a").value)+" lines";
+    $("tb").textContent = nl($("b").value)+" lines";
+  }
+  var state = {band:""};
+  try{ var raw = localStorage.getItem(K);
+       if(raw){ var o = JSON.parse(raw);
+         F.forEach(function(k){ if($(k) && o[k]) $(k).value = o[k]; });
+         state.band = o.band || ""; } }catch(e){}
+  tally();
+
+  var tid; function save(){ clearTimeout(tid); tid = setTimeout(function(){
+      var o = {band: state.band};
+      F.forEach(function(k){ if($(k)) o[k] = $(k).value; });
+      try{ localStorage.setItem(K, JSON.stringify(o));
+           ST.textContent="saved"; setTimeout(function(){ST.textContent="";},1400); }catch(e){}
+    },400); }
+  F.forEach(function(k){ if($(k)) $(k).addEventListener("input", function(){ tally(); save(); }); });
+
+  function paintBands(){
+    Array.prototype.forEach.call(document.querySelectorAll(".band[data-b]"), function(b){
+      b.classList.toggle("on", b.getAttribute("data-b") === state.band); });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll(".band[data-b]"), function(b){
+    b.addEventListener("click", function(){
+      state.band = (state.band === b.getAttribute("data-b")) ? "" : b.getAttribute("data-b");
+      paintBands(); save(); }); });
+  paintBands();
+
+  function block(label, txt){
+    if(!txt || !txt.trim()) return "";
+    var d = document.createElement("div"); d.className = "mine";
+    var e = document.createElement("em"); e.textContent = label;
+    d.appendChild(e); d.appendChild(document.createTextNode(txt));
+    return d.outerHTML;
+  }
+  function showMine(){
+    $("mine5").innerHTML =
+      block("What you wrote \u2014 Kaede herself", $("a").value) +
+      block("What you wrote \u2014 her family", $("b").value) +
+      block("What you wrote \u2014 (b) subjects", $("qb").value) +
+      block("What you wrote \u2014 (c) favourite day", $("qc").value);
+  }
+
+  var scripts = document.querySelectorAll(".script");
+  function setPass(p){
+    Array.prototype.forEach.call(document.querySelectorAll(".step"), function(s){
+      s.classList.toggle("on", s.getAttribute("data-p") === String(p)); });
+    [2,5,6].forEach(function(n){ var el = $("p"+n); if(el) el.hidden = (p !== n); });
+    $("p0").hidden = (p !== 1);
+    Array.prototype.forEach.call(scripts, function(s){ s.hidden = (p!==3 && p!==4); });
+    Array.prototype.forEach.call(document.querySelectorAll(".secans"), function(s){ s.hidden = (p!==1); });
+    document.body.classList.toggle("noen", p===3);
+    GUIDE.innerHTML = GUIDES[p];
+    if(p===5) showMine();
+  }
+  Array.prototype.forEach.call(document.querySelectorAll(".step"), function(s){
+    s.addEventListener("click", function(){ setPass(parseInt(s.getAttribute("data-p"),10)); }); });
+  setPass(1);
+
+  Array.prototype.forEach.call(document.querySelectorAll(".track"), function(tr){
+    var s = parseInt(tr.getAttribute("data-s"),10);
+    var au = tr.querySelector("audio"), lab = tr.querySelector(".playcount"), n = 0;
+    var marks = T[s-1] || [], els = tr.querySelectorAll(".ln");
+    au.addEventListener("play", function(){ n++; lab.textContent = n===1?"played once":"played "+n+" times"; });
+    au.addEventListener("timeupdate", function(){
+      var t = au.currentTime, hit = -1;
+      for(var i=0;i<marks.length;i++){ if(t>=marks[i].start && t<marks[i].end){ hit=i; break; } }
+      for(var j=0;j<els.length;j++){ els[j].classList.toggle("on", j===hit); }
+    });
+    function clear(){ Array.prototype.forEach.call(els,function(e){e.classList.remove("on");}); }
+    au.addEventListener("pause", clear); au.addEventListener("ended", clear);
+    Array.prototype.forEach.call(els, function(el,i){
+      el.addEventListener("click", function(){ if(marks[i]){ au.currentTime=marks[i].start; au.play(); } }); });
+  });
+
+  $("clr").addEventListener("click", function(){
+    F.forEach(function(k){ if($(k)) $(k).value = ""; });
+    state.band = ""; paintBands(); tally();
+    try{ localStorage.removeItem(K); }catch(e){}
+  });
+
+  $("dl").addEventListener("click", async function(){
+    var v = function(k){ return $(k) ? $(k).value : ""; };
+    var txt = "\u304b\u3048\u3067\u3055\u3093\u306e \u3044\u3061\u306b\u3061 \u2014 my practice\n\n"
+      + "Pass 1 \u2014 what I caught\nSection 1\n" + v("s1")
+      + "\nSection 2\n" + v("s2") + "\nSection 3\n" + v("s3") + "\nSection 4\n" + v("s4")
+      + "\n\n(a) What Kaede does herself\n" + v("a")
+      + "\n\n(a) What her family does\n" + v("b")
+      + "\n\n(b) Subjects\n" + v("qb")
+      + "\n\n(c) Favourite day\n" + v("qc")
+      + "\n\nI judged this: " + (state.band || "(not chosen)")
+      + "\n\nWhy\n" + v("why")
+      + "\n\nNext time\n" + v("next") + "\n";
+    var d = null; try{ d = await window.claude.use("downloads"); }catch(e){}
+    if(!d){ ST.textContent = "Saving isn't available here \u2014 copy the text instead."; return; }
+    try{ await d.save({filename:"kaede-practice.txt", data:txt}); ST.textContent = "saved to your device"; }
+    catch(e){ ST.textContent = "not saved"; }
+    setTimeout(function(){ST.textContent="";}, 2500);
+  });
+})();
+
+</script>
+</body></html>

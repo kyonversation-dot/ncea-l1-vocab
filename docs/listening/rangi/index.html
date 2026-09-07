@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>ランギくんの いちにち</title>
+<style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}
+.backbar{max-width:840px;margin:0 auto;padding:14px 20px 0}
+.backbar a{font:600 13px Archivo,system-ui,sans-serif;letter-spacing:.04em;color:#2E4374;text-decoration:none}
+.backbar a:hover{text-decoration:underline}
+@media (prefers-color-scheme:dark){.backbar a{color:#93A9DE}}
+</style></head><body>
+<div class="backbar"><a href="../">&larr; All listening</a></div>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<style>
+  :root{
+    --paper:#FCFCFA; --card:#FFFFFF; --ink:#1B1F2A; --muted:#5A6274;
+    --faint:#818A9C; --rule:#C9CEDA; --hair:#E4E7EE; --ai:#2E4374;
+    --ai-soft:#E9EDF6; --ai-line:#B9C4DD; --warn:#8A5A1E; --warn-soft:#FBF2E2;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#14161C; --card:#1B1E26; --ink:#E7E9EF; --muted:#A3AABB;
+      --faint:#7C8496; --rule:#3A404F; --hair:#2A2F3A; --ai:#93A9DE;
+      --ai-soft:#202634; --ai-line:#3E4A66; --warn:#D9AC6B; --warn-soft:#241E14;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#14161C; --card:#1B1E26; --ink:#E7E9EF; --muted:#A3AABB;
+    --faint:#7C8496; --rule:#3A404F; --hair:#2A2F3A; --ai:#93A9DE;
+    --ai-soft:#202634; --ai-line:#3E4A66; --warn:#D9AC6B; --warn-soft:#241E14;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:"Source Serif 4","Iowan Old Style",Georgia,serif;
+    font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;
+  }
+  .sheet{max-width:840px;margin:0 auto;padding:0 20px 72px;}
+
+  .band{background:var(--ai);color:#fff;margin:0 -20px 26px;padding:24px 20px 20px;}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .band{background:#232B3D;}
+  }
+  :root[data-theme="dark"] .band{background:#232B3D;}
+  .code{
+    font-family:Archivo,system-ui,sans-serif;font-weight:700;font-size:12px;
+    letter-spacing:.18em;text-transform:uppercase;opacity:.8;
+  }
+  h1{
+    font-family:"Noto Sans JP","Hiragino Sans",sans-serif;font-weight:700;
+    font-size:clamp(25px,4.4vw,34px);line-height:1.25;margin:8px 0 4px;text-wrap:balance;
+  }
+  .band .en{font-family:Archivo,sans-serif;font-weight:600;font-size:14px;opacity:.85;letter-spacing:.02em;}
+  .std{font-size:13.5px;opacity:.8;margin:10px 0 0;max-width:56ch;line-height:1.45;}
+
+  h2{
+    font-family:Archivo,system-ui,sans-serif;font-weight:700;font-size:13px;
+    letter-spacing:.15em;text-transform:uppercase;color:var(--ai);margin:0 0 12px;
+  }
+  section{margin:0 0 34px;}
+
+  .notice{
+    background:var(--warn-soft);border-left:3px solid var(--warn);
+    padding:12px 16px;margin:0 0 28px;font-size:13.5px;color:var(--warn);line-height:1.5;
+  }
+  .notice strong{font-family:Archivo,sans-serif;font-weight:700;letter-spacing:.04em;}
+
+  /* ---- the write-here link ---- */
+  .writehere{
+    display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;
+    border:2px solid var(--ai);padding:16px 18px;margin:0 0 32px;
+  }
+  .writehere p{margin:0;font-size:15px;max-width:46ch;}
+  .writehere a{
+    font-family:Archivo,sans-serif;font-weight:700;font-size:14px;letter-spacing:.04em;
+    background:var(--ai);color:#fff;text-decoration:none;padding:11px 20px;white-space:nowrap;
+  }
+  .writehere a:hover{opacity:.88;}
+  .writehere a:focus-visible{outline:3px solid var(--warn);outline-offset:2px;}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .writehere a{background:var(--ai);color:#14161C;}
+  }
+  :root[data-theme="dark"] .writehere a{background:var(--ai);color:#14161C;}
+
+  /* ---- passage + players ---- */
+  .passage{border-top:2px solid var(--ink);padding-top:16px;}
+  .passage-label{
+    font-family:Archivo,sans-serif;font-weight:700;font-size:12px;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--ai);margin-bottom:8px;
+  }
+  .context{margin:0 0 6px;max-width:62ch;}
+  .gloss{
+    border:1px solid var(--rule);padding:11px 15px;margin-top:16px;
+    font-size:13.5px;color:var(--muted);
+  }
+  .gloss b{
+    font-family:Archivo,sans-serif;font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink);display:block;margin-bottom:4px;
+  }
+
+  .players{display:flex;flex-direction:column;gap:14px;margin-top:22px;}
+  .track{
+    background:var(--card);border:1px solid var(--rule);padding:14px 16px;
+  }
+  .track-head{
+    display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:10px;
+  }
+  .track-name{
+    font-family:Archivo,sans-serif;font-weight:700;font-size:14px;
+    letter-spacing:.05em;color:var(--ink);
+  }
+  .track-len{
+    font-family:Archivo,sans-serif;font-size:12px;color:var(--faint);
+    font-variant-numeric:tabular-nums;letter-spacing:.04em;
+  }
+  audio{width:100%;height:38px;display:block;}
+  .plays{
+    font-family:Archivo,sans-serif;font-size:11.5px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--faint);margin-top:8px;min-height:1em;
+  }
+
+  /* ---- question ---- */
+  .q{border-top:2px solid var(--ink);padding-top:16px;margin-top:34px;}
+  .q-num{
+    font-family:Archivo,sans-serif;font-weight:700;font-size:13px;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--ai);margin-bottom:16px;
+  }
+  .part{margin-bottom:22px;}
+  .part:last-child{margin-bottom:0;}
+  .part-q{display:flex;gap:12px;align-items:baseline;}
+  .part-q .letter{
+    font-family:Archivo,sans-serif;font-weight:700;font-size:15px;color:var(--ai);flex:none;
+  }
+  .part-q .text{font-size:17px;line-height:1.45;max-width:58ch;}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0 0 27px;}
+  .cols div{
+    background:var(--ai-soft);border:1px solid var(--ai-line);padding:10px 13px;
+    font-family:Archivo,sans-serif;font-weight:600;font-size:13.5px;color:var(--ai);
+  }
+
+  .sweep{
+    display:flex;flex-wrap:wrap;gap:7px;margin-top:12px;
+  }
+  .sweep span{
+    font-family:Archivo,sans-serif;font-size:11.5px;font-weight:600;
+    letter-spacing:.07em;text-transform:uppercase;
+    border:1px solid var(--rule);color:var(--muted);padding:4px 10px;
+  }
+
+  footer{border-top:1px solid var(--hair);padding-top:16px;margin-top:34px;font-size:12.5px;color:var(--faint);line-height:1.6;}
+
+  @media (max-width:640px){ .cols{grid-template-columns:1fr;margin-left:0;} }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+</style>
+
+<div class="sheet">
+
+  <div class="band">
+    <div class="code">Level 1 Japanese &nbsp;·&nbsp; 91959 &nbsp;·&nbsp; Listening practice</div>
+    <h1>ランギくんの いちにち</h1>
+    <div class="en">Rangi's day</div>
+    <p class="std">Demonstrate understanding of spoken Japanese related to everyday contexts.</p>
+  </div>
+
+  <div class="notice">
+    <strong>PRACTICE.</strong> Not an NZQA paper, and not marked. Play any section as many times as you want &mdash; there are no test conditions here.
+  </div>
+
+  <div class="writehere">
+    <p>Write your answers in the document. Keep it open beside this page.</p>
+    <a href="https://docs.google.com/document/d/1rgPeb94KSwRT-ysuN5PNoWlKjcU4OrqwGRLt8WoKvq8/edit" target="_blank" rel="noopener">Open the answer sheet</a>
+  </div>
+
+  <section class="passage">
+    <div class="passage-label">The passage</div>
+    <p class="context">Yuka, a Japanese student, is asking her friend Rangi about his day in New Zealand. The conversation is in three sections.</p>
+    <div class="gloss">
+      <b>Glossed vocabulary</b>
+      None. Every word in this passage is on the Level 1 Japanese Vocabulary List.
+    </div>
+
+    <div class="players">
+      <div class="track">
+        <div class="track-head">
+          <span class="track-name">Section One</span>
+          <span class="track-len">0:36</span>
+        </div>
+        <audio controls preload="none" src="audio/section1.mp3"></audio>
+        <div class="plays" data-plays="1"></div>
+      </div>
+      <div class="track">
+        <div class="track-head">
+          <span class="track-name">Section Two</span>
+          <span class="track-len">1:18</span>
+        </div>
+        <audio controls preload="none" src="audio/section2.mp3"></audio>
+        <div class="plays" data-plays="2"></div>
+      </div>
+      <div class="track">
+        <div class="track-head">
+          <span class="track-name">Section Three</span>
+          <span class="track-len">0:56</span>
+        </div>
+        <audio controls preload="none" src="audio/section3.mp3"></audio>
+        <div class="plays" data-plays="3"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="q">
+    <div class="q-num">Question One</div>
+
+    <div class="part">
+      <div class="part-q">
+        <span class="letter">(a)</span>
+        <span class="text">Complete the table in the answer sheet using information from the passage.</span>
+      </div>
+      <div class="cols">
+        <div>What Rangi does on a school day</div>
+        <div>What Rangi does on Saturday</div>
+      </div>
+    </div>
+
+    <div class="part">
+      <div class="part-q">
+        <span class="letter">(b)</span>
+        <span class="text">How does Rangi feel about his week, and why?</span>
+      </div>
+    </div>
+
+    <div class="part">
+      <div class="part-q">
+        <span class="letter">(c)</span>
+        <span class="text">Why is Saturday important to Rangi? Support your answer with information from the passage.</span>
+      </div>
+    </div>
+
+    <div class="sweep">
+      <span>When</span><span>Where</span><span>Who</span>
+      <span>What he does</span><span>Why</span><span>How he feels</span>
+    </div>
+  </div>
+
+  <footer>
+    Practice material written for one lesson, 3 September 2026. The layout follows the AS91959 2024 and 2025 examinations and the 2026 assessment specification; the instructions are rewritten, not copied. Vocabulary checked against the 2026 Level 1 Japanese Vocabulary List. Audio made with edge-tts and checked against the script with Whisper.
+  </footer>
+</div>
+
+<script>
+(function(){
+  document.querySelectorAll('.track').forEach(function(track){
+    var audio = track.querySelector('audio');
+    var label = track.querySelector('.plays');
+    var n = 0;
+    audio.addEventListener('play', function(){
+      n += 1;
+      label.textContent = n === 1 ? 'Played once' : 'Played ' + n + ' times';
+    });
+  });
+})();
+</script>
+</body></html>
