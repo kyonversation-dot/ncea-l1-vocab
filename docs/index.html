@@ -137,13 +137,14 @@
   <div class="tabs" role="tablist">
     <button class="tab" role="tab" data-view="kanji"  aria-selected="true">Kanji words</button>
     <button class="tab" role="tab" data-view="topics" aria-selected="false">Topics</button>
+    <button class="tab" role="tab" data-view="passage" aria-selected="false">Passage words</button>
     <button class="tab" role="tab" data-view="num"    aria-selected="false">Numbers &amp; dates</button>
     <a class="tab tab-link" href="https://kyonversation-dot.github.io/ncea-l1-vocab/reading/">Reading</a>
     <a class="tab tab-link" href="https://kyonversation-dot.github.io/ncea-l1-vocab/listening/">Listening</a>
   </div>
 
   <section id="pickView" class="stack" hidden>
-    <p class="lede">Words sit in more than one topic on purpose. Meeting the same word from two directions is what makes it stick.</p>
+    <p class="lede" id="pickLede">Words sit in more than one topic on purpose. Meeting the same word from two directions is what makes it stick.</p>
     <div class="picker" id="picker"></div>
   </section>
 
@@ -260,15 +261,24 @@ $("themeBtn").onclick = () => {
 document.querySelectorAll("button.tab").forEach(t => t.onclick = () => {
   document.querySelectorAll("button.tab").forEach(x => x.setAttribute("aria-selected", String(x===t)));
   S.view = t.dataset.view;
-  if (S.view === "topics"){ S.topic = null; renderPicker(); }
+  if (S.view === "topics" || S.view === "passage"){ S.topic = null; renderPicker(); }
   layout();
   if (S.view === "kanji"){ S.mode = "reading"; renderModes(); build(); }
   if (S.view === "num") renderNum();
 });
 
+/* 2026-09-21 (Kiyoko): the decks made for one reading or listening (read0913, listen0922 …)
+   live in their own tab, apart from the exam-theme topics. A deck goes there by its key:
+   "read" or "listen" + MMDD. Name new passage decks the same way and they sort themselves. */
+const IS_PASSAGE = id => /^(read|listen)\d{4}$/.test(id);
+const LEDE = {
+  topics:  "Words sit in more than one topic on purpose. Meeting the same word from two directions is what makes it stick.",
+  passage: "The words from each reading and listening we have done, one set per passage. Newest first."
+};
 function layout(){
-  const inTopicDrill = S.view==="topics" && S.topic;
-  $("pickView").hidden  = !(S.view==="topics" && !S.topic);
+  const picking = S.view==="topics" || S.view==="passage";
+  const inTopicDrill = picking && S.topic;
+  $("pickView").hidden  = !(picking && !S.topic);
   $("drillView").hidden = !(S.view==="kanji" || inTopicDrill);
   $("numView").hidden   = S.view!=="num";
   $("backBtn").hidden   = !inTopicDrill;
@@ -277,7 +287,10 @@ function layout(){
 /* ---------- topic picker ---------- */
 function renderPicker(){
   const T = DATA.topics;
-  $("picker").innerHTML = T.order.map(id => {
+  const ids = T.order.filter(id => (S.view === "passage") === IS_PASSAGE(id));
+  $("pickLede").textContent = LEDE[S.view] || LEDE.topics;
+  $("backBtn").textContent = S.view === "passage" ? "← All passages" : "← All topics";
+  $("picker").innerHTML = ids.map(id => {
     const [en, ja, why] = T.labels[id];
     return `<button class="pick" data-topic="${id}">
       <b>${esc(en)}</b><span class="ja">${esc(ja)}</span>
