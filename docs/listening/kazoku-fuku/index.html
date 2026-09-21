@@ -151,6 +151,16 @@
     border:1px solid var(--rule);color:var(--muted);padding:4px 10px;
   }
 
+  .askfirst{margin:0 0 30px;}
+  .askwhy{font-size:13.5px;line-height:1.6;color:var(--muted);margin:0 0 10px;max-width:64ch;}
+  ol.asklist{margin:0;padding-left:20px;}
+  ol.asklist li{margin:5px 0;font-size:15px;line-height:1.6;}
+  .heardlbl{display:block;font-family:Archivo,sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--faint);margin:14px 0 6px;}
+  textarea.heard{width:100%;min-height:110px;background:var(--paper);color:var(--ink);border:1px solid var(--rule);
+    border-radius:4px;padding:12px 14px;font-family:"Noto Sans JP","Hiragino Sans",sans-serif;
+    font-size:15px;line-height:1.9;resize:vertical;}
+  textarea.heard:focus-visible{outline:2px solid var(--ai);outline-offset:1px;}
   footer{border-top:1px solid var(--hair);padding-top:16px;margin-top:34px;font-size:12.5px;color:var(--faint);line-height:1.6;}
 
   @media (max-width:640px){ .cols{grid-template-columns:1fr;margin-left:0;} }
@@ -167,13 +177,23 @@
   </div>
 
   <div class="notice">
-    <strong>PRACTICE.</strong> Not an NZQA paper, and not marked. Play any section as many times as you want &mdash; there are no test conditions here.
+    <strong>PRACTICE.</strong> Not an NZQA paper, and not marked. Play any section as many times as you want &mdash; there are no test conditions here. Your notes stay on this device.
   </div>
 
   <div class="writehere">
-    <p>Write your answers in the document. Keep it open beside this page.</p>
-    <a href="https://docs.google.com/document/d/1tuYRN5XRAOaXcuWnHUZordZIh605jTrJRIGAEFP3RSw/edit" target="_blank" rel="noopener">Open the answer sheet</a>
+    <p>Take notes on this page. Write your answers in the document &mdash; keep it open beside this page.</p>
+    <a href="https://docs.google.com/document/d/13J_qgK4eCySL7Lp-KguGpvXccV2z1E6nbPuDpsUs2d8/edit" target="_blank" rel="noopener">Open the answer sheet</a>
   </div>
+
+  <section class="askfirst">
+    <h2>Read these before you listen</h2>
+    <p class="askwhy">In the real exam the questions are printed in front of you before the audio starts. Know what you are listening for.</p>
+    <ol class="asklist">
+      <li>Information about Nikau's mother, and about his sister</li>
+      <li>What present will Nikau give his sister, and why?</li>
+      <li>Is Nikau's sister likely to be happy with the present?</li>
+    </ol>
+  </section>
 
   <section class="passage">
     <div class="passage-label">The passage</div>
@@ -191,6 +211,8 @@
         </div>
         <audio controls preload="none" src="audio/section1.mp3"></audio>
         <div class="plays" data-plays="1"></div>
+        <label class="heardlbl" for="s1">What you heard in section 1</label>
+        <textarea id="s1" class="heard" placeholder="Write it here, while it is still in your head."></textarea>
       </div>
       <div class="track">
         <div class="track-head">
@@ -199,6 +221,8 @@
         </div>
         <audio controls preload="none" src="audio/section2.mp3"></audio>
         <div class="plays" data-plays="2"></div>
+        <label class="heardlbl" for="s2">What you heard in section 2</label>
+        <textarea id="s2" class="heard" placeholder="Write it here, while it is still in your head."></textarea>
       </div>
       <div class="track">
         <div class="track-head">
@@ -207,6 +231,8 @@
         </div>
         <audio controls preload="none" src="audio/section3.mp3"></audio>
         <div class="plays" data-plays="3"></div>
+        <label class="heardlbl" for="s3">What you heard in section 3</label>
+        <textarea id="s3" class="heard" placeholder="Write it here, while it is still in your head."></textarea>
       </div>
     </div>
   </section>
@@ -259,6 +285,16 @@
     audio.addEventListener('play', function(){
       n += 1;
       label.textContent = n === 1 ? 'Played once' : 'Played ' + n + ' times';
+    });
+  });
+  var K = 'kazoku-fuku-notes';
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(K) || '{}') || {}; } catch(e) { saved = {}; }
+  document.querySelectorAll('textarea.heard').forEach(function(t){
+    if (saved[t.id]) t.value = saved[t.id];
+    t.addEventListener('input', function(){
+      saved[t.id] = t.value;
+      try { localStorage.setItem(K, JSON.stringify(saved)); } catch(e) {}
     });
   });
 })();
