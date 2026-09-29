@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="One page per topic from the official NCEA Level 1 Japanese 2026 Vocabulary List — tick words as you learn them, or print it.">
+<title>NCEA L1 Japanese — Word checklist</title>
+<style>
+  :root{
+    --paper:#f6f7f6; --card:#ffffff; --ink:#151815; --muted:#5f6b62;
+    --line:#dde3de; --line-soft:#ecefec;
+    --accent:#1c6b4f; --accent-soft:#e3efe9; --accent-ink:#12503a;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --jp:"Hiragino Kaku Gothic ProN","Yu Gothic","Yu Gothic UI",Meiryo,"MS PGothic",sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){ --paper:#101310; --card:#181c19; --ink:#e8ece8; --muted:#8f9a92;
+      --line:#2a302c; --line-soft:#20251f; --accent:#6cc79c; --accent-soft:#1a2c23; --accent-ink:#8fd9b4; }
+  }
+  :root[data-theme="dark"]{ --paper:#101310; --card:#181c19; --ink:#e8ece8; --muted:#8f9a92;
+    --line:#2a302c; --line-soft:#20251f; --accent:#6cc79c; --accent-soft:#1a2c23; --accent-ink:#8fd9b4; }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.5}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+  .wrap{max-width:680px;margin:0 auto;padding:26px 16px 80px;display:flex;flex-direction:column;gap:16px}
+  .eyebrow{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  h1{font-family:var(--serif);font-size:1.5rem;font-weight:600;margin:0}
+  .back{font-size:.82rem;color:var(--accent-ink)}
+  .lede{color:var(--muted);font-size:.83rem;margin:0}
+
+  .controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  select{font:inherit;font-size:.9rem;padding:8px 10px;border-radius:8px;border:1px solid var(--line);
+         background:var(--card);color:var(--ink);flex:1 1 240px;min-width:0}
+  button{font:inherit;font-size:.82rem;padding:8px 12px;border-radius:8px;border:1px solid var(--line);
+         background:var(--card);color:var(--ink);cursor:pointer}
+  button.primary{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+  label.toggle{font-size:.82rem;color:var(--muted);display:flex;gap:6px;align-items:center;cursor:pointer}
+
+  .head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+        border-bottom:2px solid var(--ink);padding-bottom:6px}
+  .head h2{font-family:var(--serif);font-size:1.2rem;margin:0}
+  .head h2 span{font-family:var(--jp);font-size:.95rem;color:var(--muted);margin-left:8px;font-weight:400}
+  .count{font-size:.82rem;color:var(--muted);white-space:nowrap}
+  .bar{height:6px;background:var(--line-soft);border-radius:3px;overflow:hidden}
+  .bar i{display:block;height:100%;background:var(--accent);width:0}
+
+  ol{list-style:none;margin:0;padding:0;background:var(--card);border:1px solid var(--line);border-radius:10px}
+  li{display:grid;grid-template-columns:28px 2.2rem minmax(0,1fr) minmax(0,1fr);gap:8px;align-items:center;
+     padding:6px 12px;border-top:1px solid var(--line-soft)}
+  li:first-child{border-top:0}
+  li .n{font-size:.72rem;color:var(--muted);text-align:right}
+  li input{width:20px;height:20px;accent-color:var(--accent);margin:0;cursor:pointer}
+  li .jp{font-family:var(--jp);font-size:1.05rem}
+  li .en{font-size:.88rem;color:var(--muted)}
+  li.done .jp{color:var(--accent-ink)}
+  rt{font-size:.55em;color:var(--muted)}
+  body.hide-en li .en{visibility:hidden}
+  .empty{color:var(--muted);font-size:.85rem}
+  .print-only{display:none}
+
+  @media print{
+    @page{size:A4;margin:12mm}
+    :root{--paper:#fff;--card:#fff;--ink:#000;--muted:#444;--line:#999;--line-soft:#ccc;--accent:#000;--accent-ink:#000}
+    body{background:#fff}
+    .wrap{max-width:none;padding:0;gap:6px}
+    .no-print{display:none!important}
+    .print-only{display:block;font-size:9pt;color:#444}
+    ol{border:0;border-radius:0;column-count:2;column-gap:10mm}
+    li{break-inside:avoid;grid-template-columns:16px 1.6rem minmax(0,1fr) minmax(0,1fr);padding:2px 0;
+       border-top:0;border-bottom:1px solid #ccc;font-size:9.5pt}
+    li .jp{font-size:10.5pt}
+    li .en{font-size:8.5pt}
+    li input{width:12px;height:12px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="no-print">
+    <a class="back" href="../">← Back to practice</a>
+  </div>
+  <header>
+    <span class="eyebrow">NCEA Level 1 · Japanese</span>
+    <h1>Word checklist</h1>
+  </header>
+  <p class="lede no-print">One topic on one page. Tick a word when you can say what it means without looking. Your ticks stay on this device. Print it if you'd rather tick on paper.</p>
+
+  <div class="controls no-print">
+    <select id="pick" aria-label="Choose a topic"></select>
+    <button class="primary" id="printBtn" type="button">Print</button>
+  </div>
+  <div class="controls no-print">
+    <label class="toggle"><input type="checkbox" id="hideEn"> Hide English (test yourself)</label>
+    <button id="resetBtn" type="button">Clear ticks</button>
+  </div>
+
+  <div class="head">
+    <h2 id="title">…</h2>
+    <span class="count" id="count"></span>
+  </div>
+  <div class="bar no-print"><i id="bar"></i></div>
+  <p class="print-only">Every word is from the official NCEA Level 1 Japanese 2026 Vocabulary List.</p>
+  <ol id="list"><li class="empty">Loading the word list…</li></ol>
+</div>
+
+<script>
+const KEY = "ncea-l1-checklist-v1";
+const store = {
+  read(){ try{ return JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){ return {}; } },
+  write(v){ try{ localStorage.setItem(KEY, JSON.stringify(v)); }catch(e){} }
+};
+let ticks = store.read();
+let T = null, current = null;
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const wordId = w => w.kana + "|" + w.kanji + "|" + w.en;
+
+// The word lists live in the practice page; read them from there so there is only one copy.
+fetch("../").then(r => r.text()).then(html => {
+  const line = html.split("\n").find(l => l.trim().startsWith("const DATA ="));
+  const json = line.trim().replace(/^const DATA =\s*/, "").replace(/;\s*$/, "");
+  T = JSON.parse(json).topics;
+  buildPicker();
+}).catch(() => {
+  $("list").innerHTML = '<li class="empty">The word list could not be loaded. Check your connection and reload.</li>';
+});
+
+function buildPicker(){
+  const passage = T.order.filter(k => /^(listen|read)\d/.test(k));
+  const topics = T.order.filter(k => !passage.includes(k));
+  const opt = k => `<option value="${k}">${esc(T.labels[k][0])} — ${esc(T.labels[k][1])} (${T.decks[k].length})</option>`;
+  $("pick").innerHTML =
+    `<optgroup label="Topics">${topics.map(opt).join("")}</optgroup>` +
+    `<optgroup label="Passage words">${passage.map(opt).join("")}</optgroup>`;
+  const want = new URLSearchParams(location.search).get("t");
+  show(T.decks[want] ? want : (T.decks.school ? "school" : topics[0]));
+}
+
+function show(k){
+  current = k;
+  $("pick").value = k;
+  const url = new URL(location.href); url.searchParams.set("t", k);
+  history.replaceState(null, "", url);
+  const [en, ja] = T.labels[k];
+  $("title").innerHTML = `${esc(en)}<span>${esc(ja)}</span>`;
+  document.title = `${en} — Word checklist`;
+  const done = ticks[k] || {};
+  $("list").innerHTML = T.decks[k].map((w, i) => {
+    const id = wordId(w);
+    const jp = w.kanji ? `<ruby>${esc(w.kanji)}<rt>${esc(w.kana)}</rt></ruby>` : esc(w.kana);
+    return `<li class="${done[id] ? "done" : ""}">
+      <span class="n">${i + 1}</span>
+      <input type="checkbox" data-id="${esc(id)}" ${done[id] ? "checked" : ""} aria-label="${esc(w.kana)} — I know this">
+      <span class="jp" lang="ja">${jp}</span>
+      <span class="en">${esc(w.en)}</span></li>`;
+  }).join("");
+  count();
+}
+
+function count(){
+  const total = T.decks[current].length;
+  const ids = new Set(T.decks[current].map(wordId));
+  const n = Object.keys(ticks[current] || {}).filter(id => ids.has(id)).length;
+  $("count").textContent = `${n} / ${total} ticked`;
+  $("bar").style.width = (total ? n / total * 100 : 0) + "%";
+}
+
+$("list").addEventListener("change", e => {
+  const box = e.target.closest("input[type=checkbox]"); if (!box) return;
+  const d = ticks[current] = ticks[current] || {};
+  if (box.checked) d[box.dataset.id] = 1; else delete d[box.dataset.id];
+  box.closest("li").classList.toggle("done", box.checked);
+  store.write(ticks); count();
+});
+$("pick").addEventListener("change", e => show(e.target.value));
+$("hideEn").addEventListener("change", e => document.body.classList.toggle("hide-en", e.target.checked));
+$("printBtn").addEventListener("click", () => window.print());
+$("resetBtn").addEventListener("click", () => {
+  if (!confirm("Clear every tick on this topic?")) return;
+  delete ticks[current]; store.write(ticks); show(current);
+});
+</script>
+</body>
+</html>
