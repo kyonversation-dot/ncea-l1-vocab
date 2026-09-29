@@ -124,15 +124,67 @@ const wordId = w => w.kana + "|" + w.kanji + "|" + w.en;
 fetch("../").then(r => r.text()).then(html => {
   const line = html.split("\n").find(l => l.trim().startsWith("const DATA ="));
   const json = line.trim().replace(/^const DATA =\s*/, "").replace(/;\s*$/, "");
-  T = JSON.parse(json).topics;
+  const D = JSON.parse(json);
+  T = D.topics;
+  addExtraDecks(D);
   buildPicker();
 }).catch(() => {
   $("list").innerHTML = '<li class="empty">The word list could not be loaded. Check your connection and reload.</li>';
 });
 
+// Numbers and kanji words are not in the topic decks, so they get their own pages.
+// Base numbers and "number of days" come from the official list (Numbers / Classifiers / Kanji sheets).
+const BASE_NUMBERS = [
+  ["いち","一","1"],["に","二","2"],["さん","三","3"],["よん・し","四","4"],["ご","五","5"],
+  ["ろく","六","6"],["なな・しち","七","7"],["はち","八","8"],["きゅう・く","九","9"],["じゅう","十","10"],
+  ["ひゃく","百","100"],["せん","千","1,000"],["まん","万","10,000"]
+];
+const DAYS = [
+  ["いちにち","一日","one day"],["ふつか（かん）","二日（かん）","two days"],["みっか（かん）","三日（かん）","three days"]
+];
+// Number + counter words that the official Kanji sheet names but the practice deck leaves out.
+// Readings follow that sheet's reading for each number (2026-09-29 full check).
+const MORE_COUNTS = {
+  "年生": [["三年生","さんねんせい"],["四年生","よねんせい"],["五年生","ごねんせい"],["六年生","ろくねんせい"],["七年生","ななねんせい"],["八年生","はちねんせい"],["九年生","きゅうねんせい"],["十年生","じゅうねんせい"]],
+  "年": [["六年","ろくねん"],["七年","ななねん"],["八年","はちねん"],["九年","きゅうねん"]],
+  "か月": [["七か月","ななかげつ"],["八か月","はっかげつ"],["九か月","きゅうかげつ"]],
+  "さい": [["三さい","さんさい"],["四さい","よんさい"],["五さい","ごさい"],["六さい","ろくさい"],["七さい","ななさい"],["九さい","きゅうさい"]],
+  "しゅうかん": [["四しゅうかん","よんしゅうかん"],["五しゅうかん","ごしゅうかん"],["六しゅうかん","ろくしゅうかん"],["七しゅうかん","ななしゅうかん"],["九しゅうかん","きゅうしゅうかん"],["十しゅうかん","じゅっしゅうかん"]],
+  "ひき": [["四ひき","よんひき"],["五ひき","ごひき"],["七ひき","ななひき"],["八ぴき","はっぴき"],["九ひき","きゅうひき"]],
+  "時間目": [["三時間目","さんじかんめ"],["五時間目","ごじかんめ"],["六時間目","ろくじかんめ"]]
+};
+// Value of the kanji number at the start of a word (二十 → 20, 十六 → 16), for sorting.
+function numOf(f){
+  const D = "一二三四五六七八九", m = f.match(/^[一二三四五六七八九十]+/);
+  if (!m || "百千万".includes(f[m[0].length])) return 999;
+  const s = m[0], i = s.indexOf("十");
+  if (i < 0) return D.indexOf(s[0]) + 1;
+  const tens = i === 0 ? 1 : D.indexOf(s[0]) + 1, ones = s[i + 1] ? D.indexOf(s[i + 1]) + 1 : 0;
+  return tens * 10 + ones;
+}
+function addExtraDecks(D){
+  D.num.forEach(p => {
+    const more = MORE_COUNTS[p.c]; if (!more) return;
+    more.forEach(([f, r]) => { if (!p.items.some(x => x.f === f)) p.items.push({f, r}); });
+    p.items.sort((a, b) => numOf(a.f) - numOf(b.f));
+  });
+  const nums = BASE_NUMBERS.map(([kana, kanji, en]) => ({kana, kanji, en}));
+  D.num.forEach(p => p.items.forEach(x => {
+    const isKana = /^[぀-ヿ・\s]+$/.test(x.r);
+    const n = numOf(x.f), en = n < 999 ? `${n} · ${p.en}` : p.en;
+    nums.push(isKana ? {kana: x.r, kanji: x.f === x.r ? "" : x.f, en} : {kana: x.f, kanji: "", en: x.r});
+  }));
+  DAYS.forEach(([kana, kanji, en]) => nums.push({kana, kanji, en}));
+  D.lex.filter(w => w.w.startsWith("何")).forEach(w => nums.push({kana: w.kana, kanji: w.w, en: w.en}));
+  T.decks.numbers = nums;
+  T.labels.numbers = ["Numbers & counters", "かず・かぞえかた", ""];
+  T.decks.kanjiwords = D.lex.map(w => ({kana: w.kana, kanji: w.w, en: w.en}));
+  T.labels.kanjiwords = ["Kanji words", "漢字のことば", ""];
+}
+
 function buildPicker(){
   const passage = T.order.filter(k => /^(listen|read)\d/.test(k));
-  const topics = T.order.filter(k => !passage.includes(k));
+  const topics = T.order.filter(k => !passage.includes(k)).concat(["numbers", "kanjiwords"]);
   const opt = k => `<option value="${k}">${esc(T.labels[k][0])} — ${esc(T.labels[k][1])} (${T.decks[k].length})</option>`;
   $("pick").innerHTML =
     `<optgroup label="Topics">${topics.map(opt).join("")}</optgroup>` +
