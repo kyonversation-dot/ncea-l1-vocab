@@ -103,7 +103,7 @@
     <span class="count" id="count"></span>
   </div>
   <div class="bar no-print"><i id="bar"></i></div>
-  <p class="print-only">Every word is from the official NCEA Level 1 Japanese 2026 Vocabulary List.</p>
+  <p class="print-only">Every word is from the official NCEA Level 1 Japanese 2026 Vocabulary List, except the ones marked “not on the list”.</p>
   <ol id="list"><li class="empty">Loading the word list…</li></ol>
 </div>
 
@@ -162,6 +162,20 @@ function numOf(f){
   const tens = i === 0 ? 1 : D.indexOf(s[0]) + 1, ones = s[i + 1] ? D.indexOf(s[i + 1]) + 1 : 0;
   return tens * 10 + ones;
 }
+// 本・さつ・まい are not on the official list (exams gloss them). Kiyoko 2026-09-29: worth knowing anyway.
+const OFF_LIST_COUNTS = [
+  ["一本","いっぽん","1 · long thin things"],["二本","にほん","2 · long thin things"],["三本","さんぼん","3 · long thin things"],
+  ["四本","よんほん","4 · long thin things"],["五本","ごほん","5 · long thin things"],["六本","ろっぽん","6 · long thin things"],
+  ["七本","ななほん","7 · long thin things"],["八本","はっぽん","8 · long thin things"],["九本","きゅうほん","9 · long thin things"],
+  ["十本","じゅっぽん","10 · long thin things"],["何本","なんぼん","how many (long thin things)"],
+  ["一さつ","いっさつ","1 · books"],["二さつ","にさつ","2 · books"],["三さつ","さんさつ","3 · books"],["四さつ","よんさつ","4 · books"],
+  ["五さつ","ごさつ","5 · books"],["六さつ","ろくさつ","6 · books"],["七さつ","ななさつ","7 · books"],["八さつ","はっさつ","8 · books"],
+  ["九さつ","きゅうさつ","9 · books"],["十さつ","じゅっさつ","10 · books"],["何さつ","なんさつ","how many (books)"],
+  ["一まい","いちまい","1 · flat things"],["二まい","にまい","2 · flat things"],["三まい","さんまい","3 · flat things"],
+  ["四まい","よんまい","4 · flat things"],["五まい","ごまい","5 · flat things"],["六まい","ろくまい","6 · flat things"],
+  ["七まい","ななまい","7 · flat things"],["八まい","はちまい","8 · flat things"],["九まい","きゅうまい","9 · flat things"],
+  ["十まい","じゅうまい","10 · flat things"],["何まい","なんまい","how many (flat things)"]
+];
 function addExtraDecks(D){
   D.num.forEach(p => {
     const more = MORE_COUNTS[p.c]; if (!more) return;
@@ -176,6 +190,7 @@ function addExtraDecks(D){
   }));
   DAYS.forEach(([kana, kanji, en]) => nums.push({kana, kanji, en}));
   D.lex.filter(w => w.w.startsWith("何")).forEach(w => nums.push({kana: w.kana, kanji: w.w, en: w.en}));
+  OFF_LIST_COUNTS.forEach(([kanji, kana, en]) => nums.push({kana, kanji, en: en + " — not on the list"}));
   T.decks.numbers = nums;
   T.labels.numbers = ["Numbers & counters", "かず・かぞえかた", ""];
   T.decks.kanjiwords = D.lex.map(w => ({kana: w.kana, kanji: w.w, en: w.en}));
