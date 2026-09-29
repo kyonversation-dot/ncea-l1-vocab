@@ -177,7 +177,7 @@ function addExtraDecks(D){
   DAYS.forEach(([kana, kanji, en]) => nums.push({kana, kanji, en}));
   D.lex.filter(w => w.w.startsWith("何")).forEach(w => nums.push({kana: w.kana, kanji: w.w, en: w.en}));
   T.decks.numbers = nums;
-  T.labels.numbers = ["Numbers & counters", "かず・かぞえかた", ""];
+  T.labels.numbers = ["Numbers & dates", "かず・日づけ", ""];
   T.decks.kanjiwords = D.lex.map(w => ({kana: w.kana, kanji: w.w, en: w.en}));
   T.labels.kanjiwords = ["Kanji words", "漢字のことば", ""];
 }

@@ -284,7 +284,9 @@ function layout(){
   $("numView").hidden   = S.view!=="num";
   $("backBtn").hidden   = !inTopicDrill;
   // The checklist link opens the topic you are in (it opened School every time before, 2026-09-29).
-  $("checkLink").href = "https://kyonversation-dot.github.io/ncea-l1-vocab/checklist/" + (inTopicDrill ? "?t=" + S.topic : "");
+  // …and the Numbers & dates / Kanji words tabs open their own checklist pages.
+  const t = inTopicDrill ? S.topic : S.view === "num" ? "numbers" : S.view === "kanji" ? "kanjiwords" : "";
+  $("checkLink").href = "https://kyonversation-dot.github.io/ncea-l1-vocab/checklist/" + (t ? "?t=" + t : "");
 }
 
 /* ---------- topic picker ---------- */
