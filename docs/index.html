@@ -142,7 +142,7 @@
     <a class="tab tab-link" href="https://kyonversation-dot.github.io/ncea-l1-vocab/reading/">Reading</a>
     <a class="tab tab-link" href="https://kyonversation-dot.github.io/ncea-l1-vocab/listening/">Listening</a>
   </div>
-  <p class="lede"><a id="checkLink" style="color:var(--accent-ink)" href="https://kyonversation-dot.github.io/ncea-l1-vocab/checklist/">Word checklist</a> — every topic on one page, to tick off or print.</p>
+  <p class="lede" id="checkLine"><a id="checkLink" style="color:var(--accent-ink)" href="https://kyonversation-dot.github.io/ncea-l1-vocab/checklist/">Word checklist</a> — every topic on one page, to tick off or print.</p>
 
   <section id="pickView" class="stack" hidden>
     <p class="lede" id="pickLede">Words sit in more than one topic on purpose. Meeting the same word from two directions is what makes it stick.</p>
@@ -286,6 +286,7 @@ function layout(){
   // The checklist link opens the topic you are in (it opened School every time before, 2026-09-29).
   // …and the Numbers & dates / Kanji words tabs open their own checklist pages.
   const t = inTopicDrill ? S.topic : S.view === "num" ? "numbers" : S.view === "kanji" ? "kanjiwords" : "";
+  $("checkLine").hidden = S.view === "passage";   // no checklist for passage words (Kiyoko 2026-09-29)
   $("checkLink").href = "https://kyonversation-dot.github.io/ncea-l1-vocab/checklist/" + (t ? "?t=" + t : "");
 }
 
