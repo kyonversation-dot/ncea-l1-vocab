@@ -121,7 +121,7 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":
 const wordId = w => w.kana + "|" + w.kanji + "|" + w.en;
 
 // The word lists live in the practice page; read them from there so there is only one copy.
-fetch("../").then(r => r.text()).then(html => {
+fetch("../", {cache: "no-cache"}).then(r => r.text()).then(html => {
   const line = html.split("\n").find(l => l.trim().startsWith("const DATA ="));
   const json = line.trim().replace(/^const DATA =\s*/, "").replace(/;\s*$/, "");
   const D = JSON.parse(json);
