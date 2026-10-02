@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#14795d">
+<title>すぎます の ことば クイズ</title>
+<style>
+  :root{
+    --ground:#eef1f6; --card:#ffffff; --card-border:#e7ebf0;
+    --ink:#22303f; --ink-soft:#5b6773; --muted:#98a2ae;
+    --accent:#14795d; --accent-ink:#ffffff;
+    --tab-bg:#e4e8ee; --tab-ink:#55606d;
+    --banner-bg:#e9f8f0; --banner-edge:#14795d; --banner-ink:#2f6d56;
+    --reveal-bg:#f3faf7; --reveal-ink:#155f49; --reveal-edge:#bfe6d6;
+    --tag-bg:#fdf1cf; --tag-ink:#8a6a12;
+    --shadow:rgba(30,50,80,.07);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ground:#10161d; --card:#1a2531; --card-border:#26333f;
+      --ink:#e8eef4; --ink-soft:#a9b5c1; --muted:#6f7d8a;
+      --accent:#3fbf92; --accent-ink:#06231a;
+      --tab-bg:#222f3b; --tab-ink:#a9b5c1;
+      --banner-bg:#14261f; --banner-edge:#3fbf92; --banner-ink:#8fdcbf;
+      --reveal-bg:#152a22; --reveal-ink:#8fdcbf; --reveal-edge:#2c5344;
+      --tag-bg:#3a3320; --tag-ink:#e8cf8e;
+      --shadow:rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#eef1f6; --card:#ffffff; --card-border:#e7ebf0;
+    --ink:#22303f; --ink-soft:#5b6773; --muted:#98a2ae;
+    --accent:#14795d; --accent-ink:#ffffff;
+    --tab-bg:#e4e8ee; --tab-ink:#55606d;
+    --banner-bg:#e9f8f0; --banner-edge:#14795d; --banner-ink:#2f6d56;
+    --reveal-bg:#f3faf7; --reveal-ink:#155f49; --reveal-edge:#bfe6d6;
+    --tag-bg:#fdf1cf; --tag-ink:#8a6a12;
+    --shadow:rgba(30,50,80,.07);
+  }
+  :root[data-theme="dark"]{
+    --ground:#10161d; --card:#1a2531; --card-border:#26333f;
+    --ink:#e8eef4; --ink-soft:#a9b5c1; --muted:#6f7d8a;
+    --accent:#3fbf92; --accent-ink:#06231a;
+    --tab-bg:#222f3b; --tab-ink:#a9b5c1;
+    --banner-bg:#14261f; --banner-edge:#3fbf92; --banner-ink:#8fdcbf;
+    --reveal-bg:#152a22; --reveal-ink:#8fdcbf; --reveal-edge:#2c5344;
+    --tag-bg:#3a3320; --tag-ink:#e8cf8e;
+    --shadow:rgba(0,0,0,.35);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ground); color:var(--ink);
+    font-family:"Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic","Meiryo","Noto Sans JP",system-ui,sans-serif;
+    line-height:1.7; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:640px; margin:0 auto; padding:22px 16px 64px;}
+  h1{font-size:1.05rem; font-weight:700; color:var(--ink-soft); text-align:center; margin:4px 0 18px;}
+  .tabs{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:18px;}
+  .tab{appearance:none; border:none; cursor:pointer; font:inherit; font-weight:700; font-size:.95rem;
+    padding:9px 20px; border-radius:999px; background:var(--tab-bg); color:var(--tab-ink);}
+  .tab[aria-selected="true"]{background:var(--accent); color:var(--accent-ink);}
+  .tab:focus-visible,.opt:focus-visible,.btn:focus-visible{outline:3px solid var(--accent); outline-offset:2px;}
+  .bar{display:flex; justify-content:space-between; color:var(--ink-soft); font-size:.9rem; font-weight:600; margin-bottom:10px;}
+  .card{background:var(--card); border:1px solid var(--card-border); border-radius:14px;
+    padding:22px 20px; box-shadow:0 2px 10px var(--shadow);}
+  .q{font-size:1.6rem; font-weight:700; text-align:center; margin:6px 0 18px; min-height:2.4rem;}
+  .opts{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  @media (max-width:420px){.opts{grid-template-columns:1fr;}}
+  .opt{appearance:none; cursor:pointer; font:inherit; font-size:1.05rem; font-weight:600;
+    padding:12px 10px; border-radius:10px; border:2px solid var(--card-border);
+    background:var(--card); color:var(--ink);}
+  .opt:hover:not(:disabled){border-color:var(--accent);}
+  .opt.ok{background:var(--reveal-bg); border-color:var(--accent); color:var(--reveal-ink);}
+  .opt.ng{border-color:#d0574b; color:#d0574b;}
+  .opt:disabled{cursor:default;}
+  .msg{text-align:center; font-weight:700; min-height:1.8rem; margin-top:14px;}
+  .msg.ok{color:var(--accent);} .msg.ng{color:#d0574b;}
+  .foot{display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-top:16px;}
+  .btn{appearance:none; border:none; cursor:pointer; font:inherit; font-weight:700;
+    padding:11px 24px; border-radius:999px; background:var(--accent); color:var(--accent-ink);}
+  .btn.sub{background:var(--tab-bg); color:var(--tab-ink);}
+  .btn[hidden]{display:none;}
+  .score{font-size:1.4rem; font-weight:700; text-align:center; margin:6px 0 12px;}
+  .miss{margin:0; padding:0; list-style:none;}
+  .miss li{display:flex; justify-content:space-between; gap:12px; padding:8px 4px; border-bottom:1px solid var(--card-border);}
+  .miss li span:last-child{color:var(--ink-soft);}
+</style>
+
+<div class="wrap">
+  <p style="margin:0 0 6px"><a href="../" style="color:var(--ink-soft);font-size:.9rem">← Quizzes</a></p>
+  <h1>すぎます の ことば　クイズ（28）</h1>
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-mode="ja">① 日本語 → English</button>
+    <button class="tab" role="tab" aria-selected="false" data-mode="en">② English → 日本語</button>
+  </div>
+  <div class="bar"><span id="count"></span><span id="right"></span></div>
+  <div class="card" id="card"></div>
+  <div class="foot">
+    <button class="btn" id="next" hidden>つぎ →</button>
+    <button class="btn sub" id="restart">さいしょから</button>
+  </div>
+</div>
+
+<script>
+  // すぎますPPTの単語表（2026-10-02 キヨ共有）から、Mが知っている8語を外した28語
+  const WORDS = [
+    ["へや","room"],["はこ","box"],["シャツ","shirt"],["ズボン","trousers"],
+    ["ジャケット","jacket"],["ぼうし","hat"],["くつ","shoe(s)"],["半ずぼん","shorts"],
+    ["セーター","jersey"],["かみの け","hair"],
+    ["やすみます","have a break, holiday"],["ねます","sleep"],["はしります","run"],
+    ["うんどうします","exercise"],["あるきます","walk"],["しごとを します","work"],
+    ["しゃしんを とります","take photo"],["ひくい","low"],["はなします","talk, speak"],["ながい","long"],
+    ["みじかい","short"],["はやい","early, fast"],
+    ["せまい","narrow, cramped"],["うるさい","noisy"],
+    ["ちかい","close to"],["いたい","painful"],["つかれます","be tired"],["あし","legs, feet"]
+  ];
+
+  let mode = "ja", deck = [], i = 0, right = 0, missed = [];
+  const $ = id => document.getElementById(id);
+  const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  function shuffle(a){ a = a.slice(); for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];} return a; }
+
+  function start(list){
+    deck = shuffle(list); i = 0; right = 0; missed = [];
+    show();
+  }
+
+  function show(){
+    $("next").hidden = true;
+    if(i >= deck.length){ return finish(); }
+    const w = deck[i];
+    const qi = mode === "ja" ? 0 : 1, ai = mode === "ja" ? 1 : 0;
+    const others = shuffle(WORDS.filter(x => x !== w)).slice(0,3);
+    const opts = shuffle([w, ...others]);
+    $("count").textContent = `${i+1} / ${deck.length}`;
+    $("right").textContent = `○ ${right}`;
+    $("card").innerHTML = `<p class="q">${esc(w[qi])}</p>
+      <div class="opts">${opts.map(o => `<button class="opt" data-ok="${o === w}">${esc(o[ai])}</button>`).join("")}</div>
+      <p class="msg" id="msg"></p>`;
+  }
+
+  function pick(btn){
+    const w = deck[i];
+    const all = [...document.querySelectorAll(".opt")];
+    all.forEach(b => { b.disabled = true; if(b.dataset.ok === "true") b.classList.add("ok"); });
+    const msg = $("msg");
+    if(btn.dataset.ok === "true"){ right++; msg.textContent = "○ せいかい！"; msg.className = "msg ok"; }
+    else { btn.classList.add("ng"); missed.push(w); msg.textContent = `× ${w[0]} ＝ ${w[1]}`; msg.className = "msg ng"; }
+    $("right").textContent = `○ ${right}`;
+    $("next").hidden = false; $("next").focus();
+  }
+
+  function finish(){
+    $("count").textContent = ""; $("right").textContent = "";
+    const list = missed.map(w => `<li><span>${esc(w[0])}</span><span>${esc(w[1])}</span></li>`).join("");
+    $("card").innerHTML = `<p class="score">${right} / ${deck.length}</p>` +
+      (missed.length ? `<p>まちがえた ことば：</p><ul class="miss">${list}</ul>
+        <div class="foot"><button class="btn" id="again">まちがえた ことばだけ もう一ど</button></div>`
+                     : `<p style="text-align:center">ぜんぶ せいかい！</p>`);
+    const again = document.getElementById("again");
+    if(again) again.addEventListener("click", () => start(missed));
+  }
+
+  document.addEventListener("click", e => {
+    const o = e.target.closest(".opt");
+    if(o && !o.disabled) pick(o);
+  });
+  $("next").addEventListener("click", () => { i++; show(); });
+  $("restart").addEventListener("click", () => start(WORDS));
+  document.querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => {
+    document.querySelectorAll(".tab").forEach(x => x.setAttribute("aria-selected", x === t ? "true" : "false"));
+    mode = t.dataset.mode; start(WORDS);
+  }));
+
+  start(WORDS);
+</script>
