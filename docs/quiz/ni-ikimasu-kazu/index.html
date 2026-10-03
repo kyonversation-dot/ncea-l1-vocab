@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#14795d">
+<title>〜に 〜に いきます ／ おおきい かず れんしゅう</title>
+<style>
+  :root{
+    --ground:#eef1f6; --card:#ffffff; --card-border:#e7ebf0;
+    --ink:#22303f; --ink-soft:#5b6773; --muted:#98a2ae;
+    --accent:#14795d; --accent-ink:#ffffff;
+    --tab-bg:#e4e8ee; --tab-ink:#55606d;
+    --banner-bg:#e9f8f0; --banner-edge:#14795d; --banner-ink:#2f6d56;
+    --reveal-bg:#f3faf7; --reveal-ink:#155f49; --reveal-edge:#bfe6d6;
+    --tag-bg:#fdf1cf; --tag-ink:#8a6a12;
+    --shadow:rgba(30,50,80,.07);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ground:#10161d; --card:#1a2531; --card-border:#26333f;
+      --ink:#e8eef4; --ink-soft:#a9b5c1; --muted:#6f7d8a;
+      --accent:#3fbf92; --accent-ink:#06231a;
+      --tab-bg:#222f3b; --tab-ink:#a9b5c1;
+      --banner-bg:#14261f; --banner-edge:#3fbf92; --banner-ink:#8fdcbf;
+      --reveal-bg:#152a22; --reveal-ink:#8fdcbf; --reveal-edge:#2c5344;
+      --tag-bg:#3a3320; --tag-ink:#e8cf8e;
+      --shadow:rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#eef1f6; --card:#ffffff; --card-border:#e7ebf0;
+    --ink:#22303f; --ink-soft:#5b6773; --muted:#98a2ae;
+    --accent:#14795d; --accent-ink:#ffffff;
+    --tab-bg:#e4e8ee; --tab-ink:#55606d;
+    --banner-bg:#e9f8f0; --banner-edge:#14795d; --banner-ink:#2f6d56;
+    --reveal-bg:#f3faf7; --reveal-ink:#155f49; --reveal-edge:#bfe6d6;
+    --tag-bg:#fdf1cf; --tag-ink:#8a6a12;
+    --shadow:rgba(30,50,80,.07);
+  }
+  :root[data-theme="dark"]{
+    --ground:#10161d; --card:#1a2531; --card-border:#26333f;
+    --ink:#e8eef4; --ink-soft:#a9b5c1; --muted:#6f7d8a;
+    --accent:#3fbf92; --accent-ink:#06231a;
+    --tab-bg:#222f3b; --tab-ink:#a9b5c1;
+    --banner-bg:#14261f; --banner-edge:#3fbf92; --banner-ink:#8fdcbf;
+    --reveal-bg:#152a22; --reveal-ink:#8fdcbf; --reveal-edge:#2c5344;
+    --tag-bg:#3a3320; --tag-ink:#e8cf8e;
+    --shadow:rgba(0,0,0,.35);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ground); color:var(--ink);
+    font-family:"Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic","Meiryo","Noto Sans JP",system-ui,sans-serif;
+    line-height:1.75; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:22px 18px 64px;}
+
+  h1{
+    font-size:1.05rem; font-weight:700; color:var(--ink-soft);
+    text-align:center; margin:4px 0 18px; letter-spacing:.02em;
+  }
+
+  /* tabs */
+  .tabs{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:20px;}
+  .tab{
+    appearance:none; border:none; cursor:pointer;
+    font:inherit; font-weight:700; font-size:.95rem;
+    padding:9px 20px; border-radius:999px;
+    background:var(--tab-bg); color:var(--tab-ink);
+    transition:background .15s, color .15s, transform .05s;
+  }
+  .tab:hover{filter:brightness(.98)}
+  .tab:active{transform:translateY(1px)}
+  .tab[aria-selected="true"]{background:var(--accent); color:var(--accent-ink);}
+  .tab:focus-visible{outline:3px solid var(--accent); outline-offset:2px;}
+
+  /* instruction banner */
+  .banner{
+    background:var(--banner-bg); color:var(--banner-ink);
+    border-left:4px solid var(--banner-edge); border-radius:8px;
+    padding:12px 16px; margin-bottom:18px; font-size:.95rem; font-weight:500;
+  }
+
+  /* cards */
+  .cards{display:flex; flex-direction:column; gap:14px;}
+  .card{
+    background:var(--card); border:1px solid var(--card-border);
+    border-radius:14px; padding:18px 20px; box-shadow:0 2px 10px var(--shadow);
+    cursor:pointer; transition:border-color .15s, box-shadow .15s;
+  }
+  .card:hover{border-color:var(--accent);}
+  .card:focus-visible{outline:3px solid var(--accent); outline-offset:2px;}
+  .card.open{border-color:var(--reveal-edge);}
+  .prompt{font-size:1.18rem; font-weight:600; color:var(--ink); margin:0;}
+  .prompt .en{font-size:1.06rem; font-style:normal; color:var(--ink);}
+  .en2{margin:7px 0 0; font-size:1.02rem; font-weight:500; color:var(--ink-soft);}
+  .tag{
+    display:inline-block; vertical-align:middle; margin-left:8px;
+    background:var(--tag-bg); color:var(--tag-ink);
+    font-size:.72rem; font-weight:700; padding:2px 9px; border-radius:6px;
+  }
+  .cue{
+    display:flex; align-items:center; gap:6px;
+    margin-top:10px; color:var(--muted); font-size:.82rem; font-weight:500;
+  }
+  .cue .hint{color:var(--muted);}
+  .answer{
+    display:none; margin-top:12px; padding:12px 14px;
+    background:var(--reveal-bg); color:var(--reveal-ink);
+    border-radius:10px; font-size:1.08rem; font-weight:600;
+  }
+  .card.open .answer{display:block; animation:pop .18s ease;}
+  .card.open .cue{display:none;}
+  @keyframes pop{from{opacity:0; transform:translateY(-3px)} to{opacity:1; transform:none}}
+  @media (prefers-reduced-motion:reduce){.card.open .answer{animation:none}}
+
+  .foot{display:flex; justify-content:center; margin-top:26px;}
+  .closeall{
+    appearance:none; border:none; cursor:pointer; font:inherit; font-weight:700;
+    color:var(--tab-ink); background:var(--tab-bg);
+    padding:11px 26px; border-radius:999px;
+  }
+  .closeall:hover{filter:brightness(.98)}
+  .closeall:focus-visible{outline:3px solid var(--accent); outline-offset:2px;}
+
+  .panel[hidden]{display:none;}
+  .qen{margin:8px 0 0; font-size:1rem; font-weight:500; color:var(--ink-soft);}
+  .play{
+    appearance:none; border:none; cursor:pointer; font:inherit; font-weight:700;
+    margin-top:10px; padding:7px 16px; border-radius:999px;
+    background:var(--accent); color:var(--accent-ink); font-size:.9rem;
+  }
+  .play:focus-visible{outline:3px solid var(--accent); outline-offset:2px;}
+  .btns{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;}
+  .btns .play{margin-top:0;}
+  .step{
+    appearance:none; cursor:pointer; font:inherit; font-weight:700; font-size:.9rem;
+    padding:7px 16px; border-radius:999px; border:2px solid var(--accent);
+    background:transparent; color:var(--accent);
+  }
+  .step[hidden]{display:none;}
+  .step:focus-visible{outline:3px solid var(--accent); outline-offset:2px;}
+  .reveal{display:none; margin-top:10px; padding:12px 14px; border-radius:10px;
+    background:var(--reveal-bg); color:var(--reveal-ink); font-size:1.06rem; font-weight:600;}
+  .reveal.show{display:block; animation:pop .18s ease;}
+  .listen{cursor:default;}
+</style>
+
+<div class="wrap">
+  <p style="margin:0 0 6px"><a href="../" style="color:var(--ink-soft);font-size:.9rem">← Quizzes</a></p>
+  <h1>〜に 〜に いきます　／　おおきい かず　れんしゅう</h1>
+
+  <div class="tabs" role="tablist" aria-label="ステップ">
+    <button class="tab" role="tab" id="tab-0" aria-controls="panel-0" aria-selected="true">① どっち？</button>
+    <button class="tab" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="false">② ます形から 書きかえる</button>
+    <button class="tab" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false">③ ことばを 入れかえる</button>
+    <button class="tab" role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false">④ おおきい かず</button>
+  </div>
+
+  <div class="banner" id="banner"></div>
+
+  <div class="panel" id="panel-0" role="tabpanel" aria-labelledby="tab-0"><div class="cards"></div></div>
+  <div class="panel" id="panel-1" role="tabpanel" aria-labelledby="tab-1" hidden><div class="cards"></div></div>
+  <div class="panel" id="panel-2" role="tabpanel" aria-labelledby="tab-2" hidden><div class="cards"></div></div>
+  <div class="panel" id="panel-3" role="tabpanel" aria-labelledby="tab-3" hidden><div class="cards"></div></div>
+
+  <div class="foot"><button class="closeall" id="closeall">ぜんぶ とじる</button></div>
+</div>
+
+<script>
+  const BANNERS = [
+    "どちらが 正しいですか。クリックで 答えが 出ます。",
+    "ます形を 見て、「〜に いきます」の 形に しましょう。ます を とって に。クリックで 答えが 出ます。",
+    "形は いつも 同じです。ことばを 入れかえて 文を 作りましょう。クリックで 答えが 出ます。",
+    "▶ を おして、きいて、すうじを かきましょう。なんかい きいても いいです。わからない 時は「日本語を 見る」、それでも わからない 時は「こたえ」を おしましょう。"
+  ];
+
+  // ① ます形から 書きかえる
+  const FORM = [
+    {p:"あそびます　→　？", a:"あそびに いきます"},
+    {p:"たべます　→　？", a:"たべに いきます"},
+    {p:"みます　→　？", a:"みに いきます"},
+    {p:"およぎます　→　？", a:"およぎに いきます"},
+    {p:"のみます　→　？", a:"のみに いきます"},
+    {p:"かいます　→　？", a:"かいに いきます"},
+    {p:"よみます　→　？", a:"よみに いきます"},
+    {p:"します　→　？", a:"しに いきます", tag:"むずかしい"},
+    {p:"べんきょうします　→　？", a:"べんきょうしに いきます", tag:"むずかしい"},
+    {p:"かいもの（ことば）　→　？", a:"かいものに いきます", tag:"むずかしい"}
+  ];
+
+  // ③ ことばを 入れかえる：形は固定・【ばしょ／もの／どうし】だけ差し替え（てもいい教材と同じ型）
+  const SWAP = [
+    {p:"【ばしょ】に 【もの】を 【ます を とって】に いきます　＝　いつも この 形です", a:"こうえん ／ サッカー ／ します　→　こうえんに サッカーを しに いきます。（I go to the park to play soccer.）", tag:"たいせつ", hint:"まず 形を 見る"},
+    {p:"レストラン ／ ばんごはん ／ たべます", a:"レストランに ばんごはんを たべに いきます。（I go to a restaurant to eat dinner.）"},
+    {p:"まち ／ えいが ／ みます", a:"まちに えいがを みに いきます。（I go to town to see a movie.）"},
+    {p:"カフェ ／ ジュース ／ のみます", a:"カフェに ジュースを のみに いきます。（I go to a café to drink juice.）"},
+    {p:"デパート ／ セーター ／ かいます", a:"デパートに セーターを かいに いきます。（I go to the department store to buy a sweater.）"},
+    {p:"としょかん ／ ほん ／ よみます", a:"としょかんに ほんを よみに いきます。（I go to the library to read books.）"},
+    {p:"うみ ／ ― ／ およぎます", a:"うみに およぎに いきます。（I go to the beach to swim.）", hint:"もの は ありません"},
+    {p:"デパート ／ ― ／ かいもの", a:"デパートに かいものに いきます。（I go to the department store to go shopping.）", tag:"むずかしい", hint:"かいもの は ことば"}
+  ];
+
+  // ③ どっち？
+  const PICK = [
+    {p:"こうえんに あそび（ に ／ を ）いきます。", a:"に → あそびに いきます"},
+    {p:"えいがを （ みに ／ みて ）いきます。", a:"みに", hint:"ます を とって に"},
+    {p:"うみ（ に ／ で ）およぎに いきます。", a:"に", hint:"いく ところ"},
+    {p:"ほんを （ よみに ／ よむに ）いきます。", a:"よみに", hint:"よみます → よみ"},
+    {p:"サッカーを （ しに ／ するに ）いきます。", a:"しに"},
+    {p:"デパートに （ かいものに ／ かいものを ）いきます。", a:"かいものに"},
+    {p:"レストラン（ に ／ で ）ばんごはんを たべに いきます。", a:"に → レストランに ばんごはんを たべに いきます。", tag:"むずかしい", hint:"たべる ところ でも、いきます の 文は に"}
+  ];
+
+  // ④ おおきい かず（きく）：say = 読み上げる文 / q = 設問 / a = 答え / js = 文
+  const NUM = [
+    {p:"1. えいがかん", q:"How much is a ticket today? How much is it usually?",
+     say:"今日の映画は2時半からです。チケットはいつも1800円ですが、今日だけ1200円です。",
+     js:"きょうの えいがは にじはん からです。チケットは いつも せんはっぴゃくえん ですが、きょうだけ せんにひゃくえん です。",
+     a:"Today: ¥1,200（usually ¥1,800）", hint:"いつも と きょうだけ"},
+    {p:"2. ぶんかさいの カフェ", q:"How much is one sweet? Two sweets? A tea?",
+     say:"お菓子は一つ150円です。二つで250円です。お茶は80円です。",
+     js:"おかしは ひとつ ひゃくごじゅうえん です。ふたつで にひゃくごじゅうえん です。おちゃは はちじゅうえん です。",
+     a:"One: ¥150 / Two: ¥250 / Tea: ¥80"},
+    {p:"3. せんせいの はなし", q:"How much money does the teacher give? Up to how much can you spend on souvenirs?",
+     say:"今日はみんなに3000円あげます。お土産は2000円まで買ってもいいです。",
+     js:"きょうは みんなに さんぜんえん あげます。おみやげは にせんえん まで かっても いいです。",
+     a:"Given: ¥3,000 / Souvenirs: up to ¥2,000", hint:"さんぜん"},
+    {p:"4. デパート", q:"How much is the blue sweater? The white sweater? Which one is cheaper?",
+     say:"青いセーターは16000円です。白いセーターは9800円です。白いセーターは青いセーターより安いです。",
+     js:"あおい セーターは いちまんろくせんえん です。しろい セーターは きゅうせんはっぴゃくえん です。しろい セーターは あおい セーターより やすいです。",
+     a:"Blue: ¥16,000 / White: ¥9,800 / The white one is cheaper.", tag:"むずかしい", hint:"まん ＝ 10,000"},
+    {p:"5. じこしょうかい", q:"What year was she born? What year did she come to New Zealand?",
+     say:"私は2009年に生まれました。2024年にニュージーランドに来ました。",
+     js:"わたしは にせんきゅうねんに うまれました。にせんにじゅうよねんに ニュージーランドに きました。",
+     a:"Born: 2009 / Came to NZ: 2024", hint:"よねん ＝ 4ねん"}
+  ];
+
+  const DATA = [PICK, FORM, SWAP, NUM];
+  const tabs = [...document.querySelectorAll(".tab")];
+  const panels = [...document.querySelectorAll(".panel")];
+
+  function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+  function render(){
+    DATA.forEach((set, i) => {
+      const box = panels[i].querySelector(".cards");
+      box.innerHTML = set.map((item, k) => {
+        const isEnPrompt = false;
+        const tag = item.tag ? `<span class="tag">${esc(item.tag)}</span>` : "";
+        const hint = item.hint ? `<span class="hint">（${esc(item.hint)}）</span>` : "";
+        const pInner = isEnPrompt ? `<span class="en">${esc(item.p)}</span>` : esc(item.p);
+        if(item.say){
+          return `<div class="card listen">
+            <p class="prompt">${pInner}${tag}</p>
+            <p class="qen">${esc(item.q)}</p>
+            <div class="btns">
+              <button class="play" data-k="${k}">▶ きく</button>
+              <button class="step" data-step="ja">日本語を 見る</button>
+              <button class="step" data-step="en" hidden>こたえ（English）</button>
+            </div>
+            <div class="reveal ja">${esc(item.js)}</div>
+            <div class="reveal en">${esc(item.a)}</div>
+          </div>`;
+        }
+        return `<div class="card" tabindex="0" role="button" aria-expanded="false">
+            <p class="prompt">${pInner}${tag}</p>
+            <div class="cue">▶ クリック ${hint}</div>
+            <div class="answer">${esc(item.a)}</div>
+          </div>`;
+      }).join("");
+    });
+  }
+
+  // 音声＝kazu-audio/num1〜5.mp3（1・2・4＝edge-tts／3・5＝ElevenLabs・2026-10-02）
+  let current = null;
+  function speak(k){
+    if(current){ current.pause(); current.currentTime = 0; }
+    current = new Audio(`kazu-audio/num${k+1}.mp3`);
+    current.play().catch(() => alert("音が 出ませんでした。"));
+  }
+
+  function toggle(card){
+    const open = card.classList.toggle("open");
+    card.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+
+  document.addEventListener("click", e => {
+    const btn = e.target.closest(".play");
+    if(btn){ speak(+btn.dataset.k); return; }
+    const step = e.target.closest(".step");
+    if(step){
+      const card = step.closest(".card");
+      if(step.dataset.step === "ja"){
+        card.querySelector(".reveal.ja").classList.add("show");
+        card.querySelector('.step[data-step="en"]').hidden = false;
+      }else{
+        card.querySelector(".reveal.en").classList.add("show");
+      }
+      step.hidden = true;
+      return;
+    }
+    if(e.target.closest(".listen")) return;
+    const card = e.target.closest(".card");
+    if(card){ toggle(card); }
+  });
+  document.addEventListener("keydown", e => {
+    if((e.key === "Enter" || e.key === " ") && e.target.classList.contains("card")){
+      e.preventDefault(); toggle(e.target);
+    }
+  });
+
+  function selectTab(idx){
+    tabs.forEach((t,i) => t.setAttribute("aria-selected", i === idx ? "true" : "false"));
+    panels.forEach((p,i) => p.hidden = i !== idx);
+    document.getElementById("banner").textContent = BANNERS[idx];
+  }
+  tabs.forEach((t,i) => t.addEventListener("click", () => selectTab(i)));
+
+  document.getElementById("closeall").addEventListener("click", () => {
+    document.querySelectorAll(".card.open").forEach(c => {
+      c.classList.remove("open"); c.setAttribute("aria-expanded","false");
+    });
+    document.querySelectorAll(".reveal.show").forEach(r => r.classList.remove("show"));
+    document.querySelectorAll('.step[data-step="ja"]').forEach(b => b.hidden = false);
+    document.querySelectorAll('.step[data-step="en"]').forEach(b => b.hidden = true);
+  });
+
+  function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+  [PICK, FORM].forEach(shuffle);
+  render();
+  selectTab(0);
+</script>
