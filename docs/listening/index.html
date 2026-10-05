@@ -63,7 +63,18 @@
   footer{border-top:1px solid var(--hair);padding-top:16px;margin-top:30px;
     font-size:12.5px;color:var(--faint);line-height:1.6}
   footer a{color:var(--ai)}
+  .icl{stroke:var(--ai)} .icw{stroke:#a8741f} .icf{fill:var(--ai);fill-opacity:.1} .ics{fill:var(--ai)}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .icw{stroke:#d9a866}}
+  :root[data-theme="dark"] .icw{stroke:#d9a866}
+  .item.has-ic{position:relative} .item.has-ic h2,.item.has-ic .sub,.item.has-ic .when{padding-right:72px}
+  .item .ic{position:absolute;right:0;top:16px;width:60px;height:60px}
 </style></head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="ic-gift" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect class="icf icl" x="9" y="21" width="30" height="21" rx="2"/><rect class="icf icl" x="6" y="14" width="36" height="7" rx="2"/><path class="icw" d="M24 14v28M24 14c-3-6-10-7-10-2 0 3 6 2 10 2M24 14c3-6 10-7 10-2 0 3-6 2-10 2"/></symbol>
+<symbol id="ic-maple" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path class="icf icl" d="M24 5l3.5 8 5-3-1.5 9 7.5-3-2.5 7 5 2-8.5 6.5 1.5 4-10-2.5-10 2.5 1.5-4-8.5-6.5 5-2-2.5-7 7.5 3-1.5-9 5 3z"/><path class="icw" d="M24 16v27"/></symbol>
+<symbol id="ic-routine" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle class="icf icl" cx="24" cy="26" r="14"/><path class="icl" d="M24 18v8l6 4M14 38l-3 4M34 38l3 4"/><path class="icw" d="M7 13l6-6M41 13l-6-6"/></symbol>
+</svg>
+
 
 <div class="band"><div class="bandin">
   <div class="code">Level 1 Japanese &nbsp;·&nbsp; 91959</div>
@@ -74,7 +85,7 @@
 <div class="sheet">
   <p class="lede">Practice, not tests. <b>Nothing here is marked.</b> Play any section as many times as you want. New ones get added to this page — the link never changes.</p>
 
-  <div class="item">
+  <div class="item has-ic"><svg class="ic" aria-hidden="true"><use href="#ic-gift"/></svg>
     <div class="when">22 September</div>
     <h2>おねえさんの たんじょうびの プレゼント</h2>
     <p class="sub">A birthday present for Nikau's sister &nbsp;·&nbsp; three sections</p>
@@ -86,7 +97,7 @@
     <div class="tags"><span>Question One (a)(b)(c)</span><span>3 glossed words</span><span>31 words on the vocab page</span></div>
   </div>
 
-  <div class="item">
+  <div class="item has-ic"><svg class="ic" aria-hidden="true"><use href="#ic-maple"/></svg>
     <div class="when">8 September</div>
     <h2>かえでさんの いちにち</h2>
     <p class="sub">Kaede's day &nbsp;·&nbsp; four sections</p>
@@ -98,7 +109,7 @@
     <div class="tags"><span>4 passes</span><span>Script follows the audio</span><span>19 words on the vocab page</span></div>
   </div>
 
-  <div class="item">
+  <div class="item has-ic"><svg class="ic" aria-hidden="true"><use href="#ic-routine"/></svg>
     <div class="when">5 September</div>
     <h2>ランギくんの いちにち</h2>
     <p class="sub">Rangi's day &nbsp;·&nbsp; three sections</p>

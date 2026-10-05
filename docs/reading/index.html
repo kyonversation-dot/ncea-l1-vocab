@@ -60,7 +60,16 @@
   footer{border-top:1px solid var(--hair);padding-top:16px;margin-top:30px;
     font-size:12.5px;color:var(--faint);line-height:1.6}
   footer a{color:var(--ai)}
+  .icl{stroke:var(--ai)} .icw{stroke:#a8741f} .icf{fill:var(--ai);fill-opacity:.1} .ics{fill:var(--ai)}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .icw{stroke:#d9a866}}
+  :root[data-theme="dark"] .icw{stroke:#d9a866}
+  .item.has-ic{position:relative} .item.has-ic h2,.item.has-ic .sub,.item.has-ic .when{padding-right:72px}
+  .item .ic{position:absolute;right:0;top:16px;width:60px;height:60px}
 </style></head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="ic-clothes" viewBox="0 0 48 48" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path class="icf icl" d="M17 8l-11 6 4 9 5-2v19h18V21l5 2 4-9-11-6c-1 4-4 6-7 6s-6-2-7-6z"/><path class="icw" d="M20 30h8"/></symbol>
+</svg>
+
 
 <div class="band"><div class="bandin">
   <div class="code">Level 1 Japanese &nbsp;·&nbsp; 91958</div>
@@ -71,7 +80,7 @@
 <div class="sheet">
   <p class="lede">Practice, not tests. <b>Nothing here is marked.</b> Read at your own pace and type your answers on the page. New ones get added to this page — the link never changes.</p>
 
-  <div class="item">
+  <div class="item has-ic"><svg class="ic" aria-hidden="true"><use href="#ic-clothes"/></svg>
     <div class="when">15 September</div>
     <h2>かぞくと ふく</h2>
     <p class="sub">Family and clothes &nbsp;·&nbsp; four paragraphs</p>
