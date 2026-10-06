@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>からだの うた — Body Parts Song</title>
+<style>
+:root{
+  --bg:#fbfaf7; --ink:#1f2430; --sub:#5b6270; --card:#ffffff; --line:#d9d6cc; --body:#ece6da; --body-line:#b9b09c;
+  --v1:#2f6fd6; --v2:#d9761c; --v3:#1f9d6b; --all:#555b6b;
+}
+@media (prefers-color-scheme: dark){
+  :root{--bg:#171a21; --ink:#eceff5; --sub:#a3abba; --card:#20242e; --line:#363c4a; --body:#2c3140; --body-line:#5a6178;
+    --v1:#6ea2ff; --v2:#ffa14d; --v3:#4fd1a0; --all:#aab1c2;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Sans","Yu Gothic UI","Meiryo",system-ui,sans-serif;line-height:1.5}
+.wrap{max-width:980px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:26px;margin:0 0 2px}
+.sub{color:var(--sub);margin:0 0 16px;font-size:14px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tab{border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 18px;font-size:17px;font-weight:700;cursor:pointer}
+.tab[aria-pressed="true"]{color:#fff;border-color:transparent}
+.tab[data-v="1"][aria-pressed="true"]{background:var(--v1)}
+.tab[data-v="2"][aria-pressed="true"]{background:var(--v2)}
+.tab[data-v="3"][aria-pressed="true"]{background:var(--v3)}
+.tab[data-v="all"][aria-pressed="true"]{background:var(--all)}
+.grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:760px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+svg{width:100%;height:auto;display:block}
+.lyrics .line{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+.lyrics .gap{height:6px}
+.chip{border:2px solid var(--c);color:var(--c);background:transparent;border-radius:12px;padding:5px 12px;font-size:22px;font-weight:700;cursor:pointer;font-family:inherit}
+.chip small{display:block;font-size:12px;font-weight:500;color:var(--sub);margin-top:-2px}
+.chip.on{background:var(--c);color:#fff}
+.chip.on small{color:#fff}
+.chip.dim{opacity:.35}
+.hint{color:var(--sub);font-size:13px;margin-top:6px}
+.lab rect{fill:var(--card);stroke:var(--c);stroke-width:2}
+.lab .jp{font-size:19px;font-weight:700;fill:var(--c)}
+.lab .en{font-size:12px;fill:var(--sub)}
+.lab line{stroke:var(--c);stroke-width:2}
+.lab circle{fill:var(--c)}
+.lab.hide{display:none}
+.lab.dim{opacity:.18}
+.lab.on rect{fill:var(--c)}
+.lab.on .jp,.lab.on .en{fill:#fff}
+.bodyshape{fill:var(--body);stroke:var(--body-line);stroke-width:2}
+.feat{fill:none;stroke:var(--body-line);stroke-width:2;stroke-linecap:round}
+@media print{.tabs,.hint{display:none} body{background:#fff}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>からだの うた</h1>
+  <p class="sub">Body Parts Song — Describing Appearance ／ ばんごうを えらんで、からだを みながら うたいましょう</p>
+  <div class="tabs" id="tabs"></div>
+  <div class="grid">
+    <div class="card"><svg id="fig" viewBox="0 0 430 740" role="img" aria-label="Body diagram with labels"></svg></div>
+    <div class="card lyrics" id="lyrics"></div>
+  </div>
+  <p class="hint">ことばを おすと、からだの その ところが ひかります。 Tap a word to light it up on the body.</p>
+</div>
+<script>
+// word -> [english, anchorX, anchorY, side, labelY, verse]
+var P={
+ "あたま":["head",228,62,"R",30,1],
+ "かお":["face",234,100,"R",76,3],
+ "はな":["nose",213,114,"R",122,1],
+ "は":["teeth",206,134,"R",168,2],
+ "くち":["mouth",210,139,"R",214,1],
+ "くちびる":["lips",218,143,"R",260,3],
+ "くび":["neck",222,168,"R",306,2],
+ "のど":["throat",210,182,"R",352,3],
+ "むね":["chest",214,238,"R",398,2],
+ "せなか":["back",268,285,"R",444,3],
+ "おなか":["belly",214,320,"R",490,2],
+ "からだ":["whole body",268,400,"R",536,3],
+ "かみのけ":["hair",192,56,"L",44,2],
+ "め":["eyes",190,95,"L",92,1],
+ "みみ":["ears",158,106,"L",140,1],
+ "かた":["shoulders",150,198,"L",198,1],
+ "うで":["arm",128,290,"L",290,2],
+ "て":["hand",124,432,"L",430,2],
+ "ゆび":["fingers",118,458,"L",486,3],
+ "ひざ":["knees",181,545,"L",545,1],
+ "あし":["legs / feet",172,650,"L",650,1]
+};
+var VERSES=[
+ {n:1,lines:[["あたま","かた","ひざ","あし"],["ひざ","あし","ひざ","あし"],["あたま","かた","ひざ","あし"],["め","みみ","はな","くち"]]},
+ {n:2,lines:[["おなか","むね","くび","は"],["くび","は","くび","は"],["おなか","むね","くび","は"],["て","うで","かみのけ"]]},
+ {n:3,lines:[["かお","くちびる","からだ"],["からだ","からだ"],["かお","くちびる","からだ"],["ゆび","のど","せなか"]]}
+];
+var COL={1:"var(--v1)",2:"var(--v2)",3:"var(--v3)"};
+var cur=(location.hash.slice(1)||"1"), pick=null, NS="http://www.w3.org/2000/svg";
+
+function el(n,a,p,t){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);if(t)e.textContent=t;if(p)p.appendChild(e);return e}
+
+function drawBody(svg){
+  var g=el("g",{},svg);
+  el("circle",{cx:210,cy:100,r:52,class:"bodyshape"},g);                        // head
+  el("path",{d:"M160 92 Q165 46 210 44 Q255 46 260 92 Q240 66 210 66 Q180 66 160 92Z",fill:"var(--body-line)",opacity:".55"},g); // hair
+  el("rect",{x:196,y:150,width:28,height:40,class:"bodyshape"},g);              // neck
+  el("path",{d:"M150 190 Q210 178 270 190 L276 330 Q276 424 270 428 L150 428 Q144 424 144 330Z",class:"bodyshape"},g); // torso
+  el("path",{d:"M148 196 L112 206 L104 390 L142 394 L150 300Z",class:"bodyshape"},g);   // arm L
+  el("path",{d:"M272 196 L308 206 L316 390 L278 394 L270 300Z",class:"bodyshape"},g);   // arm R
+  el("circle",{cx:123,cy:410,r:22,class:"bodyshape"},g);                        // hand L
+  el("circle",{cx:297,cy:410,r:22,class:"bodyshape"},g);                        // hand R
+  [-14,-5,4,13].forEach(function(dx){el("line",{x1:123+dx,y1:428,x2:123+dx*1.2,y2:462,class:"feat"},g);el("line",{x1:297+dx,y1:428,x2:297+dx*1.2,y2:462,class:"feat"},g)}); // fingers
+  el("rect",{x:152,y:424,width:54,height:260,rx:14,class:"bodyshape"},g);       // leg L
+  el("rect",{x:214,y:424,width:54,height:260,rx:14,class:"bodyshape"},g);       // leg R
+  el("path",{d:"M148 684 L206 684 L206 716 L136 716Z",class:"bodyshape"},g);    // foot L
+  el("path",{d:"M214 684 L272 684 L284 716 L214 716Z",class:"bodyshape"},g);    // foot R
+  el("line",{x1:152,y1:545,x2:206,y2:545,class:"feat"},g);
+  el("line",{x1:214,y1:545,x2:268,y2:545,class:"feat"},g);
+  // face
+  el("circle",{cx:190,cy:95,r:5,fill:"var(--ink)"},g);
+  el("circle",{cx:230,cy:95,r:5,fill:"var(--ink)"},g);
+  el("ellipse",{cx:157,cy:106,rx:7,ry:13,class:"bodyshape"},g);
+  el("ellipse",{cx:263,cy:106,rx:7,ry:13,class:"bodyshape"},g);
+  el("path",{d:"M210 102 L205 118 L215 118",class:"feat"},g);
+  el("path",{d:"M196 134 Q210 146 224 134 Q210 138 196 134Z",fill:"#d98080",stroke:"#b05050","stroke-width":2},g);
+}
+
+function label(svg,w,d){
+  var c=COL[d[5]], left=d[3]==="L";
+  var g=el("g",{class:"lab","data-w":w,style:"--c:"+c},svg);
+  var bx=left?8:318, bw=104, by=d[4]-24, bh=42;
+  var lx=left?bx+bw:bx;
+  el("line",{x1:lx,y1:by+bh/2,x2:d[1],y2:d[2]},g);
+  el("circle",{cx:d[1],cy:d[2],r:4.5},g);
+  el("rect",{x:bx,y:by,width:bw,height:bh,rx:10},g);
+  el("text",{x:bx+bw/2,y:by+20,"text-anchor":"middle",class:"jp"},g,w);
+  el("text",{x:bx+bw/2,y:by+36,"text-anchor":"middle",class:"en"},g,d[0]);
+}
+
+function build(){
+  var svg=document.getElementById("fig"); svg.innerHTML="";
+  drawBody(svg);
+  Object.keys(P).forEach(function(w){label(svg,w,P[w])});
+  var tabs=document.getElementById("tabs"); tabs.innerHTML="";
+  [["1","1ばん"],["2","2ばん"],["3","3ばん"],["all","ぜんぶ"]].forEach(function(t){
+    var b=document.createElement("button");b.className="tab";b.dataset.v=t[0];b.textContent=t[1];
+    b.setAttribute("aria-pressed",String(cur===t[0]));
+    b.onclick=function(){cur=t[0];pick=null;render()};
+    tabs.appendChild(b);
+  });
+}
+
+function visibleVerses(){return cur==="all"?[1,2,3]:[+cur]}
+
+function render(){
+  build();
+  var vs=visibleVerses();
+  var shown={};
+  vs.forEach(function(n){VERSES[n-1].lines.forEach(function(l){l.forEach(function(w){shown[w]=n})})});
+  document.querySelectorAll(".lab").forEach(function(g){
+    var w=g.dataset.w;
+    if(!(w in shown)){g.classList.add("hide");return}
+    g.style.setProperty("--c",COL[shown[w]]);
+    if(pick){ if(pick===w)g.classList.add("on"); else g.classList.add("dim"); }
+  });
+  var box=document.getElementById("lyrics"); box.innerHTML="";
+  vs.forEach(function(n){
+    var h=document.createElement("div");h.style.cssText="font-weight:800;margin:0 0 8px;color:"+COL[n];h.textContent=n+"ばん";box.appendChild(h);
+    VERSES[n-1].lines.forEach(function(l,i){
+      var row=document.createElement("div");row.className="line";
+      l.forEach(function(w){
+        var b=document.createElement("button");b.className="chip"+(pick===w?" on":(pick?" dim":""));
+        b.style.setProperty("--c",COL[n]);
+        b.innerHTML=w+"<small>"+P[w][0]+"</small>";
+        b.onclick=function(){pick=(pick===w?null:w);render()};
+        row.appendChild(b);
+      });
+      box.appendChild(row);
+      if(i===2){var s=document.createElement("div");s.className="gap";box.appendChild(s)}
+    });
+    var sp=document.createElement("div");sp.style.height="10px";box.appendChild(sp);
+  });
+}
+render();
+</script>
+</body>
+</html>
