@@ -239,9 +239,9 @@
      a:"Born: 2009 / Came to NZ: 2024", hint:"よねん ＝ 4ねん"},
     // 6〜10＝2026-10-08 追加（edge-tts）
     {p:"6. くつの みせ", q:"How much are the shoes? The shirt? Both together?",
-     say:"靴は7400円です。シャツは3000円です。二つで1万円です。",
-     js:"くつは ななせんよんひゃくえん です。シャツは さんぜんえん です。ふたつで いちまんえん です。",
-     a:"Shoes: ¥7,400 / Shirt: ¥3,000 / Both: ¥10,000"},
+     say:"靴は7400円です。シャツは2600円です。二つで1万円です。",
+     js:"くつは ななせんよんひゃくえん です。シャツは にせんろっぴゃくえん です。ふたつで いちまんえん です。",
+     a:"Shoes: ¥7,400 / Shirt: ¥2,600 / Both: ¥10,000"},
     {p:"7. おじいさん", q:"What year was he born? What year did he come to New Zealand?",
      say:"おじいさんは1958年に生まれました。1985年にニュージーランドにきました。",
      js:"おじいさんは せんきゅうひゃくごじゅうはちねんに うまれました。せんきゅうひゃくはちじゅうごねんに ニュージーランドに きました。",
@@ -296,7 +296,7 @@
     });
   }
 
-  // 音声＝kazu-audio/num1〜5.mp3（1・2・4＝edge-tts／3・5＝ElevenLabs・2026-10-02）／num6〜10＝edge-tts（2026-10-08）
+  // 音声＝kazu-audio/num1〜5.mp3（1・2・4＝edge-tts／3・5＝ElevenLabs・2026-10-02）／num6〜10＝edge-tts（2026-10-08・6だけ男性の声Keita）
   let current = null;
   function speak(k){
     if(current){ current.pause(); current.currentTime = 0; }
