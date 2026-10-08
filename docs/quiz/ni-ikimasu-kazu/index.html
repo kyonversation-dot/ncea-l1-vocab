@@ -236,7 +236,28 @@
     {p:"5. じこしょうかい", q:"What year was she born? What year did she come to New Zealand?",
      say:"私は2009年に生まれました。2024年にニュージーランドに来ました。",
      js:"わたしは にせんきゅうねんに うまれました。にせんにじゅうよねんに ニュージーランドに きました。",
-     a:"Born: 2009 / Came to NZ: 2024", hint:"よねん ＝ 4ねん"}
+     a:"Born: 2009 / Came to NZ: 2024", hint:"よねん ＝ 4ねん"},
+    // 6〜10＝2026-10-08 追加（edge-tts）
+    {p:"6. くつの みせ", q:"How much are the shoes? The shirt? Both together?",
+     say:"靴は7400円です。シャツは3000円です。二つで1万円です。",
+     js:"くつは ななせんよんひゃくえん です。シャツは さんぜんえん です。ふたつで いちまんえん です。",
+     a:"Shoes: ¥7,400 / Shirt: ¥3,000 / Both: ¥10,000"},
+    {p:"7. おじいさん", q:"What year was he born? What year did he come to New Zealand?",
+     say:"おじいさんは1958年に生まれました。1985年にニュージーランドにきました。",
+     js:"おじいさんは せんきゅうひゃくごじゅうはちねんに うまれました。せんきゅうひゃくはちじゅうごねんに ニュージーランドに きました。",
+     a:"Born: 1958 / Came to NZ: 1985", tag:"むずかしい"},
+    {p:"8. バスと でんしゃ", q:"How much is the bus? The train? Which one is more expensive?",
+     say:"バスは320円です。電車は490円です。電車はバスより高いです。",
+     js:"バスは さんびゃくにじゅうえん です。でんしゃは よんひゃくきゅうじゅうえん です。でんしゃは バスより たかいです。",
+     a:"Bus: ¥320 / Train: ¥490 / The train is more expensive."},
+    {p:"9. がっこう", q:"How many students are there? How many teachers?",
+     say:"私の学校には生徒が1300人います。先生は86人です。",
+     js:"わたしの がっこうには せいとが せんさんびゃくにん います。せんせいは はちじゅうろくにん です。",
+     a:"Students: 1,300 / Teachers: 86"},
+    {p:"10. じてんしゃ", q:"How much was the new bike? How much did they get from their mother?",
+     say:"新しい自転車は68000円でした。お母さんに2万円もらいました。",
+     js:"あたらしい じてんしゃは ろくまんはっせんえん でした。おかあさんに にまんえん もらいました。",
+     a:"Bike: ¥68,000 / Got ¥20,000 from mum", tag:"むずかしい", hint:"もらいました ＝ received"}
   ];
 
   const DATA = [PICK, FORM, SWAP, NUM];
@@ -275,7 +296,7 @@
     });
   }
 
-  // 音声＝kazu-audio/num1〜5.mp3（1・2・4＝edge-tts／3・5＝ElevenLabs・2026-10-02）
+  // 音声＝kazu-audio/num1〜5.mp3（1・2・4＝edge-tts／3・5＝ElevenLabs・2026-10-02）／num6〜10＝edge-tts（2026-10-08）
   let current = null;
   function speak(k){
     if(current){ current.pause(); current.currentTime = 0; }
