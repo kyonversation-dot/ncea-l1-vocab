@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#14795d">
+<title>スポーツと からだ ききとり</title>
+<style>
+  :root{
+    --ground:#eef1f6; --card:#ffffff; --card-border:#e7ebf0;
+    --ink:#22303f; --ink-soft:#5b6773; --muted:#98a2ae;
+    --accent:#14795d; --accent-ink:#ffffff;
+    --tab-bg:#e4e8ee; --tab-ink:#55606d;
+    --banner-bg:#e9f8f0; --banner-edge:#14795d; --banner-ink:#2f6d56;
+    --reveal-bg:#f3faf7; --reveal-ink:#155f49; --reveal-edge:#bfe6d6;
+    --tag-bg:#fdf1cf; --tag-ink:#8a6a12;
+    --shadow:rgba(30,50,80,.07);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ground:#10161d; --card:#1a2531; --card-border:#26333f;
+      --ink:#e8eef4; --ink-soft:#a9b5c1; --muted:#6f7d8a;
+      --accent:#3fbf92; --accent-ink:#06231a;
+      --tab-bg:#222f3b; --tab-ink:#a9b5c1;
+      --banner-bg:#14261f; --banner-edge:#3fbf92; --banner-ink:#8fdcbf;
+      --reveal-bg:#152a22; --reveal-ink:#8fdcbf; --reveal-edge:#2c5344;
+      --tag-bg:#3a3320; --tag-ink:#e8cf8e;
+      --shadow:rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#eef1f6; --card:#ffffff; --card-border:#e7ebf0;
+    --ink:#22303f; --ink-soft:#5b6773; --muted:#98a2ae;
+    --accent:#14795d; --accent-ink:#ffffff;
+    --tab-bg:#e4e8ee; --tab-ink:#55606d;
+    --banner-bg:#e9f8f0; --banner-edge:#14795d; --banner-ink:#2f6d56;
+    --reveal-bg:#f3faf7; --reveal-ink:#155f49; --reveal-edge:#bfe6d6;
+    --tag-bg:#fdf1cf; --tag-ink:#8a6a12;
+    --shadow:rgba(30,50,80,.07);
+  }
+  :root[data-theme="dark"]{
+    --ground:#10161d; --card:#1a2531; --card-border:#26333f;
+    --ink:#e8eef4; --ink-soft:#a9b5c1; --muted:#6f7d8a;
+    --accent:#3fbf92; --accent-ink:#06231a;
+    --tab-bg:#222f3b; --tab-ink:#a9b5c1;
+    --banner-bg:#14261f; --banner-edge:#3fbf92; --banner-ink:#8fdcbf;
+    --reveal-bg:#152a22; --reveal-ink:#8fdcbf; --reveal-edge:#2c5344;
+    --tag-bg:#3a3320; --tag-ink:#e8cf8e;
+    --shadow:rgba(0,0,0,.35);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ground); color:var(--ink);
+    font-family:"Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic","Meiryo","Noto Sans JP",system-ui,sans-serif;
+    line-height:1.75; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:22px 18px 64px;}
+
+  h1{
+    font-size:1.05rem; font-weight:700; color:var(--ink-soft);
+    text-align:center; margin:4px 0 18px; letter-spacing:.02em;
+  }
+
+  /* tabs */
+  .tabs{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:20px;}
+  .tab{
+    appearance:none; border:none; cursor:pointer;
+    font:inherit; font-weight:700; font-size:.95rem;
+    padding:9px 20px; border-radius:999px;
+    background:var(--tab-bg); color:var(--tab-ink);
+    transition:background .15s, color .15s, transform .05s;
+  }
+  .tab:hover{filter:brightness(.98)}
+  .tab:active{transform:translateY(1px)}
+  .tab[aria-selected="true"]{background:var(--accent); color:var(--accent-ink);}
+  .tab:focus-visible{outline:3px solid var(--accent); outline-offset:2px;}
+
+  /* instruction banner */
+  .banner{
+    background:var(--banner-bg); color:var(--banner-ink);
+    border-left:4px solid var(--banner-edge); border-radius:8px;
+    padding:12px 16px; margin-bottom:18px; font-size:.95rem; font-weight:500;
+  }
+
+  /* cards */
+  .cards{display:flex; flex-direction:column; gap:14px;}
+  .card{
+    background:var(--card); border:1px solid var(--card-border);
+    border-radius:14px; padding:18px 20px; box-shadow:0 2px 10px var(--shadow);
+    cursor:pointer; transition:border-color .15s, box-shadow .15s;
+  }
+  .card:hover{border-color:var(--accent);}
+  .card:focus-visible{outline:3px solid var(--accent); outline-offset:2px;}
+  .card.open{border-color:var(--reveal-edge);}
+  .prompt{font-size:1.18rem; font-weight:600; color:var(--ink); margin:0;}
+  .prompt .en{font-size:1.06rem; font-style:normal; color:var(--ink);}
+  .en2{margin:7px 0 0; font-size:1.02rem; font-weight:500; color:var(--ink-soft);}
+  .tag{
+    display:inline-block; vertical-align:middle; margin-left:8px;
+    background:var(--tag-bg); color:var(--tag-ink);
+    font-size:.72rem; font-weight:700; padding:2px 9px; border-radius:6px;
+  }
+  .cue{
+    display:flex; align-items:center; gap:6px;
+    margin-top:10px; color:var(--muted); font-size:.82rem; font-weight:500;
+  }
+  .cue .hint{color:var(--muted);}
+  .answer{
+    display:none; margin-top:12px; padding:12px 14px;
+    background:var(--reveal-bg); color:var(--reveal-ink);
+    border-radius:10px; font-size:1.08rem; font-weight:600;
+  }
+  .card.open .answer{display:block; animation:pop .18s ease;}
+  .card.open .cue{display:none;}
+  @keyframes pop{from{opacity:0; transform:translateY(-3px)} to{opacity:1; transform:none}}
+  @media (prefers-reduced-motion:reduce){.card.open .answer{animation:none}}
+
+  .foot{display:flex; justify-content:center; margin-top:26px;}
+  .closeall{
+    appearance:none; border:none; cursor:pointer; font:inherit; font-weight:700;
+    color:var(--tab-ink); background:var(--tab-bg);
+    padding:11px 26px; border-radius:999px;
+  }
+  .closeall:hover{filter:brightness(.98)}
+  .closeall:focus-visible{outline:3px solid var(--accent); outline-offset:2px;}
+
+  .panel[hidden]{display:none;}
+  .qen{margin:8px 0 0; font-size:1rem; font-weight:500; color:var(--ink-soft);}
+  .play{
+    appearance:none; border:none; cursor:pointer; font:inherit; font-weight:700;
+    margin-top:10px; padding:7px 16px; border-radius:999px;
+    background:var(--accent); color:var(--accent-ink); font-size:.9rem;
+  }
+  .play:focus-visible{outline:3px solid var(--accent); outline-offset:2px;}
+  .btns{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;}
+  .btns .play{margin-top:0;}
+  .step{
+    appearance:none; cursor:pointer; font:inherit; font-weight:700; font-size:.9rem;
+    padding:7px 16px; border-radius:999px; border:2px solid var(--accent);
+    background:transparent; color:var(--accent);
+  }
+  .step[hidden]{display:none;}
+  .step:focus-visible{outline:3px solid var(--accent); outline-offset:2px;}
+  .reveal{display:none; margin-top:10px; padding:12px 14px; border-radius:10px;
+    background:var(--reveal-bg); color:var(--reveal-ink); font-size:1.06rem; font-weight:600;}
+  .reveal.show{display:block; animation:pop .18s ease;}
+  .listen{cursor:default;}
+  .gloss{background:var(--card); border:1px dashed var(--muted); border-radius:12px; padding:10px 16px; margin-bottom:16px; font-size:.95rem;}
+  .gloss b{display:block; font-size:.8rem; color:var(--ink-soft); margin-bottom:2px;}
+  .reveal.ja{white-space:pre-line; font-weight:500;}
+  .sec{font-size:.8rem; font-weight:700; color:var(--muted); letter-spacing:.04em; margin:0 0 2px;}
+</style>
+
+<div class="wrap">
+  <p style="margin:0 0 6px"><a href="../" style="color:var(--ink-soft);font-size:.9rem">← Quizzes</a></p>
+  <h1>スポーツと からだ　ききとり</h1>
+
+  <div class="banner">▶ を おして、きいて、こたえを ノートに かきましょう。なんかい きいても いいです。わからない 時は「日本語を 見る」、それでも わからない 時は「こたえ」を おしましょう。</div>
+
+  <div class="gloss"><b>Glossed vocabulary</b>はしります = run　／　〜たい〜 = (score) … to …</div>
+
+  <div class="cards" id="cards"></div>
+
+  <div class="foot"><button class="closeall" id="closeall">ぜんぶ とじる</button></div>
+</div>
+
+<script>
+  // 2026-10-09 Max 10/11用。宿題デッキ Sport & body の語で1セクション×3（各130〜180字）。
+  // 音声＝audio/sec1〜3.mp3（edge-tts -30%・sec1＝答える人Keita／sec2・3＝答える人Nanami）
+  const SECS = [
+    {p:"1. ジャックの スポーツ",
+     q:"Compare Jack and his younger brother Lucas. Who is better at cricket? Use details from the conversation.",
+     js:"A: ジャックさんは どんな スポーツが とくいですか。\nB: ぼくは ラグビーが とくいです。しゅうまつは いつも グラウンドで れんしゅうします。でも クリケットは にがてです。\nA: そうですか。かぞくも スポーツが すきですか。\nB: はい。おとうとの ルーカスは ぼくより クリケットが じょうずです。ルーカスは まいにち がっこうで れんしゅうします。",
+     a:"Lucas is better at cricket than Jack. He practises at school every day. Jack is good at rugby (he practises on the field every weekend), but he is not good at cricket.",
+     tag:"より"},
+    {p:"2. みおの しあい",
+     q:"Why will Mio rest at home tomorrow? Give as much detail as you can.",
+     js:"A: みおさん、きのうの バスケットボールの しあいは どうでしたか。\nB: 43たい30で かちました。あさ、グラウンドで はしってから、たいいくかんで しあいを しました。しあいでも たくさん はしりましたから、きょうは あしが いたいです。\nA: たいへんですね。あしたも れんしゅうしますか。\nB: いいえ、あしたは うちで やすみます。らいしゅうの 土曜日に また しあいが ありますから、げんきに なりたいです。",
+     a:"Her team won 43–30. She ran on the field in the morning and then played the match in the gym. She ran a lot in the match too, so her legs hurt today. There is another match next Saturday, so she wants to get well.",
+     tag:"から"},
+    {p:"3. グレースの かぜ",
+     q:"What is wrong with Grace? Why won't she go to practice today?",
+     js:"A: グレースさん、げんきが ありませんね。\nB: きのう かぜを ひきました。のどが とても いたいです。でも あたまと おなかは いたくないです。\nA: くすりを のみましたか。\nB: はい、あさごはんの あとで くすりを のみました。あしたは ネットボールの しあいが ありますが、きょうは れんしゅうに いきません。しあいに いきたいですから、うちで はやく ねます。",
+     a:"She caught a cold yesterday. Her throat is very sore, but her head and stomach are not. She took medicine after breakfast. She has a netball match tomorrow and wants to play, so she won't go to practice today — she will go to bed early at home.",
+     tag:"は ／ 〜ないです"}
+  ];
+
+  function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+  document.getElementById("cards").innerHTML = SECS.map((s, k) => `
+    <div class="card listen">
+      <p class="sec">SECTION ${k+1}</p>
+      <p class="prompt">${esc(s.p)}<span class="tag">${esc(s.tag)}</span></p>
+      <p class="qen">${esc(s.q)}</p>
+      <div class="btns">
+        <button class="play" data-k="${k}">▶ きく</button>
+        <button class="step" data-step="ja">日本語を 見る</button>
+        <button class="step" data-step="en" hidden>こたえ（English）</button>
+      </div>
+      <div class="reveal ja">${esc(s.js)}</div>
+      <div class="reveal en">${esc(s.a)}</div>
+    </div>`).join("");
+
+  let current = null;
+  function speak(k){
+    if(current){ current.pause(); current.currentTime = 0; }
+    current = new Audio(`audio/sec${k+1}.mp3`);
+    current.play().catch(() => {});
+  }
+
+  document.addEventListener("click", e => {
+    const btn = e.target.closest(".play");
+    if(btn){ speak(+btn.dataset.k); return; }
+    const step = e.target.closest(".step");
+    if(step){
+      const card = step.closest(".card");
+      if(step.dataset.step === "ja"){
+        card.querySelector(".reveal.ja").classList.add("show");
+        card.querySelector('.step[data-step="en"]').hidden = false;
+      }else{
+        card.querySelector(".reveal.en").classList.add("show");
+      }
+      step.hidden = true;
+    }
+  });
+
+  document.getElementById("closeall").addEventListener("click", () => {
+    if(current){ current.pause(); current.currentTime = 0; }
+    document.querySelectorAll(".reveal.show").forEach(r => r.classList.remove("show"));
+    document.querySelectorAll('.step[data-step="ja"]').forEach(b => b.hidden = false);
+    document.querySelectorAll('.step[data-step="en"]').forEach(b => b.hidden = true);
+  });
+</script>
