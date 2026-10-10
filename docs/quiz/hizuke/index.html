@@ -149,6 +149,10 @@
   .listen{cursor:default;}
   .gloss{background:var(--card); border:1px dashed var(--card-border); border-radius:10px;
     padding:10px 14px; margin-bottom:16px; font-size:.92rem; color:var(--ink-soft);}
+  .player{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:10px;}
+  .player audio{flex:1 1 260px; min-width:0; height:40px;}
+  .back5{appearance:none; cursor:pointer; font:inherit; font-weight:700; font-size:.85rem;
+    padding:6px 12px; border-radius:999px; border:2px solid var(--accent); background:transparent; color:var(--accent);}
 </style>
 
 <div class="wrap">
@@ -194,8 +198,9 @@
     return `<div class="card listen">
       <p class="prompt">${esc(item.p)}${tag}</p>
       <p class="qen">${esc(item.q)}</p>
+      <div class="player"><audio controls preload="none" src="audio/h${k+1}.mp3"></audio><button class="back5">↺ 5びょう もどる</button></div>
       <div class="btns">
-        <button class="play" data-k="${k}">▶ きく</button>
+        
         <button class="step" data-step="ja">日本語を 見る</button>
         <button class="step" data-step="en" hidden>こたえ（English）</button>
       </div>
@@ -228,8 +233,18 @@
   });
 
   document.getElementById("closeall").addEventListener("click", () => {
+    document.querySelectorAll("audio").forEach(a => { a.pause(); a.currentTime = 0; });
     document.querySelectorAll(".reveal.show").forEach(r => r.classList.remove("show"));
     document.querySelectorAll('.step[data-step="ja"]').forEach(b => b.hidden = false);
     document.querySelectorAll('.step[data-step="en"]').forEach(b => b.hidden = true);
+  });
+
+  // 音声＝ブラウザの再生バー（止める・途中から・位置を動かす）＋5秒もどる。1つ再生すると他は止まる
+  document.addEventListener("play", e => {
+    document.querySelectorAll("audio").forEach(a => { if(a !== e.target) a.pause(); });
+  }, true);
+  document.addEventListener("click", e => {
+    const b = e.target.closest(".back5");
+    if(b){ const a = b.parentElement.querySelector("audio"); a.currentTime = Math.max(0, a.currentTime - 5); }
   });
 </script>
