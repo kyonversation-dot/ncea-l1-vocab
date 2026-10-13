@@ -89,6 +89,19 @@
   .q4 textarea{min-height:170px;}
   input:focus-visible,textarea:focus-visible{outline:2px solid var(--ai);outline-offset:1px;}
 
+  .hwbar{background:var(--warn);color:#fff;font-family:Archivo,sans-serif;font-weight:700;font-size:13px;
+    letter-spacing:.12em;text-transform:uppercase;padding:9px 14px;margin:0 0 14px;}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .hwbar{color:#14161C;} }
+  :root[data-theme="dark"] .hwbar{color:#14161C;}
+  .steps{margin:0 0 14px;padding-left:22px;max-width:62ch;}
+  .steps li{margin:0 0 6px;}
+  button.copy{font:700 15px Archivo,system-ui,sans-serif;letter-spacing:.04em;background:var(--ai);color:#fff;
+    border:0;padding:12px 22px;cursor:pointer;}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) button.copy{color:#14161C;} }
+  :root[data-theme="dark"] button.copy{color:#14161C;}
+  button.copy:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
+  .copied{font-family:Archivo,sans-serif;font-size:14px;color:var(--ai);margin:10px 0 0;min-height:1.4em;}
+  #fallback{display:none;margin-top:10px;min-height:200px;}
   footer{border-top:1px solid var(--hair);padding-top:16px;margin-top:10px;font-size:12.5px;color:var(--faint);line-height:1.6;}
   footer a{color:var(--ai)}
   @media (max-width:560px){ .passage p{font-size:18px;} .wear{grid-template-columns:1fr;gap:4px 0;} .wear input{margin-bottom:10px;} }
@@ -104,8 +117,9 @@
     <div class="en">An email about sport and health</div>
   </div>
 
+  <div class="hwbar">Homework &nbsp;·&nbsp; due Sunday 18 October</div>
   <div class="notice">
-    <strong>PRACTICE.</strong> Not an NZQA paper, and not marked. Type your answers straight into the boxes, in English. What you type stays on this device only.
+    <strong>HOW TO DO IT.</strong> Read the email, then type your answers in English in the boxes below. Your answers are saved on this device, so you can stop and come back later on the same device. When you finish, use the button at the bottom to send your answers to Kiyoko sensei.
   </div>
 
   <section>
@@ -156,8 +170,20 @@
     </div>
   </section>
 
+  <section>
+    <div class="label">3 &nbsp;·&nbsp; When you finish — send your answers</div>
+    <ol class="steps">
+      <li>Press <b>Copy my answers</b>.</li>
+      <li>Open Kiyoko sensei's homework email (sent on 11 October) and press <b>Reply</b>.</li>
+      <li>Paste (Ctrl+V, or long-press and Paste on a phone) and send.</li>
+    </ol>
+    <button type="button" class="copy" id="copy">Copy my answers</button>
+    <p class="copied" id="copied" aria-live="polite"></p>
+    <textarea id="fallback" aria-label="Your answers as text" readonly></textarea>
+  </section>
+
   <footer>
-    Practice material written for one lesson, 13 October 2026. Not an NZQA paper; the instructions are rewritten, not copied.
+    Homework set on 11 October 2026, due Sunday 18 October. Not an NZQA paper; the instructions are rewritten, not copied.
     Checked against the 2026 Level&nbsp;1 Japanese Vocabulary List — apart from the names, the score word たい is the only glossed item.<br>
     <a href="https://kyonversation-dot.github.io/ncea-l1-vocab/">Vocabulary page</a> &nbsp;·&nbsp; <a href="../../listening/">Listening</a>
   </footer>
@@ -172,6 +198,31 @@
     var v = load(el.dataset.save);
     if (v !== null) el.value = v;
     el.addEventListener('input', function(){ save(el.dataset.save, el.value); });
+  });
+
+  var ROWS = [
+    ['q1-sat-what','Q1 Last Saturday – what happened'],['q1-sat-why','Q1 Last Saturday – why / feeling'],
+    ['q1-sun-what','Q1 Sunday – what happened'],['q1-sun-why','Q1 Sunday – why / feeling'],
+    ['q1-today-what','Q1 Today – what happened'],['q1-today-why','Q1 Today – why / feeling'],
+    ['q2','Q2'],['q3','Q3']
+  ];
+  var btn = document.getElementById('copy'), msg = document.getElementById('copied'), fb = document.getElementById('fallback');
+  btn.addEventListener('click', function(){
+    var out = ['Reading homework: ルビーさんへの メール', ''];
+    ROWS.forEach(function(r){
+      var el = document.querySelector('[data-save="' + r[0] + '"]');
+      out.push(r[1] + ':'); out.push((el && el.value.trim()) || '(no answer)'); out.push('');
+    });
+    var text = out.join(String.fromCharCode(10));
+    function showFallback(){
+      fb.value = text; fb.style.display = 'block'; fb.focus(); fb.select();
+      msg.textContent = 'Copy the text in this box (select all, then copy), and paste it into your reply.';
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function(){
+        msg.textContent = 'Copied. Now paste it into your reply to Kiyoko sensei.';
+      }, showFallback);
+    } else { showFallback(); }
   });
 })();
 </script>
