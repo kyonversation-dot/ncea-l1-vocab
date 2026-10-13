@@ -89,6 +89,19 @@
   .q4 textarea{min-height:170px;}
   input:focus-visible,textarea:focus-visible{outline:2px solid var(--ai);outline-offset:1px;}
 
+  .hwbar{background:var(--warn);color:#fff;font-family:Archivo,sans-serif;font-weight:700;font-size:13px;
+    letter-spacing:.12em;text-transform:uppercase;padding:9px 14px;margin:0 0 14px;}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .hwbar{color:#14161C;} }
+  :root[data-theme="dark"] .hwbar{color:#14161C;}
+  .steps{margin:0 0 14px;padding-left:22px;max-width:62ch;}
+  .steps li{margin:0 0 6px;}
+  button.copy{font:700 15px Archivo,system-ui,sans-serif;letter-spacing:.04em;background:var(--ai);color:#fff;
+    border:0;padding:12px 22px;cursor:pointer;}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) button.copy{color:#14161C;} }
+  :root[data-theme="dark"] button.copy{color:#14161C;}
+  button.copy:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
+  .copied{font-family:Archivo,sans-serif;font-size:14px;color:var(--ai);margin:10px 0 0;min-height:1.4em;}
+  #fallback{display:none;margin-top:10px;min-height:200px;}
   footer{border-top:1px solid var(--hair);padding-top:16px;margin-top:10px;font-size:12.5px;color:var(--faint);line-height:1.6;}
   footer a{color:var(--ai)}
   @media (max-width:560px){ .passage p{font-size:18px;} .wear{grid-template-columns:1fr;gap:4px 0;} .wear input{margin-bottom:10px;} }
@@ -104,8 +117,9 @@
     <div class="en">A day of shopping in town</div>
   </div>
 
+  <div class="hwbar">Homework &nbsp;·&nbsp; due Sunday 18 October</div>
   <div class="notice">
-    <strong>PRACTICE.</strong> Not an NZQA paper, and not marked. Type your answers straight into the boxes, in English. What you type stays on this device only.
+    <strong>HOW TO DO IT.</strong> First read the email and check the meaning (the glossed words help). Then type your answers in English in the boxes below. Your answers are saved on this device, so you can stop and come back later on the same device. When you finish, use the button at the bottom to send your answers to Kiyoko sensei.
   </div>
 
   <section>
@@ -119,11 +133,12 @@
       <span class="ja" lang="ja">たかすぎました</span> = was too expensive
     </div>
     <div class="passage" lang="ja">
-      <p>こんにちは。げんきですか。</p>
+      <p>けんたくん、こんにちは。げんきですか。</p>
       <p>せんしゅうの <ruby>土曜日<rt>どようび</rt></ruby>に、ともだちの オスカーくんと まちに かいものを しに いきました。その<ruby>日<rt>ひ</rt></ruby>は さむかったですから、ぼくは くろい セーターを きて、ズボンを はいて いきました。でも オスカーくんは あかい ぼうしを かぶって、ショートパンツを はいて いました。</p>
-      <p>デパートで ふくを みたり、カフェで おちゃを のんだり しました。ぼくは あたらしい かばんが ほしかったです。あおい かばんは とても かっこいいと おもいましたが、<ruby>百五十<rt>ひゃくごじゅう</rt></ruby>ドルで、たかすぎました。くろい かばんは 60ドルで、あおい かばんより やすかったです。そして、くろい かばんは <ruby>大<rt>おお</rt></ruby>きくて べんりだと おもいました。だから、くろい かばんに しました。おみやげの みせで、いもうとに ポウナムを ひとつ かいました。</p>
+      <p>デパートで ふくを みたり、カフェで おちゃを のんだり しました。ぼくは あたらしい かばんが ほしかったです。あおい かばんは とても かっこいいと おもいましたが、<ruby>百五十<rt>ひゃくごじゅう</rt></ruby>ドルで、たかすぎました。くろい かばんは 60ドルで、あおい かばんより やすかったです。そして、くろい かばんは <ruby>大<rt>おお</rt></ruby>きくて べんりだと おもいました。だから、くろい かばんを かいました。おみやげの みせで、いもうとに ポウナムを ひとつ かいました。</p>
       <p>それから、スーパーに たべものを かいに いきました。<ruby>日曜日<rt>にちようび</rt></ruby>は オスカーくんの おかあさんの たんじょうびでしたから、ケーキや くだものや ジュースを かいました。ばんごはんに にくか さかなを かいたかったですが、オスカーくんは さかなが きらいですから、にくだけ かいました。</p>
       <p>オスカーくんは いつも はやく あるきます。ぼくは とても つかれました。でも、たのしい <ruby>一日<rt>いちにち</rt></ruby>でした。</p>
+      <p style="text-align:right">はるとより</p>
     </div>
   </section>
 
@@ -137,8 +152,8 @@
         <table>
           <thead><tr><th>Who</th><th>What he was wearing</th></tr></thead>
           <tbody>
-            <tr><td class="when">Haruto</td><td><textarea data-save="q1-haruto" aria-label="Haruto — what he was wearing"></textarea></td></tr>
-            <tr><td class="when">Oscar</td><td><textarea data-save="q1-oscar" aria-label="Oscar — what he was wearing"></textarea></td></tr>
+            <tr><td class="when">Haruto</td><td><textarea data-save="q1-haruto" aria-label="Question 1 — Haruto, what he was wearing"></textarea></td></tr>
+            <tr><td class="when">Oscar</td><td><textarea data-save="q1-oscar" aria-label="Question 1 — Oscar, what he was wearing"></textarea></td></tr>
           </tbody>
         </table>
       </div>
@@ -186,10 +201,10 @@
         <table>
           <thead><tr><th>Item</th><th>Verb</th></tr></thead>
           <tbody>
-            <tr><td class="when" lang="ja">セーター</td><td><textarea data-save="g2-sweater" aria-label="Verb for セーター"></textarea></td></tr>
-            <tr><td class="when" lang="ja">ズボン</td><td><textarea data-save="g2-trousers" aria-label="Verb for ズボン"></textarea></td></tr>
-            <tr><td class="when" lang="ja">ぼうし</td><td><textarea data-save="g2-hat" aria-label="Verb for ぼうし"></textarea></td></tr>
-            <tr><td class="when" lang="ja">ショートパンツ</td><td><textarea data-save="g2-shorts" aria-label="Verb for ショートパンツ"></textarea></td></tr>
+            <tr><td class="when" lang="ja">セーター</td><td><textarea data-save="g2-sweater" aria-label="Grammar 2 — verb for セーター"></textarea></td></tr>
+            <tr><td class="when" lang="ja">ズボン</td><td><textarea data-save="g2-trousers" aria-label="Grammar 2 — verb for ズボン"></textarea></td></tr>
+            <tr><td class="when" lang="ja">ぼうし</td><td><textarea data-save="g2-hat" aria-label="Grammar 2 — verb for ぼうし"></textarea></td></tr>
+            <tr><td class="when" lang="ja">ショートパンツ</td><td><textarea data-save="g2-shorts" aria-label="Grammar 2 — verb for ショートパンツ"></textarea></td></tr>
           </tbody>
         </table>
       </div>
@@ -221,9 +236,21 @@
     </div>
   </section>
 
+  <section>
+    <div class="label">When you finish — send your answers</div>
+    <ol class="steps">
+      <li>Press <b>Copy my answers</b>.</li>
+      <li>Open Kiyoko sensei's homework email and press <b>Reply</b>.</li>
+      <li>Paste (Ctrl+V, or long-press and Paste on a phone) and send.</li>
+    </ol>
+    <button type="button" class="copy" id="copy">Copy my answers</button>
+    <p class="copied" id="copied" aria-live="polite"></p>
+    <textarea id="fallback" aria-label="Your answers as text" readonly></textarea>
+  </section>
+
   <footer>
-    Practice material written for one lesson, 13 October 2026. Not an NZQA paper; the instructions are rewritten, not copied.
-    Checked against the 2026 Level&nbsp;1 Japanese Vocabulary List — apart from the names, the four glossed items are the only words outside the list.<br>
+    Read in the lesson on 13 October 2026; homework due Sunday 18 October. Not an NZQA paper; the instructions are rewritten, not copied.
+    Checked against the 2026 Level&nbsp;1 Japanese Vocabulary List — apart from the names and より (from) at the end of the email, the four glossed items are the only words outside the list.<br>
     <a href="https://kyonversation-dot.github.io/ncea-l1-vocab/">Vocabulary page</a> &nbsp;·&nbsp; <a href="../../listening/">Listening</a>
   </footer>
 </div>
@@ -237,6 +264,26 @@
     var v = load(el.dataset.save);
     if (v !== null) el.value = v;
     el.addEventListener('input', function(){ save(el.dataset.save, el.value); });
+  });
+
+  var btn = document.getElementById('copy'), msg = document.getElementById('copied'), fb = document.getElementById('fallback');
+  btn.addEventListener('click', function(){
+    var NL = String.fromCharCode(10);
+    var out = ['Reading homework: はるとさんの メール', ''];
+    document.querySelectorAll('[data-save]').forEach(function(el){
+      out.push((el.getAttribute('aria-label') || el.dataset.save) + ':');
+      out.push(el.value.trim() || '(no answer)'); out.push('');
+    });
+    var text = out.join(NL);
+    function showFallback(){
+      fb.value = text; fb.style.display = 'block'; fb.focus(); fb.select();
+      msg.textContent = 'Copy the text in this box (select all, then copy), and paste it into your reply.';
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function(){
+        msg.textContent = 'Copied. Now paste it into your reply to Kiyoko sensei.';
+      }, showFallback);
+    } else { showFallback(); }
   });
 })();
 </script>
