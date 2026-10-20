@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>あやさんの メール — Reading</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<style>
+  :root{
+    --paper:#FCFCFA; --card:#FFFFFF; --ink:#1B1F2A; --muted:#5A6274;
+    --faint:#818A9C; --rule:#C9CEDA; --hair:#E4E7EE; --ai:#2E4374;
+    --ai-soft:#E9EDF6; --ai-line:#B9C4DD; --warn:#8A5A1E; --warn-soft:#FBF2E2;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#14161C; --card:#1B1E26; --ink:#E7E9EF; --muted:#A3AABB;
+      --faint:#7C8496; --rule:#3A404F; --hair:#2A2F3A; --ai:#93A9DE;
+      --ai-soft:#202634; --ai-line:#3E4A66; --warn:#D9AC6B; --warn-soft:#241E14;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#14161C; --card:#1B1E26; --ink:#E7E9EF; --muted:#A3AABB;
+    --faint:#7C8496; --rule:#3A404F; --hair:#2A2F3A; --ai:#93A9DE;
+    --ai-soft:#202634; --ai-line:#3E4A66; --warn:#D9AC6B; --warn-soft:#241E14;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Source Serif 4","Iowan Old Style",Georgia,serif;
+    font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .backbar{max-width:840px;margin:0 auto;padding:14px 20px 0}
+  .backbar a{font:600 13px Archivo,system-ui,sans-serif;letter-spacing:.04em;color:var(--ai);text-decoration:none}
+  .backbar a:hover{text-decoration:underline}
+  .sheet{max-width:840px;margin:0 auto;padding:0 20px 72px;}
+
+  .band{background:var(--ai);color:#fff;margin:10px -20px 26px;padding:24px 20px 20px;}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .band{background:#232B3D;} }
+  :root[data-theme="dark"] .band{background:#232B3D;}
+  .code{font-family:Archivo,system-ui,sans-serif;font-weight:700;font-size:12px;
+    letter-spacing:.18em;text-transform:uppercase;opacity:.8;}
+  h1{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;font-weight:700;
+    font-size:clamp(25px,4.4vw,34px);line-height:1.25;margin:8px 0 4px;}
+  .band .en{font-family:Archivo,sans-serif;font-weight:600;font-size:14px;opacity:.85;letter-spacing:.02em;}
+
+  .notice{background:var(--warn-soft);border-left:3px solid var(--warn);
+    padding:12px 16px;margin:0 0 28px;font-size:13.5px;color:var(--warn);line-height:1.5;}
+  .notice strong{font-family:Archivo,sans-serif;font-weight:700;letter-spacing:.04em;}
+
+  section{border-top:2px solid var(--ink);padding-top:16px;margin:0 0 38px;}
+  .label{font-family:Archivo,sans-serif;font-weight:700;font-size:12px;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--ai);margin-bottom:8px;}
+  .instr{margin:0 0 14px;max-width:62ch;}
+
+  /* warm-up */
+  .verbs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px;}
+  .verbs span{font-family:"Noto Sans JP",sans-serif;font-size:17px;font-weight:500;
+    background:var(--ai-soft);border:1px solid var(--ai-line);color:var(--ai);padding:5px 12px;}
+  .wear{display:grid;grid-template-columns:minmax(120px,190px) 1fr;gap:10px 14px;align-items:center;max-width:520px;}
+  .wear .item{font-family:"Noto Sans JP",sans-serif;font-size:18px;}
+
+  /* passage */
+  .gloss{border:1px solid var(--rule);padding:11px 15px;margin:0 0 20px;font-size:14px;color:var(--muted);}
+  .gloss b{font-family:Archivo,sans-serif;font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink);display:block;margin-bottom:4px;}
+  .gloss .ja{font-family:"Noto Sans JP",sans-serif;color:var(--ink);}
+  .passage{background:var(--card);border:1px solid var(--rule);padding:18px 20px 6px;}
+  .passage h3{font-family:"Noto Sans JP",sans-serif;font-size:19px;font-weight:700;margin:0 0 12px;}
+  .passage p{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;font-size:19px;
+    line-height:2.35;margin:0 0 16px;}
+  rt{font-size:.5em;color:var(--muted);}
+
+  /* questions */
+  .q{margin:0 0 28px;}
+  .q-num{font-family:Archivo,sans-serif;font-weight:700;font-size:13px;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--ai);margin-bottom:6px;}
+  .q-text{font-size:17px;line-height:1.45;max-width:62ch;margin:0 0 10px;}
+  .q-note{font-size:14.5px;color:var(--muted);margin:-4px 0 10px;}
+  .tablewrap{overflow-x:auto;}
+  table{border-collapse:collapse;width:100%;}
+  th,td{border:1px solid var(--rule);padding:8px;vertical-align:top;text-align:left;}
+  th{font-family:Archivo,sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;
+    background:var(--ai-soft);color:var(--ai);}
+  td.when{font-family:Archivo,sans-serif;font-weight:600;font-size:14px;width:18%;}
+
+  input[type=text],textarea{width:100%;font:16px/1.45 Archivo,system-ui,sans-serif;color:var(--ink);
+    background:var(--card);border:1px solid var(--rule);padding:9px 11px;border-radius:0;}
+  textarea{min-height:110px;resize:vertical;}
+  td textarea{min-height:90px;}
+  .q4 textarea{min-height:170px;}
+  input:focus-visible,textarea:focus-visible{outline:2px solid var(--ai);outline-offset:1px;}
+
+  .hwbar{background:var(--warn);color:#fff;font-family:Archivo,sans-serif;font-weight:700;font-size:13px;
+    letter-spacing:.12em;text-transform:uppercase;padding:9px 14px;margin:0 0 14px;}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .hwbar{color:#14161C;} }
+  :root[data-theme="dark"] .hwbar{color:#14161C;}
+  .steps{margin:0 0 14px;padding-left:22px;max-width:62ch;}
+  .steps li{margin:0 0 6px;}
+  button.copy{font:700 15px Archivo,system-ui,sans-serif;letter-spacing:.04em;background:var(--ai);color:#fff;
+    border:0;padding:12px 22px;cursor:pointer;}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) button.copy{color:#14161C;} }
+  :root[data-theme="dark"] button.copy{color:#14161C;}
+  button.copy:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
+  .copied{font-family:Archivo,sans-serif;font-size:14px;color:var(--ai);margin:10px 0 0;min-height:1.4em;}
+  #fallback{display:none;margin-top:10px;min-height:200px;}
+  footer{border-top:1px solid var(--hair);padding-top:16px;margin-top:10px;font-size:12.5px;color:var(--faint);line-height:1.6;}
+  footer a{color:var(--ai)}
+  @media (max-width:560px){ .passage p{font-size:18px;} .wear{grid-template-columns:1fr;gap:4px 0;} .wear input{margin-bottom:10px;} }
+
+  /* grammar cards: tap to show the answer */
+  .gcard{border:1px solid var(--rule);background:var(--card);margin:0 0 10px;}
+  .gcard summary{list-style:none;cursor:pointer;padding:12px 15px;}
+  .gcard summary::-webkit-details-marker{display:none}
+  .gcard .jp{font-family:"Noto Sans JP",sans-serif;font-size:19px;line-height:2;}
+  .gcard .ch{font-size:15.5px;color:var(--muted);margin-top:2px;}
+  .gcard .ch span{display:inline-block;border:1px solid var(--rule);padding:3px 10px;margin:4px 6px 0 0;color:var(--ink);}
+  .gcard .ans{border-top:1px solid var(--hair);padding:10px 15px 12px;font-size:16px;color:var(--ai);font-weight:600;}
+  .gcard .ans .jp{font-size:17px;}
+  .gcard summary:focus-visible{outline:2px solid var(--ai);outline-offset:1px;}
+  .tap{font-size:13px;color:var(--faint);margin:0 0 12px;}
+  .closeall{font:700 13px Archivo,system-ui,sans-serif;letter-spacing:.06em;background:none;border:1px solid var(--rule);color:var(--ink);padding:6px 12px;cursor:pointer;margin:0 0 14px;}
+</style></head><body>
+<div class="backbar"><a href="../">&larr; All reading</a></div>
+
+<div class="sheet">
+
+  <div class="band">
+    <div class="code">Level 1 Japanese &nbsp;·&nbsp; 91958 &nbsp;·&nbsp; Reading practice</div>
+    <h1>あやさんの メール</h1>
+    <div class="en">Choosing a hotel for a family trip</div>
+  </div>
+
+  <div class="notice">
+    <strong>HOW TO DO IT.</strong> Read the email and check the meaning (the glossed words help). Then write your answers in English in today's lesson Google Doc.
+  </div>
+
+  <section>
+    <div class="label">1 &nbsp;·&nbsp; よみましょう — Reading</div>
+    <p class="instr">Aya is a Japanese student. She writes an email to her friend Riley in New Zealand.</p>
+    <div class="gloss">
+      <b>Glossed vocabulary</b>
+      <span class="ja" lang="ja">ホテル</span> = hotel &nbsp;／&nbsp;
+      <span class="ja" lang="ja">ちかい</span> = near &nbsp;／&nbsp;
+      <span class="ja" lang="ja">わしつ</span> = Japanese-style room &nbsp;／&nbsp;
+      <span class="ja" lang="ja">〜と おもいました</span> = thought …
+    </div>
+    <div class="passage" lang="ja">
+      <p>ライリーさん、こんにちは。げんきですか。</p>
+      <p><ruby>私<rt>わたし</rt></ruby>は <ruby>八月<rt>はちがつ</rt></ruby>に かぞくと きょうとに りょこうします。おかあさんと おじいさんと おとうとと <ruby>四人<rt>よにん</rt></ruby>で いきます。おとうとは サッカーが とくいです。おとうとは <ruby>七月<rt>しちがつ</rt></ruby>に <ruby>学校<rt>がっこう</rt></ruby>の サッカーの しあいに でますから、りょこうは <ruby>八月<rt>はちがつ</rt></ruby>に なりました。</p>
+      <p><ruby>私<rt>わたし</rt></ruby>は きのう、おかあさんと ホテルを <ruby>二<rt>ふた</rt></ruby>つ <ruby>見<rt>み</rt></ruby>ました。</p>
+      <p>さくらホテルは えきの となりに あります。とても べんりです。デパートや レストランが ちかいですから、よるも かいものが できます。へやは あたらしいですが、せまいです。あさごはんだけ あります。<ruby>一人<rt>ひとり</rt></ruby> 9000<ruby>円<rt>えん</rt></ruby>です。</p>
+      <p>やまホテルは えきから とおいです。バスで <ruby>三十<rt>さんじゅっ</rt></ruby>ぷん かかります。でも、ホテルの まえに バスていが あります。へやは わしつで、さくらホテルの へやより ひろいです。やまホテルでは、やまが よく <ruby>見<rt>み</rt></ruby>えます。ひろい にわを あるいたり、<ruby>大<rt>おお</rt></ruby>きい おふろに はいったり できます。あさごはんと ばんごはんが あって、<ruby>一人<rt>ひとり</rt></ruby> 12000<ruby>円<rt>えん</rt></ruby>です。</p>
+      <p>おとうとは さくらホテルが いいと おもいました。デパートで あたらしい くつを かいたいですから。でも、おじいさんは にぎやかな ところが きらいです。しずかな ところが すきで、よく こうえんを あるきます。</p>
+      <p>だから、かぞくは やまホテルに とまります。えきから とおいですが、バスが ありますから、だいじょうぶです。<ruby>私<rt>わたし</rt></ruby>は やまを <ruby>見<rt>み</rt></ruby>ながら ばんごはんを たべたいです。</p>
+      <p>かぞくは あさ <ruby>九時<rt>くじ</rt></ruby>に ホテルを でて、バスで おてらを けんぶつします。それから、<ruby>私<rt>わたし</rt></ruby>は いとこに おみやげを かいたいです。</p>
+      <p>また メールします。</p>
+      <p style="text-align:right">あやより</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">2 &nbsp;·&nbsp; Questions — answer in English. Include all details from the text.</div>
+
+    <div class="q">
+      <div class="q-num">Question 1</div>
+      <p class="q-text">Why is the family going on the trip in August, not July?</p>
+      
+    </div>
+
+    <div class="q">
+      <div class="q-num">Question 2</div>
+      <p class="q-text">Compare the two hotels. Complete the table.</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th></th><th lang="ja">さくらホテル</th><th lang="ja">やまホテル</th></tr></thead>
+          <tbody>
+            <tr><td class="when">Location</td><td></td><td></td></tr>
+            <tr><td class="when">Room</td><td></td><td></td></tr>
+            <tr><td class="when">Meals and price</td><td></td><td></td></tr>
+            <tr><td class="when">What you can do</td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q-num">Question 3</div>
+      <p class="q-text">Which hotel did Aya's younger brother like, and why?</p>
+      
+    </div>
+
+    <div class="q">
+      <div class="q-num">Question 4</div>
+      <p class="q-text">Which hotel will the family stay at? Aya says it is far from the station. Why is that not a problem?</p>
+      
+    </div>
+
+    <div class="q q4">
+      <div class="q-num">Question 5</div>
+      <p class="q-text">Why do you think the grandfather will like this hotel?</p>
+      <p class="q-note">Use information from the email to support your answer.</p>
+      
+    </div>
+
+    <div class="q">
+      <div class="q-num">Question 6</div>
+      <p class="q-text">What is the plan for the morning? Include all details.</p>
+      
+    </div>
+  </section>
+
+  <section>
+    <div class="label">3 &nbsp;·&nbsp; ぶんぽう — Grammar check (sentences from the email)</div>
+    <p class="tap">Choose your answer, then tap the card to check.</p>
+    <button class="closeall" type="button" onclick="document.querySelectorAll('details.gcard').forEach(function(d){d.open=false})">Close all</button>
+
+    <div class="q">
+      <div class="q-num">Grammar 1 &nbsp;·&nbsp; でます</div>
+      <p class="q-text">Look at the particle before <span lang="ja">でます</span>. Which meaning?</p>
+      <details class="gcard"><summary><div class="jp" lang="ja">おとうとは サッカーの しあい<b>に</b> でます。</div><div class="ch"><span>take part in</span><span>leave</span></div></summary><div class="ans">take part in — <span lang="ja">に でます</span> = be in (the match)</div></details>
+<details class="gcard"><summary><div class="jp" lang="ja">あさ <ruby>九時<rt>くじ</rt></ruby>に ホテル<b>を</b> でて …</div><div class="ch"><span>take part in</span><span>leave</span></div></summary><div class="ans">leave — <span lang="ja">を でます</span> = go out of (the hotel)</div></details>
+      <details class="gcard"><summary><div class="jp" lang="ja">ひこうきは <ruby>十時<rt>じゅうじ</rt></ruby>に くうこう<b>を</b> でます。</div><div class="ch"><span>take part in</span><span>leave</span></div></summary><div class="ans">leave — The plane leaves the airport at 10 o'clock.</div></details>
+    </div>
+
+    <div class="q">
+      <div class="q-num">Grammar 2 &nbsp;·&nbsp; よく</div>
+      <p class="q-text"><i>often</i> or <i>well</i>?</p>
+      <details class="gcard"><summary><div class="jp" lang="ja">やまホテルでは、やまが <b>よく</b> <ruby>見<rt>み</rt></ruby>えます。</div><div class="ch"><span>often</span><span>well</span></div></summary><div class="ans">well — You can see the mountains well at Yama Hotel.</div></details>
+<details class="gcard"><summary><div class="jp" lang="ja">おじいさんは <b>よく</b> こうえんを あるきます。</div><div class="ch"><span>often</span><span>well</span></div></summary><div class="ans">often — The grandfather often walks in the park.</div></details>
+      <details class="gcard"><summary><div class="jp" lang="ja">ここでは みずうみが <b>よく</b> <ruby>見<rt>み</rt></ruby>えます。</div><div class="ch"><span>often</span><span>well</span></div></summary><div class="ans">well — You can see the lake well here.</div></details>
+    </div>
+
+    <div class="q">
+      <div class="q-num">Grammar 3 &nbsp;·&nbsp; 〜ながら</div>
+      <p class="q-text">Which is the right meaning?</p>
+      <details class="gcard"><summary><div class="jp" lang="ja"><ruby>私<rt>わたし</rt></ruby>は やまを <ruby>見<rt>み</rt></ruby>ながら ばんごはんを たべたいです。</div><div class="ch"><span>A: eat dinner <u>while</u> looking at the mountains</span><span>B: look at the mountains <u>after</u> dinner</span></div></summary><div class="ans">A — Aya wants to eat dinner while looking at the mountains.</div></details>
+<details class="gcard"><summary><div class="jp" lang="ja">Make it with ながら: &nbsp;おんがくを ききます ＋ こうえんを あるきます</div><div class="ch"><span>おんがくを ききますながら …</span><span>おんがくを ききながら …</span></div></summary><div class="ans"><span class="jp" lang="ja">おんがくを ききながら こうえんを あるきます。</span> (きき<b>ます</b> → きき＋ながら)</div></details>
+      <details class="gcard"><summary><div class="jp" lang="ja">ちかてつに のり<b>ながら</b> おんがくを ききます。</div><div class="ch"><span>A: listen to music <u>while</u> riding the subway</span><span>B: ride the subway <u>after</u> listening to music</span></div></summary><div class="ans">A — I listen to music while riding the subway (underground train).</div></details>
+    </div>
+
+    <div class="q">
+      <div class="q-num">Grammar 4 &nbsp;·&nbsp; だけ</div>
+      <p class="q-text">Which hotel?</p>
+      <details class="gcard"><summary><div class="jp" lang="ja">あさごはん<b>だけ</b> あります。</div><div class="ch"><span>さくらホテル</span><span>やまホテル</span></div></summary><div class="ans"><span lang="ja">さくらホテル</span> — only breakfast.</div></details>
+<details class="gcard"><summary><div class="jp" lang="ja">あさごはんと ばんごはんが あります。</div><div class="ch"><span>さくらホテル</span><span>やまホテル</span></div></summary><div class="ans"><span lang="ja">やまホテル</span> — breakfast and dinner.</div></details>
+      <details class="gcard"><summary><div class="jp" lang="ja">りょこうに かばん<b>だけ</b> もっていきます。</div><div class="ch"><span>A: I am taking only a bag.</span><span>B: I am taking a bag too.</span></div></summary><div class="ans">A — I am taking only a bag on the trip.</div></details>
+    </div>
+
+    <div class="q">
+      <div class="q-num">Grammar 5 &nbsp;·&nbsp; より</div>
+      <p class="q-text">Sakura is 9000円, Yama is 12000円. Which sentence is right?</p>
+      <details class="gcard"><summary><div class="jp" lang="ja">やまホテルは さくらホテル<b>より</b> ＿＿＿＿です。</div><div class="ch"><span>たかい</span><span>やすい</span></div></summary><div class="ans"><span class="jp" lang="ja">やまホテルは さくらホテルより たかいです。</span> (Yama is more expensive than Sakura.)</div></details>
+<details class="gcard"><summary><div class="jp" lang="ja">さくらホテルは やまホテル<b>より</b> ＿＿＿＿です。</div><div class="ch"><span>たかい</span><span>やすい</span></div></summary><div class="ans"><span class="jp" lang="ja">さくらホテルは やまホテルより やすいです。</span> (Sakura is cheaper than Yama.)</div></details>
+      <details class="gcard"><summary><div class="jp" lang="ja">ひこうきは ふね<b>より</b> はやいです。</div><div class="ch"><span>The plane is faster.</span><span>The boat is faster.</span></div></summary><div class="ans">The plane is faster — The plane is faster than the boat.</div></details>
+    </div>
+
+    <div class="q">
+      <div class="q-num">Grammar 6 &nbsp;·&nbsp; できます</div>
+      <p class="q-text">Where can you do it?</p>
+      <details class="gcard"><summary><div class="jp" lang="ja">よるも かいものが できます。</div><div class="ch"><span>さくらホテル</span><span>やまホテル</span></div></summary><div class="ans"><span lang="ja">さくらホテル</span> — You can shop even at night.</div></details>
+<details class="gcard"><summary><div class="jp" lang="ja">ひろい にわを あるいたり、<ruby>大<rt>おお</rt></ruby>きい おふろに はいったり できます。</div><div class="ch"><span>さくらホテル</span><span>やまホテル</span></div></summary><div class="ans"><span lang="ja">やまホテル</span> — You can walk in the big garden and have a big bath.</div></details>
+      <details class="gcard"><summary><div class="jp" lang="ja">みずうみで ふねに のったり、およいだり <b>できます</b>。</div><div class="ch"><span>A: You can ride a boat and swim at the lake.</span><span>B: You must ride a boat and swim at the lake.</span></div></summary><div class="ans">A — At the lake you can ride a boat, swim, and so on.</div></details>
+    </div>
+
+  </section>
+
+  <footer>
+    Read in the lesson on 20 October 2026. Not an NZQA paper; the instructions are rewritten, not copied.
+    Checked against the 2026 Level&nbsp;1 Japanese Vocabulary List — apart from the names, the prices in 円 and より (from) at the end of the email, the four glossed items are the only words outside the list.<br>
+    <a href="https://kyonversation-dot.github.io/ncea-l1-vocab/">Vocabulary page</a> &nbsp;·&nbsp; <a href="../../listening/">Listening</a>
+  </footer>
+</div>
+
+</body></html>
