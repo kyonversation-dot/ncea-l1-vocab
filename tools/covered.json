@@ -1,5 +1,5 @@
 {
-  "updated": "19 Oct 2026",
+  "updated": "24 Oct 2026",
   "years": [
     {"id": "Y9", "label": "Year 9", "items": [
       {"topic": "Hiragana", "done": true},
@@ -45,7 +45,7 @@
       {"topic": "〜や〜や、〜か〜か", "done": false, "kiyo": "13 Oct · 18 Oct", "school": "Term 2 · Invitations"},
       {"topic": "Shopping", "done": false, "kiyo": "9 Oct · 13 Oct · 18 Oct", "school": "Term 2 · Shopping"},
       {"topic": "〜ほしい", "done": true, "kiyo": "6 Jun · 5 Jul", "school": "Term 2 · Presents"},
-      {"topic": "より", "done": true, "kiyo": "3 Jun · 6 Jun · 5 Jul · 8 Aug · 9 Oct", "school": "Term 2 · Comparing"},
+      {"topic": "より", "done": true, "kiyo": "3 Jun · 6 Jun · 5 Jul · 8 Aug · 9 Oct · 20 Oct", "school": "Term 2 · Comparing"},
       {"topic": "すぎます", "done": true, "kiyo": "28 Jun · 5 Jul · 22 Sep · 28 Sep · 3 Oct", "school": "Term 2 · Book 3"},
       {"topic": "Kanji, katakana", "done": true, "kiyo": "17 Jun · 28 Jul"},
       {"topic": "Frequency words", "done": true, "kiyo": "28 Jun · 1 Jul · 8 Sep · 3 Oct · 18 Oct", "school": "Term 4 · Book 4"},
@@ -67,10 +67,10 @@
       {"topic": "すぎます。〜すぎましたから〜がいたいです", "done": false, "kiyo": "3 Oct · 9 Oct", "school": "Term 3 · Book 3"},
       {"topic": "School", "done": false, "kiyo": "14 Jul · 15 Jul", "school": "Term 4 · Book 4 (now)"},
       {"topic": "一番好き", "done": false, "kiyo": "21 Jul · 18 Aug", "school": "Term 4 · Book 4 (now)"},
-      {"topic": "〜ができます", "done": false, "kiyo": "29 Sep"},
-      {"topic": "だけ (only)", "done": false, "kiyo": "13 Oct · 18 Oct"},
-      {"topic": "よく (often / well)", "done": false, "kiyo": "18 Oct"},
-      {"topic": "〜ながら (while)", "done": false, "kiyo": "18 Oct"}
+      {"topic": "〜ができます", "done": false, "kiyo": "29 Sep · 20 Oct"},
+      {"topic": "だけ (only)", "done": false, "kiyo": "13 Oct · 18 Oct · 20 Oct"},
+      {"topic": "よく (often / well)", "done": false, "kiyo": "18 Oct · 20 Oct"},
+      {"topic": "〜ながら (while)", "done": false, "kiyo": "18 Oct · 20 Oct"}
     ]}
   ]
 }
