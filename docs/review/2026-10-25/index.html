@@ -38,16 +38,30 @@ table{width:100%;border-collapse:collapse}
 th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}
 .todo li{margin:6px 0}
 a{color:var(--accent)}
+.review-controls{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 8px}
+.review-controls button{font:inherit;font-size:14px;line-height:1.5;min-height:44px;padding:10px 14px;border:1px solid var(--accent);border-radius:8px;background:var(--card);color:var(--accent);cursor:pointer}
+.review-controls button[aria-pressed="true"]{background:var(--accent);color:var(--bg)}
+.review-controls button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.review-hint{margin:0 0 12px}
+#review-examples ul.ex li{min-height:4.5em}
+[hidden]{display:none!important}
 </style>
 </head>
 <body>
-<main>
+<main id="review-examples">
 <p><a href="../" style="color:var(--sub);font-size:.9rem">← Lesson review</a></p>
 <header>
 <h1><span>りょこうと まち</span></h1>
 <p style="font-size:clamp(20px,5vw,28px);font-weight:700;margin:0 0 6px">Town and travel <small style="font-weight:400">(listening)</small></p>
 <p>Y11 レッスン復習 | 25 Oct 2026 | Course map check, ages, sports, describing words, と・や・か, listening, directions</p>
 </header>
+<div class="review-controls" role="group" aria-label="Example sentence languages">
+<button type="button" id="toggle-ja" aria-controls="review-examples" aria-pressed="false">Hide Japanese</button>
+<button type="button" id="toggle-en" aria-controls="review-examples" aria-pressed="false">Hide English</button>
+</div>
+<p class="review-hint"><small>Let’s see how much you remember! Hide one language and give it a try.</small></p>
+<p id="both-hidden" role="status" hidden><small>Both languages are hidden. Choose a button to show one.</small></p>
+
 
 <h2>なんさいですか <small>Ages</small></h2>
 <p><small>Most ages are number + さい. Watch out for these ones.</small></p>
@@ -58,8 +72,8 @@ a{color:var(--accent)}
 <tr><td>はっさい</td><td>8 years old</td></tr>
 </table></div>
 <div class="card"><ul class="ex">
-<li>あには <em>はたち</em>です。<span class="en">My older brother is 20.</span></li>
-<li>いもうとは <em>きゅうさい</em>です。<span class="en">My younger sister is 9.</span></li>
+<li><span class="ja" lang="ja">あには <em>はたち</em>です。</span><span class="en" lang="en">My older brother is 20.</span></li>
+<li><span class="ja" lang="ja">いもうとは <em>きゅうさい</em>です。</span><span class="en" lang="en">My younger sister is 9.</span></li>
 </ul></div>
 
 <h2>スポーツ <small>Sports, likes and skills</small></h2>
@@ -71,9 +85,9 @@ a{color:var(--accent)}
 <tr><td>とくい ／ にがて</td><td>good at ／ weak at <small>(often about yourself)</small></td></tr>
 </table></div>
 <div class="card"><ul class="ex">
-<li>ぼくは <em>クリケット</em>が すきです。でも、<em>やきゅう</em>は あまり すきじゃないです。<span class="en">I like cricket. But I don't really like baseball.</span></li>
-<li>あには サッカーが <em>じょうず</em>です。<span class="en">My older brother is good at soccer.</span></li>
-<li>ぼくは すいえいが <em>にがて</em>です。<span class="en">I am weak at swimming.</span></li>
+<li><span class="ja" lang="ja">ぼくは <em>クリケット</em>が すきです。でも、<em>やきゅう</em>は あまり すきじゃないです。</span><span class="en" lang="en">I like cricket. But I don't really like baseball.</span></li>
+<li><span class="ja" lang="ja">あには サッカーが <em>じょうず</em>です。</span><span class="en" lang="en">My older brother is good at soccer.</span></li>
+<li><span class="ja" lang="ja">ぼくは すいえいが <em>にがて</em>です。</span><span class="en" lang="en">I am weak at swimming.</span></li>
 </ul></div>
 
 <h2>どんな 人？ <small>Describing people and pets</small></h2>
@@ -85,8 +99,8 @@ a{color:var(--accent)}
 <tr><td>いっぴき・にひき・さんびき</td><td>1, 2, 3 (small animals)</td></tr>
 </table></div>
 <div class="card"><ul class="ex">
-<li>あねは <em>あかるい</em>です。おとうとは <em>おとなしい</em>です。<span class="en">My older sister is cheerful. My younger brother is quiet.</span></li>
-<li>うちに かめが <em>にひき</em> います。かめは <em>しずか</em>です。<span class="en">We have two turtles at home. Turtles are quiet.</span></li>
+<li><span class="ja" lang="ja">あねは <em>あかるい</em>です。おとうとは <em>おとなしい</em>です。</span><span class="en" lang="en">My older sister is cheerful. My younger brother is quiet.</span></li>
+<li><span class="ja" lang="ja">うちに かめが <em>にひき</em> います。かめは <em>しずか</em>です。</span><span class="en" lang="en">We have two turtles at home. Turtles are quiet.</span></li>
 </ul></div>
 
 <h2>と・や・か <small>And / or</small></h2>
@@ -96,17 +110,17 @@ a{color:var(--accent)}
 <div><b>A か B</b><span>A or B</span><small>(one of them)</small></div>
 </div>
 <div class="card"><ul class="ex">
-<li>パン<em>と</em> ミルクを かいました。<span class="en">I bought bread and milk.</span></li>
-<li>デパートで ぼうし<em>や</em> くつを かいました。<span class="en">I bought hats, shoes and other things at the department store.</span></li>
-<li>バス<em>か</em> ちかてつで いきます。<span class="en">I will go by bus or subway.</span></li>
+<li><span class="ja" lang="ja">パン<em>と</em> ミルクを かいました。</span><span class="en" lang="en">I bought bread and milk.</span></li>
+<li><span class="ja" lang="ja">デパートで ぼうし<em>や</em> くつを かいました。</span><span class="en" lang="en">I bought hats, shoes and other things at the department store.</span></li>
+<li><span class="ja" lang="ja">バス<em>か</em> ちかてつで いきます。</span><span class="en" lang="en">I will go by bus or subway.</span></li>
 </ul></div>
 
 <h2>ききとり <small>Listening</small></h2>
 <p><small>Today's listening: grammar (8), directions (2) and Zoe's holiday.</small></p>
 <div class="card"><ul class="ex">
-<li>じんじゃで しゃしんを とっ<em>ても いいですか</em>。― はい、いいですよ。<span class="en">May I take photos at the shrine? ― Yes, you may.</span></li>
-<li>ここで およい<em>では いけません</em>。<span class="en">You must not swim here.</span></li>
-<li>ちかてつは バス<em>より</em> はやいです。<span class="en">The subway is faster than the bus.</span></li>
+<li><span class="ja" lang="ja">じんじゃで しゃしんを とっ<em>ても いいですか</em>。― はい、いいですよ。</span><span class="en" lang="en">May I take photos at the shrine? ― Yes, you may.</span></li>
+<li><span class="ja" lang="ja">ここで およい<em>では いけません</em>。</span><span class="en" lang="en">You must not swim here.</span></li>
+<li><span class="ja" lang="ja">ちかてつは バス<em>より</em> はやいです。</span><span class="en" lang="en">The subway is faster than the bus.</span></li>
 </ul>
 <h3>Directions</h3>
 <table>
@@ -121,7 +135,7 @@ a{color:var(--accent)}
 <tr><td>しま</td><td>island</td></tr>
 <tr><td>きたじま ／ みなみじま</td><td>North Island ／ South Island</td></tr>
 </table>
-<ul class="ex"><li>タウポは きたじまの 大きい みずうみです。<span class="en">Taupō is a big lake in the North Island.</span></li></ul>
+<ul class="ex"><li><span class="ja" lang="ja">タウポは きたじまの 大きい みずうみです。</span><span class="en" lang="en">Taupō is a big lake in the North Island.</span></li></ul>
 <h3>Answer tips from today</h3>
 <ul class="todo">
 <li>For a "why" question, start with <b>Because</b>: Because it was raining on Tuesday, she went to town.</li>
@@ -138,8 +152,8 @@ a{color:var(--accent)}
 <tr><td>りゅうがく</td><td>studying abroad</td></tr>
 </table>
 <ul class="ex">
-<li>がっこうに おべんとうを <em>もって いきます</em>。<span class="en">I take a lunch box to school.</span></li>
-<li>ともだちが うちに ケーキを <em>もって きました</em>。<span class="en">My friend brought a cake to my house.</span></li>
+<li><span class="ja" lang="ja">がっこうに おべんとうを <em>もって いきます</em>。</span><span class="en" lang="en">I take a lunch box to school.</span></li>
+<li><span class="ja" lang="ja">ともだちが うちに ケーキを <em>もって きました</em>。</span><span class="en" lang="en">My friend brought a cake to my house.</span></li>
 </ul></div>
 
 <h2>かいわ れんしゅう <small>Conversation practice</small></h2>
@@ -155,9 +169,31 @@ a{color:var(--accent)}
 <li>Today's listening: <a href="../../quiz/ryokou-short/">りょこうと まち ききとり</a>. You can practise it any time.</li>
 <li>School words (51): <a href="https://kyonversation-dot.github.io/ncea-l1-vocab/checklist/?t=school">School checklist</a>. Look through the whole list and tell me which words are hard for you.</li>
 <li>If your school teacher tells you anything about the exam (12 November), please let me know.</li>
-<li>Vocabulary learning: <a href="https://kyonversation-dot.github.io/ncea-l1-vocab/">NCEA L1 vocab</a></li>
+<li>Vocabulary learning: <a href="https://kyonversation-dot.github.io/ncea-l1-vocab/">Vocabulary practice</a></li>
 </ul>
-<p>Next lesson: Tuesday 27 October, 7:30 pm</p></div>
+</div>
 </main>
+<script>
+(() => {
+  const examples = document.getElementById('review-examples');
+  const hidden = {ja: false, en: false};
+  const labels = {
+    ja: ['Hide Japanese', 'Show Japanese'],
+    en: ['Hide English', 'Show English']
+  };
+  for (const language of ['ja', 'en']) {
+    const button = document.getElementById('toggle-' + language);
+    button.addEventListener('click', () => {
+      hidden[language] = !hidden[language];
+      for (const line of examples.querySelectorAll('ul.ex .' + language)) {
+        line.hidden = hidden[language];
+      }
+      button.setAttribute('aria-pressed', String(hidden[language]));
+      button.textContent = labels[language][Number(hidden[language])];
+      document.getElementById('both-hidden').hidden = !(hidden.ja && hidden.en);
+    });
+  }
+})();
+</script>
 </body>
 </html>

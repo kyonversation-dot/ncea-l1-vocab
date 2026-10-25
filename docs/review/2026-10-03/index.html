@@ -38,6 +38,14 @@ table{width:100%;border-collapse:collapse}
 th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}
 .todo li{margin:6px 0}
 a{color:var(--accent)}
+
+.review-controls{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 8px}
+.review-controls button{font:inherit;font-size:14px;line-height:1.5;min-height:44px;padding:10px 14px;border:1px solid var(--accent);border-radius:8px;background:var(--card);color:var(--accent);cursor:pointer}
+.review-controls button[aria-pressed="true"]{background:var(--accent);color:var(--bg)}
+.review-controls button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.review-hint{margin:0 0 12px}
+#example-sentences li{min-height:4.5em}
+[hidden]{display:none!important}
 </style>
 </head>
 <body>
@@ -59,40 +67,46 @@ a{color:var(--accent)}
 </div>
 
 <h2>れいぶん <small>Example sentences</small></h2>
-<div class="group">
+<div class="review-controls" role="group" aria-label="Example sentence languages">
+<button type="button" id="toggle-ja" aria-controls="example-sentences" aria-pressed="false">Hide Japanese</button>
+<button type="button" id="toggle-en" aria-controls="example-sentences" aria-pressed="false">Hide English</button>
+</div>
+<p class="review-hint"><small>Let’s see how much you remember! Hide one language and give it a try.</small></p>
+<p id="both-hidden" role="status" hidden><small>Both languages are hidden. Choose a button to show one.</small></p>
+<div class="group" id="example-sentences">
 <h3>Size and shape (大きさ・形)</h3>
 <div class="card"><ul class="ex">
-<li>かみのけはながい。<em>ながすぎます</em>。<span class="en">My hair is long. It's too long.</span></li>
-<li>このズボンはちいさ<em>すぎます</em>。<span class="en">These pants are too small.</span></li>
-<li>このあかいぼうしはちいさ<em>すぎます</em>。<span class="en">This red hat is too small.</span></li>
-<li>このぼうしはおおき<em>すぎます</em>。<span class="en">This hat is too big.</span></li>
-<li>このくつはちいさ<em>すぎます</em>。<span class="en">These shoes are too small.</span></li>
-<li>あしはおおき<em>すぎます</em>。<span class="en">My feet are too big.</span></li>
-<li>スリッパはちいさ<em>すぎます</em>。<span class="en">The slippers are too small.</span></li>
-<li>このはこはせま<em>すぎます</em>。<span class="en">This box is too narrow.</span></li>
-<li>このいすはちいさくてひく<em>すぎます</em>。<span class="en">This chair is small and too low.</span></li>
-<li>まどはひく<em>すぎます</em>。<span class="en">The window is too low.</span></li>
+<li><span class="ja" lang="ja">かみのけはながい。<em>ながすぎます</em>。</span><span class="en" lang="en">My hair is long. It's too long.</span></li>
+<li><span class="ja" lang="ja">このズボンはちいさ<em>すぎます</em>。</span><span class="en" lang="en">These pants are too small.</span></li>
+<li><span class="ja" lang="ja">このあかいぼうしはちいさ<em>すぎます</em>。</span><span class="en" lang="en">This red hat is too small.</span></li>
+<li><span class="ja" lang="ja">このぼうしはおおき<em>すぎます</em>。</span><span class="en" lang="en">This hat is too big.</span></li>
+<li><span class="ja" lang="ja">このくつはちいさ<em>すぎます</em>。</span><span class="en" lang="en">These shoes are too small.</span></li>
+<li><span class="ja" lang="ja">あしはおおき<em>すぎます</em>。</span><span class="en" lang="en">My feet are too big.</span></li>
+<li><span class="ja" lang="ja">スリッパはちいさ<em>すぎます</em>。</span><span class="en" lang="en">The slippers are too small.</span></li>
+<li><span class="ja" lang="ja">このはこはせま<em>すぎます</em>。</span><span class="en" lang="en">This box is too narrow.</span></li>
+<li><span class="ja" lang="ja">このいすはちいさくてひく<em>すぎます</em>。</span><span class="en" lang="en">This chair is small and too low.</span></li>
+<li><span class="ja" lang="ja">まどはひく<em>すぎます</em>。</span><span class="en" lang="en">The window is too low.</span></li>
 </ul></div>
 
 <h3>Room and feelings (部屋・気持ち)</h3>
 <div class="card"><ul class="ex">
-<li>このへやはくらいですね。くら<em>すぎます</em>。<span class="en">This room is dark, isn't it? It's too dark.</span></li>
-<li>このへやはうるさ<em>すぎます</em>。<span class="en">This room is too noisy.</span></li>
-<li>音が大きすぎます。<span class="en">The sound is too loud.</span></li>
-<li>さむ<em>すぎます</em>。<span class="en">It's too cold.</span></li>
-<li>この本はむずかし<em>すぎます</em>。<span class="en">This book is too difficult.</span></li>
+<li><span class="ja" lang="ja">このへやはくらいですね。くら<em>すぎます</em>。</span><span class="en" lang="en">This room is dark, isn't it? It's too dark.</span></li>
+<li><span class="ja" lang="ja">このへやはうるさ<em>すぎます</em>。</span><span class="en" lang="en">This room is too noisy.</span></li>
+<li><span class="ja" lang="ja">音が大きすぎます。</span><span class="en" lang="en">The sound is too loud.</span></li>
+<li><span class="ja" lang="ja">さむ<em>すぎます</em>。</span><span class="en" lang="en">It's too cold.</span></li>
+<li><span class="ja" lang="ja">この本はむずかし<em>すぎます</em>。</span><span class="en" lang="en">This book is too difficult.</span></li>
 </ul></div>
 
 <h3>Doing too much (しすぎ)</h3>
 <div class="card"><ul class="ex">
-<li>テレビをみています。→ テレビをみ<em>すぎます</em>。<span class="en">I'm watching TV. → I watch too much TV.</span></li>
-<li>たくさんあるきました。→ たくさんあるき<em>すぎました</em>。<span class="en">I walked a lot. → I walked too much.</span></li>
-<li>あしがつかれ<em>すぎました</em>。<span class="en">My legs got too tired.</span></li>
-<li>たくさんはたらいています。→ しごとをし<em>すぎます</em>。<span class="en">I'm working a lot. → I work too much.</span></li>
-<li>のみ<em>すぎました</em>。<span class="en">I drank too much.</span></li>
-<li>べんきょうし<em>すぎて</em>つかれました。<span class="en">I studied too much and got tired.</span></li>
-<li>あしがいた<em>すぎます</em>。<span class="en">My legs hurt too much.</span></li>
-<li>うんどうし<em>すぎて</em>、あしがいたいです。<span class="en">I exercised too much, so my legs hurt.</span></li>
+<li><span class="ja" lang="ja">テレビをみています。→ テレビをみ<em>すぎます</em>。</span><span class="en" lang="en">I'm watching TV. → I watch too much TV.</span></li>
+<li><span class="ja" lang="ja">たくさんあるきました。→ たくさんあるき<em>すぎました</em>。</span><span class="en" lang="en">I walked a lot. → I walked too much.</span></li>
+<li><span class="ja" lang="ja">あしがつかれ<em>すぎました</em>。</span><span class="en" lang="en">My legs got too tired.</span></li>
+<li><span class="ja" lang="ja">たくさんはたらいています。→ しごとをし<em>すぎます</em>。</span><span class="en" lang="en">I'm working a lot. → I work too much.</span></li>
+<li><span class="ja" lang="ja">のみ<em>すぎました</em>。</span><span class="en" lang="en">I drank too much.</span></li>
+<li><span class="ja" lang="ja">べんきょうし<em>すぎて</em>つかれました。</span><span class="en" lang="en">I studied too much and got tired.</span></li>
+<li><span class="ja" lang="ja">あしがいた<em>すぎます</em>。</span><span class="en" lang="en">My legs hurt too much.</span></li>
+<li><span class="ja" lang="ja">うんどうし<em>すぎて</em>、あしがいたいです。</span><span class="en" lang="en">I exercised too much, so my legs hurt.</span></li>
 </ul></div>
 </div>
 
@@ -133,9 +147,31 @@ a{color:var(--accent)}
 <h2>宿題 <small>Homework</small></h2>
 <div class="card"><ul class="todo">
 <li>Reading: in Google Classroom</li>
-<li>Vocabulary learning: <a href="https://kyonversation-dot.github.io/ncea-l1-vocab/">NCEA L1 vocab</a></li>
+<li>Vocabulary learning: <a href="https://kyonversation-dot.github.io/ncea-l1-vocab/">Vocabulary practice</a></li>
 </ul>
-<p>Next lesson: Tuesday 6 October, 1:30 pm</p></div>
+</div>
 </main>
+<script>
+(() => {
+  const examples = document.getElementById('example-sentences');
+  const hidden = {ja: false, en: false};
+  const labels = {
+    ja: ['Hide Japanese', 'Show Japanese'],
+    en: ['Hide English', 'Show English']
+  };
+  for (const language of ['ja', 'en']) {
+    const button = document.getElementById('toggle-' + language);
+    button.addEventListener('click', () => {
+      hidden[language] = !hidden[language];
+      for (const line of examples.querySelectorAll('.' + language)) {
+        line.hidden = hidden[language];
+      }
+      button.setAttribute('aria-pressed', String(hidden[language]));
+      button.textContent = labels[language][Number(hidden[language])];
+      document.getElementById('both-hidden').hidden = !(hidden.ja && hidden.en);
+    });
+  }
+})();
+</script>
 </body>
 </html>

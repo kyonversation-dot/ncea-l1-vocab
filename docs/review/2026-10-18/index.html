@@ -38,16 +38,30 @@ table{width:100%;border-collapse:collapse}
 th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}
 .todo li{margin:6px 0}
 a{color:var(--accent)}
+.review-controls{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 8px}
+.review-controls button{font:inherit;font-size:14px;line-height:1.5;min-height:44px;padding:10px 14px;border:1px solid var(--accent);border-radius:8px;background:var(--card);color:var(--accent);cursor:pointer}
+.review-controls button[aria-pressed="true"]{background:var(--accent);color:var(--bg)}
+.review-controls button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.review-hint{margin:0 0 12px}
+#review-examples ul.ex li{min-height:4.5em}
+[hidden]{display:none!important}
 </style>
 </head>
 <body>
-<main>
+<main id="review-examples">
 <p><a href="../" style="color:var(--sub);font-size:.9rem">← Lesson review</a></p>
 <header>
 <h1><span>かいもの</span></h1>
 <p style="font-size:clamp(20px,5vw,28px);font-weight:700;margin:0 0 6px">Shopping and dates <small style="font-weight:400">(listening)</small></p>
 <p>Y11 レッスン復習 | 18 Oct 2026 | Homework check, でます, よく, 〜ながら, shopping listening</p>
 </header>
+<div class="review-controls" role="group" aria-label="Example sentence languages">
+<button type="button" id="toggle-ja" aria-controls="review-examples" aria-pressed="false">Hide Japanese</button>
+<button type="button" id="toggle-en" aria-controls="review-examples" aria-pressed="false">Hide English</button>
+</div>
+<p class="review-hint"><small>Let’s see how much you remember! Hide one language and give it a try.</small></p>
+<p id="both-hidden" role="status" hidden><small>Both languages are hidden. Choose a button to show one.</small></p>
+
 
 <h2>でます <small>Two meanings</small></h2>
 <p><small>From your homework (ルビーさんへの メール). Look at the particle before でます.</small></p>
@@ -56,7 +70,7 @@ a{color:var(--accent)}
 <div><b>に でます</b><span>to take part in (a match, a game)</span><small>しあい<em>に</em> でます。<br>I play in the match.</small></div>
 </div>
 <div class="card"><ul class="ex">
-<li>せんしゅうの 土曜日に、ぼくは 学校の バスケットボールの しあい<em>に でました</em>。<span class="en">Last Saturday, I played in the school basketball match.</span></li>
+<li><span class="ja" lang="ja">せんしゅうの 土曜日に、ぼくは 学校の バスケットボールの しあい<em>に でました</em>。</span><span class="en" lang="en">Last Saturday, I played in the school basketball match.</span></li>
 </ul></div>
 
 <h2>よく <small>Often / well</small></h2>
@@ -66,10 +80,10 @@ a{color:var(--accent)}
 <div><b>well</b><span><em>よく</em> できます。</span><small>I can do it well. / I am good at it.</small></div>
 </div>
 <div class="card"><ul class="ex">
-<li>そうたくんは バスケットボールも すいえいも <em>よく</em> できます。<span class="en">Sota is good at both basketball and swimming.</span></li>
-<li>かのじょは アイスクリームを <em>よく</em> たべます。<span class="en">She often eats ice cream.</span></li>
-<li>かのじょは <em>よく</em> はしで ごはんを たべます。<span class="en">She often eats rice with chopsticks.</span></li>
-<li>かのじょは 日本語が <em>よく</em> できます。<span class="en">She is good at Japanese.</span></li>
+<li><span class="ja" lang="ja">そうたくんは バスケットボールも すいえいも <em>よく</em> できます。</span><span class="en" lang="en">Sota is good at both basketball and swimming.</span></li>
+<li><span class="ja" lang="ja">かのじょは アイスクリームを <em>よく</em> たべます。</span><span class="en" lang="en">She often eats ice cream.</span></li>
+<li><span class="ja" lang="ja">かのじょは <em>よく</em> はしで ごはんを たべます。</span><span class="en" lang="en">She often eats rice with chopsticks.</span></li>
+<li><span class="ja" lang="ja">かのじょは 日本語が <em>よく</em> できます。</span><span class="en" lang="en">She is good at Japanese.</span></li>
 </ul></div>
 <h3>How to tell: look at the verb</h3>
 <div class="card">
@@ -89,10 +103,10 @@ a{color:var(--accent)}
 <div><b>かたち</b><span>Verb stem <em>ながら</em>、Verb ます。</span><small>つかい<em>ます</em> → つかい<em>ながら</em></small></div>
 </div>
 <div class="card"><ul class="ex">
-<li>けいたいを つかい<em>ながら</em>、テレビを 見ます。<span class="en">I watch TV while using my phone.</span></li>
-<li>おんがくを きき<em>ながら</em>、チェスを します。<span class="en">I play chess while listening to music.</span></li>
-<li>ともだちと はなし<em>ながら</em>、くだものを たべます。<span class="en">I eat fruit while talking with my friends.</span></li>
-<li>バスを まち<em>ながら</em>、おんがくを ききます。<span class="en">I listen to music while waiting for the bus.</span></li>
+<li><span class="ja" lang="ja">けいたいを つかい<em>ながら</em>、テレビを 見ます。</span><span class="en" lang="en">I watch TV while using my phone.</span></li>
+<li><span class="ja" lang="ja">おんがくを きき<em>ながら</em>、チェスを します。</span><span class="en" lang="en">I play chess while listening to music.</span></li>
+<li><span class="ja" lang="ja">ともだちと はなし<em>ながら</em>、くだものを たべます。</span><span class="en" lang="en">I eat fruit while talking with my friends.</span></li>
+<li><span class="ja" lang="ja">バスを まち<em>ながら</em>、おんがくを ききます。</span><span class="en" lang="en">I listen to music while waiting for the bus.</span></li>
 </ul></div>
 
 <h2>ききとり <small>Listening</small></h2>
@@ -105,9 +119,9 @@ a{color:var(--accent)}
 <tr><td>かぞくの おみやげ</td><td>souvenirs for my family</td></tr>
 </table></div>
 <div class="card"><ul class="ex">
-<li>この みせの パンは ひとつ 二百円です。でも、<em>きょう だけ</em> 百五十円です。<span class="en">The bread at this shop is 200 yen each. But today only, it is 150 yen.</span></li>
-<li>たまごと ミルクを <em>かいたかったです</em>。でも、たまごは たかかったですから、ミルク だけ かいました。<span class="en">I wanted to buy eggs and milk. But the eggs were expensive, so I only bought milk.</span></li>
-<li>あした、デパートに <em>かぞくの おみやげ</em>を かいに いきます。<span class="en">Tomorrow I will go to the department store to buy souvenirs for my family.</span></li>
+<li><span class="ja" lang="ja">この みせの パンは ひとつ 二百円です。でも、<em>きょう だけ</em> 百五十円です。</span><span class="en" lang="en">The bread at this shop is 200 yen each. But today only, it is 150 yen.</span></li>
+<li><span class="ja" lang="ja">たまごと ミルクを <em>かいたかったです</em>。でも、たまごは たかかったですから、ミルク だけ かいました。</span><span class="en" lang="en">I wanted to buy eggs and milk. But the eggs were expensive, so I only bought milk.</span></li>
+<li><span class="ja" lang="ja">あした、デパートに <em>かぞくの おみやげ</em>を かいに いきます。</span><span class="en" lang="en">Tomorrow I will go to the department store to buy souvenirs for my family.</span></li>
 </ul>
 <h3>Answer tips from today</h3>
 <ul class="todo">
@@ -120,9 +134,9 @@ a{color:var(--accent)}
 
 <h2>かいわ <small>Small talk</small></h2>
 <div class="card"><ul class="ex">
-<li>かみのけを きりましたか。<span class="en">Did you get a haircut?</span></li>
-<li>はい、そうです。<span class="en">Yes, I did.</span></li>
-<li>いいですね。<em>にあっています</em>よ。<span class="en">Nice. It suits you.</span></li>
+<li><span class="ja" lang="ja">かみのけを きりましたか。</span><span class="en" lang="en">Did you get a haircut?</span></li>
+<li><span class="ja" lang="ja">はい、そうです。</span><span class="en" lang="en">Yes, I did.</span></li>
+<li><span class="ja" lang="ja">いいですね。<em>にあっています</em>よ。</span><span class="en" lang="en">Nice. It suits you.</span></li>
 </ul></div>
 
 <h2>かいわ れんしゅう <small>Conversation practice</small></h2>
@@ -138,9 +152,31 @@ a{color:var(--accent)}
 <li>Clothes: revise the clothes PowerPoint (shared in Classroom)</li>
 <li>Listening: <a href="../../quiz/kaimono-short/">かいもの ききとり</a> question 6 (we skipped it today)</li>
 <li>If you want: answer the questions of <a href="../../reading/kaimono-mail/">はるとさんの メール</a></li>
-<li>Vocabulary learning: <a href="https://kyonversation-dot.github.io/ncea-l1-vocab/">NCEA L1 vocab</a></li>
+<li>Vocabulary learning: <a href="https://kyonversation-dot.github.io/ncea-l1-vocab/">Vocabulary practice</a></li>
 </ul>
-<p>Next lesson: Tuesday 20 October, 7:30 pm</p></div>
+</div>
 </main>
+<script>
+(() => {
+  const examples = document.getElementById('review-examples');
+  const hidden = {ja: false, en: false};
+  const labels = {
+    ja: ['Hide Japanese', 'Show Japanese'],
+    en: ['Hide English', 'Show English']
+  };
+  for (const language of ['ja', 'en']) {
+    const button = document.getElementById('toggle-' + language);
+    button.addEventListener('click', () => {
+      hidden[language] = !hidden[language];
+      for (const line of examples.querySelectorAll('ul.ex .' + language)) {
+        line.hidden = hidden[language];
+      }
+      button.setAttribute('aria-pressed', String(hidden[language]));
+      button.textContent = labels[language][Number(hidden[language])];
+      document.getElementById('both-hidden').hidden = !(hidden.ja && hidden.en);
+    });
+  }
+})();
+</script>
 </body>
 </html>

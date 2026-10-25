@@ -38,10 +38,17 @@ table{width:100%;border-collapse:collapse}
 th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}
 .todo li{margin:6px 0}
 a{color:var(--accent)}
+.review-controls{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 8px}
+.review-controls button{font:inherit;font-size:14px;line-height:1.5;min-height:44px;padding:10px 14px;border:1px solid var(--accent);border-radius:8px;background:var(--card);color:var(--accent);cursor:pointer}
+.review-controls button[aria-pressed="true"]{background:var(--accent);color:var(--bg)}
+.review-controls button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.review-hint{margin:0 0 12px}
+#review-examples ul.ex li{min-height:4.5em}
+[hidden]{display:none!important}
 </style>
 </head>
 <body>
-<main>
+<main id="review-examples">
 <p><a href="../" style="color:var(--sub);font-size:.9rem">← Lesson review</a></p>
 <header>
 <h1><span>人の みため</span></h1>
@@ -60,19 +67,26 @@ a{color:var(--accent)}
 </div>
 
 <h2>れいぶん <small>Example sentences</small></h2>
+<div class="review-controls" role="group" aria-label="Example sentence languages">
+<button type="button" id="toggle-ja" aria-controls="review-examples" aria-pressed="false">Hide Japanese</button>
+<button type="button" id="toggle-en" aria-controls="review-examples" aria-pressed="false">Hide English</button>
+</div>
+<p class="review-hint"><small>Let’s see how much you remember! Hide one language and give it a try.</small></p>
+<p id="both-hidden" role="status" hidden><small>Both languages are hidden. Choose a button to show one.</small></p>
+
 <p><small>From today's reading (a mother introduced by her child).</small></p>
 <div class="card"><ul class="ex">
-<li>ははを しょうかいします。<span class="en">Let me introduce my mother.</span></li>
-<li>ははは <em>よく</em> はなします。<span class="en">She often talks.</span></li>
-<li><em>いつも</em> げんきで、やさしい人です。<span class="en">She is always a lively and kind person.</span></li>
-<li>りょうりが <em>あまり</em> 上手じゃないです。<span class="en">She is not very good at cooking.</span></li>
-<li>でも <em>まいにち</em> ばんごはんを つくります。<span class="en">But she makes dinner every day.</span></li>
-<li>私は <em>時どき</em> おさらを あらいます。<span class="en">I sometimes wash the dishes.</span></li>
-<li>ははは 四十才です。<span class="en">My mother is 40 years old.</span></li>
-<li>わかくて、あたまが いいです。<span class="en">She is young and smart.</span></li>
-<li>すう学が すきです。<span class="en">She likes math.</span></li>
-<li>あしが ながくて、せが たかいです。<span class="en">Her legs are long and she is tall.</span></li>
-<li>かみのけが くろくて、みじかいです。<span class="en">Her hair is black and short.</span></li>
+<li><span class="ja" lang="ja">ははを しょうかいします。</span><span class="en" lang="en">Let me introduce my mother.</span></li>
+<li><span class="ja" lang="ja">ははは <em>よく</em> はなします。</span><span class="en" lang="en">She often talks.</span></li>
+<li><span class="ja" lang="ja"><em>いつも</em> げんきで、やさしい人です。</span><span class="en" lang="en">She is always a lively and kind person.</span></li>
+<li><span class="ja" lang="ja">りょうりが <em>あまり</em> 上手じゃないです。</span><span class="en" lang="en">She is not very good at cooking.</span></li>
+<li><span class="ja" lang="ja">でも <em>まいにち</em> ばんごはんを つくります。</span><span class="en" lang="en">But she makes dinner every day.</span></li>
+<li><span class="ja" lang="ja">私は <em>時どき</em> おさらを あらいます。</span><span class="en" lang="en">I sometimes wash the dishes.</span></li>
+<li><span class="ja" lang="ja">ははは 四十才です。</span><span class="en" lang="en">My mother is 40 years old.</span></li>
+<li><span class="ja" lang="ja">わかくて、あたまが いいです。</span><span class="en" lang="en">She is young and smart.</span></li>
+<li><span class="ja" lang="ja">すう学が すきです。</span><span class="en" lang="en">She likes math.</span></li>
+<li><span class="ja" lang="ja">あしが ながくて、せが たかいです。</span><span class="en" lang="en">Her legs are long and she is tall.</span></li>
+<li><span class="ja" lang="ja">かみのけが くろくて、みじかいです。</span><span class="en" lang="en">Her hair is black and short.</span></li>
 </ul></div>
 
 <h2>ことば <small>Words</small></h2>
@@ -125,9 +139,31 @@ a{color:var(--accent)}
 <div class="card"><ul class="todo">
 <li>Finish today's reading (the mother's description)</li>
 <li>Describing people slides: pages 23–24 and 29</li>
-<li>Vocabulary learning: <a href="https://kyonversation-dot.github.io/ncea-l1-vocab/">NCEA L1 vocab</a></li>
+<li>Vocabulary learning: <a href="https://kyonversation-dot.github.io/ncea-l1-vocab/">Vocabulary practice</a></li>
 </ul>
-<p>Next lesson: Friday 9 October, 1:30 pm</p></div>
+</div>
 </main>
+<script>
+(() => {
+  const examples = document.getElementById('review-examples');
+  const hidden = {ja: false, en: false};
+  const labels = {
+    ja: ['Hide Japanese', 'Show Japanese'],
+    en: ['Hide English', 'Show English']
+  };
+  for (const language of ['ja', 'en']) {
+    const button = document.getElementById('toggle-' + language);
+    button.addEventListener('click', () => {
+      hidden[language] = !hidden[language];
+      for (const line of examples.querySelectorAll('ul.ex .' + language)) {
+        line.hidden = hidden[language];
+      }
+      button.setAttribute('aria-pressed', String(hidden[language]));
+      button.textContent = labels[language][Number(hidden[language])];
+      document.getElementById('both-hidden').hidden = !(hidden.ja && hidden.en);
+    });
+  }
+})();
+</script>
 </body>
 </html>
