@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#14795d">
+<title>りょこうと まち ききとり</title>
+<style>
+  :root{
+    --ground:#eef1f6; --card:#ffffff; --card-border:#e7ebf0;
+    --ink:#22303f; --ink-soft:#5b6773; --muted:#98a2ae;
+    --accent:#14795d; --accent-ink:#ffffff;
+    --tab-bg:#e4e8ee; --tab-ink:#55606d;
+    --banner-bg:#e9f8f0; --banner-edge:#14795d; --banner-ink:#2f6d56;
+    --reveal-bg:#f3faf7; --reveal-ink:#155f49; --reveal-edge:#bfe6d6;
+    --tag-bg:#fdf1cf; --tag-ink:#8a6a12;
+    --shadow:rgba(30,50,80,.07);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ground:#10161d; --card:#1a2531; --card-border:#26333f;
+      --ink:#e8eef4; --ink-soft:#a9b5c1; --muted:#6f7d8a;
+      --accent:#3fbf92; --accent-ink:#06231a;
+      --tab-bg:#222f3b; --tab-ink:#a9b5c1;
+      --banner-bg:#14261f; --banner-edge:#3fbf92; --banner-ink:#8fdcbf;
+      --reveal-bg:#152a22; --reveal-ink:#8fdcbf; --reveal-edge:#2c5344;
+      --tag-bg:#3a3320; --tag-ink:#e8cf8e;
+      --shadow:rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#eef1f6; --card:#ffffff; --card-border:#e7ebf0;
+    --ink:#22303f; --ink-soft:#5b6773; --muted:#98a2ae;
+    --accent:#14795d; --accent-ink:#ffffff;
+    --tab-bg:#e4e8ee; --tab-ink:#55606d;
+    --banner-bg:#e9f8f0; --banner-edge:#14795d; --banner-ink:#2f6d56;
+    --reveal-bg:#f3faf7; --reveal-ink:#155f49; --reveal-edge:#bfe6d6;
+    --tag-bg:#fdf1cf; --tag-ink:#8a6a12;
+    --shadow:rgba(30,50,80,.07);
+  }
+  :root[data-theme="dark"]{
+    --ground:#10161d; --card:#1a2531; --card-border:#26333f;
+    --ink:#e8eef4; --ink-soft:#a9b5c1; --muted:#6f7d8a;
+    --accent:#3fbf92; --accent-ink:#06231a;
+    --tab-bg:#222f3b; --tab-ink:#a9b5c1;
+    --banner-bg:#14261f; --banner-edge:#3fbf92; --banner-ink:#8fdcbf;
+    --reveal-bg:#152a22; --reveal-ink:#8fdcbf; --reveal-edge:#2c5344;
+    --tag-bg:#3a3320; --tag-ink:#e8cf8e;
+    --shadow:rgba(0,0,0,.35);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ground); color:var(--ink);
+    font-family:"Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic","Meiryo","Noto Sans JP",system-ui,sans-serif;
+    line-height:1.75; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:22px 18px 64px;}
+
+  h1{
+    font-size:1.05rem; font-weight:700; color:var(--ink-soft);
+    text-align:center; margin:4px 0 18px; letter-spacing:.02em;
+  }
+
+  /* tabs */
+  .tabs{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:20px;}
+  .tab{
+    appearance:none; border:none; cursor:pointer;
+    font:inherit; font-weight:700; font-size:.95rem;
+    padding:9px 20px; border-radius:999px;
+    background:var(--tab-bg); color:var(--tab-ink);
+    transition:background .15s, color .15s, transform .05s;
+  }
+  .tab:hover{filter:brightness(.98)}
+  .tab:active{transform:translateY(1px)}
+  .tab[aria-selected="true"]{background:var(--accent); color:var(--accent-ink);}
+  .tab:focus-visible{outline:3px solid var(--accent); outline-offset:2px;}
+
+  /* instruction banner */
+  .banner{
+    background:var(--banner-bg); color:var(--banner-ink);
+    border-left:4px solid var(--banner-edge); border-radius:8px;
+    padding:12px 16px; margin-bottom:18px; font-size:.95rem; font-weight:500;
+  }
+
+  /* cards */
+  .cards{display:flex; flex-direction:column; gap:14px;}
+  .card{
+    background:var(--card); border:1px solid var(--card-border);
+    border-radius:14px; padding:18px 20px; box-shadow:0 2px 10px var(--shadow);
+    cursor:pointer; transition:border-color .15s, box-shadow .15s;
+  }
+  .card:hover{border-color:var(--accent);}
+  .card:focus-visible{outline:3px solid var(--accent); outline-offset:2px;}
+  .card.open{border-color:var(--reveal-edge);}
+  .prompt{font-size:1.18rem; font-weight:600; color:var(--ink); margin:0;}
+  .prompt .en{font-size:1.06rem; font-style:normal; color:var(--ink);}
+  .en2{margin:7px 0 0; font-size:1.02rem; font-weight:500; color:var(--ink-soft);}
+  .tag{
+    display:inline-block; vertical-align:middle; margin-left:8px;
+    background:var(--tag-bg); color:var(--tag-ink);
+    font-size:.72rem; font-weight:700; padding:2px 9px; border-radius:6px;
+  }
+  .cue{
+    display:flex; align-items:center; gap:6px;
+    margin-top:10px; color:var(--muted); font-size:.82rem; font-weight:500;
+  }
+  .cue .hint{color:var(--muted);}
+  .answer{
+    display:none; margin-top:12px; padding:12px 14px;
+    background:var(--reveal-bg); color:var(--reveal-ink);
+    border-radius:10px; font-size:1.08rem; font-weight:600;
+  }
+  .card.open .answer{display:block; animation:pop .18s ease;}
+  .card.open .cue{display:none;}
+  @keyframes pop{from{opacity:0; transform:translateY(-3px)} to{opacity:1; transform:none}}
+  @media (prefers-reduced-motion:reduce){.card.open .answer{animation:none}}
+
+  .foot{display:flex; justify-content:center; margin-top:26px;}
+  .closeall{
+    appearance:none; border:none; cursor:pointer; font:inherit; font-weight:700;
+    color:var(--tab-ink); background:var(--tab-bg);
+    padding:11px 26px; border-radius:999px;
+  }
+  .closeall:hover{filter:brightness(.98)}
+  .closeall:focus-visible{outline:3px solid var(--accent); outline-offset:2px;}
+
+  .panel[hidden]{display:none;}
+  .qen{margin:8px 0 0; font-size:1rem; font-weight:500; color:var(--ink-soft);}
+  .play{
+    appearance:none; border:none; cursor:pointer; font:inherit; font-weight:700;
+    margin-top:10px; padding:7px 16px; border-radius:999px;
+    background:var(--accent); color:var(--accent-ink); font-size:.9rem;
+  }
+  .play:focus-visible{outline:3px solid var(--accent); outline-offset:2px;}
+  .btns{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;}
+  .btns .play{margin-top:0;}
+  .step{
+    appearance:none; cursor:pointer; font:inherit; font-weight:700; font-size:.9rem;
+    padding:7px 16px; border-radius:999px; border:2px solid var(--accent);
+    background:transparent; color:var(--accent);
+  }
+  .step[hidden]{display:none;}
+  .step:focus-visible{outline:3px solid var(--accent); outline-offset:2px;}
+  .reveal{display:none; margin-top:10px; padding:12px 14px; border-radius:10px;
+    background:var(--reveal-bg); color:var(--reveal-ink); font-size:1.06rem; font-weight:600;}
+  .reveal.show{display:block; animation:pop .18s ease;}
+  .listen{cursor:default;}
+  .gloss{background:var(--card); border:1px dashed var(--card-border); border-radius:10px;
+    padding:10px 14px; margin-bottom:16px; font-size:.92rem; color:var(--ink-soft);}
+  .player{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:10px;}
+  .player audio{flex:1 1 260px; min-width:0; height:40px;}
+  .back5{appearance:none; cursor:pointer; font:inherit; font-weight:700; font-size:.85rem;
+    padding:6px 12px; border-radius:999px; border:2px solid var(--accent); background:transparent; color:var(--accent);}
+
+  .sec{font-size:.95rem;font-weight:700;color:var(--accent);margin:26px 0 10px;letter-spacing:.04em}
+  .choices{margin:8px 0 0;padding-left:0;list-style:none;font-size:1rem;color:var(--ink)}
+  .choices li{margin:2px 0}
+  .cgloss{margin:8px 0 0;font-size:.88rem;color:var(--ink-soft);border:1px dashed var(--card-border);border-radius:8px;padding:6px 10px}
+  .map{background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:10px;margin-bottom:14px}
+  .map svg{display:block;width:100%;max-width:420px;height:auto;margin:0 auto}
+  .map .road{fill:var(--tab-bg)}
+  .map .bldg{fill:var(--reveal-bg);stroke:var(--reveal-edge);stroke-width:1.5}
+  .map .opt{fill:var(--tag-bg);stroke:var(--tag-ink);stroke-width:1.5}
+  .map text{fill:var(--ink);font-size:13px;font-weight:700;text-anchor:middle;dominant-baseline:middle}
+  .map .lt{fill:var(--tag-ink);font-size:18px}
+</style>
+
+<div class="wrap">
+  <p style="margin:0 0 6px"><a href="../" style="color:var(--ink-soft);font-size:.9rem">← Quizzes</a></p>
+  <h1>りょこうと まち　ききとり</h1>
+
+  <div class="banner">▶ を おして きいて、こたえを ノートに かきましょう。1つの もんだいを 3かい きいても いいです。わからない 時は「日本語を 見る」、それでも わからない 時は「こたえ」を おしましょう。</div>
+
+  <div class="sec">A ・ ぶんぽう — Choose A, B, C or D</div>
+  <div class="cards" id="gcards"></div>
+
+  <div class="sec">B ・ みちあんない — Directions. You are at the station (えき). Look at the map.</div>
+  <div class="map"><svg viewBox="0 0 360 360" role="img" aria-label="Map: the station is at the bottom. A road goes straight up. At the first corner there is a department store. At the second crossing there are traffic lights and a park.">
+    <rect class="road" x="160" y="0" width="40" height="330"/>
+    <rect class="road" x="0" y="230" width="200" height="34"/>
+    <rect class="road" x="160" y="88" width="200" height="34"/>
+    <rect class="bldg" x="120" y="322" width="120" height="34" rx="4"/><text x="180" y="339">えき</text>
+    <rect class="bldg" x="96" y="272" width="58" height="44" rx="4"/><text x="125" y="294">デパート</text>
+    <rect class="bldg" x="40" y="178" width="70" height="44" rx="4"/><text x="75" y="200">スーパー</text>
+    <rect class="opt" x="40" y="272" width="50" height="44" rx="4"/><text class="lt" x="65" y="294">E</text>
+    <rect class="opt" x="116" y="178" width="38" height="44" rx="4"/><text class="lt" x="135" y="200">F</text>
+    <rect class="opt" x="208" y="272" width="58" height="44" rx="4"/><text class="lt" x="237" y="294">G</text>
+    <rect class="bldg" x="208" y="30" width="66" height="52" rx="4"/><text x="241" y="56">こうえん</text>
+    <rect class="opt" x="282" y="30" width="58" height="52" rx="4"/><text class="lt" x="311" y="56">A</text>
+    <rect class="opt" x="208" y="130" width="66" height="44" rx="4"/><text class="lt" x="241" y="152">B</text>
+    <rect class="opt" x="282" y="130" width="58" height="44" rx="4"/><text class="lt" x="311" y="152">C</text>
+    <rect class="opt" x="96" y="30" width="58" height="52" rx="4"/><text class="lt" x="125" y="56">D</text>
+    <circle cx="150" cy="128" r="9" fill="#d9534f"/><circle cx="150" cy="128" r="4" fill="#fff"/><text x="118" y="128" style="font-size:11px">しんごう</text>
+  </svg></div>
+  <div class="cards" id="dcards"></div>
+
+  <div class="sec">C ・ ゾーイさんの やすみ — Answer in English</div>
+  <div class="cards" id="scards"></div>
+
+  <div class="foot"><button class="closeall" id="closeall">ぜんぶ とじる</button></div>
+</div>
+
+<script>
+  // 2026-10-20 Max 10/25用。文法8（10/20の文法＋てもいい／てはいけません）・道案内2・短いセクション1。
+  // 音声＝audio/*.mp3（edge-tts −30%）＝tools/make_ryokou_audio.py。台本＝_work/AI_Lab_ncea_listening_proto/items/ryokou-short/
+  const G = [
+    {f:"g1", p:"1. でます", q:"What is he doing on Saturday?",
+     c:["A. He is leaving the rugby match.","B. He is playing in a rugby match.","C. He is watching a rugby match.","D. He is going to a rugby match with a friend."],
+     js:"ぼくは 土曜日に ラグビーの しあいに でます。", a:"B — しあい に でます = take part in (play in) the match"},
+    {f:"g2", p:"2. よく", q:"What does she say?",
+     c:["A. She went to the beach once in the summer holidays.","B. She often goes to the beach in the summer holidays.","C. She swims well at the beach.","D. She never goes to the beach."],
+     js:"私は なつやすみに よく ビーチに いきます。", a:"B — よく = often"},
+    {f:"g3", p:"3. ながら", q:"What did she do on the plane?",
+     c:["A. She ate after the movie.","B. She watched a movie at the airport.","C. She ate a meal while watching a movie.","D. She slept while watching a movie."],
+     js:"私は ひこうきに のりました。えいがを 見ながら ごはんを たべました。", a:"C — 見ながら = while watching"},
+    {f:"g4", p:"4. だけ", q:"What did she do yesterday?",
+     c:["A. She saw a temple and a shrine.","B. She only went sightseeing at a temple.","C. She did not go to the temple.","D. She went to the temple with only one friend."],
+     js:"私は きのう おてらだけ けんぶつしました。", a:"B — おてらだけ = only the temple"},
+    {f:"g5", p:"5. より", q:"Which is right?",
+     c:["A. The bus is faster than the subway.","B. The subway is faster than the bus.","C. The subway and the bus are the same.","D. The subway is cheaper than the bus."],
+     js:"ちかてつは バスより はやいです。", a:"B — X は Y より はやい = X is faster than Y"},
+    {f:"g6", p:"6. できます", q:"What does she say about this lake?",
+     c:["A. You can camp here.","B. You must camp here.","C. You cannot camp here.","D. We camped here yesterday."],
+     js:"この みずうみで キャンプが できます。", a:"A — キャンプが できます = you can camp"},
+    {f:"g7", p:"7. 〜ても いいですか", q:"What does she ask, and what is the answer?", c:[],
+     js:"A：じんじゃで しゃしんを とっても いいですか。　B：はい、いいですよ。", a:"She asks if she may take photos at the shrine. The answer is yes, she may."},
+    {f:"g8", p:"8. 〜ては いけません", q:"What does he ask, and what is the answer?",
+     c:["A. You may swim here.","B. You must swim here.","C. You must not swim here.","D. You don't have to swim here."],
+     js:"A：ここで およいでも いいですか。　B：だめです。およいでは いけません。", a:"C — およいでは いけません = you must not swim"}
+  ];
+  const D = [
+    {f:"d1", p:"1. ホテル", q:"Where is the hotel? Choose A, B, C or D on the map.", c:[],
+     gl:"Glossed vocabulary：ホテル = hotel ／ まっすぐ = straight ahead ／ しんごう = traffic lights ／ まがります = turn",
+     js:"えきを でて、まっすぐ いって ください。しんごうを みぎに まがって ください。ホテルは こうえんの となりです。", a:"A — go straight, turn right at the traffic lights; the hotel is next to the park"},
+    {f:"d2", p:"2. としょかん", q:"Where is the library? Choose E, F or G on the map.", c:[],
+     gl:"Glossed vocabulary：かど = corner ／ まがります = turn",
+     js:"デパートの かどを ひだりに まがって ください。としょかんは スーパーの まえに あります。", a:"E — turn left at the department store corner; the library is in front of (across from) the supermarket"}
+  ];
+  const S = [
+    {f:"s1", p:"ゾーイさんの やすみ", q:"1. Who did Zoe go with, and what did she do?　2. Why did she go to town on Tuesday, and what did she do there?", c:[],
+     gl:"Glossed vocabulary：タウポ = Taupō, a lake in the North Island",
+     js:"A：ゾーイさん、やすみに どこに いきましたか。　B：おじさんと タウポに いきました。タウポは きたじまの 大きい みずうみです。キャンプを しました。　A：いいですね。火曜日は どうでしたか。　B：火曜日は あめでしたから、まちに いきました。えいがを 見て、ぼうしを かいました。",
+     a:"1. She went to Taupō (a big lake in the North Island) with her uncle. She went camping.　2. It rained on Tuesday, so she went to town. She watched a movie and bought a hat."}
+  ];
+
+  function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+  function card(item){
+    const ch = item.c.length ? `<ul class="choices">${item.c.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : "";
+    const gl = item.gl ? `<p class="cgloss">${esc(item.gl)}</p>` : "";
+    return `<div class="card listen">
+      <p class="prompt">${esc(item.p)}</p>
+      <p class="qen">${esc(item.q)}</p>${gl}${ch}
+      <div class="player"><audio controls preload="none" src="audio/${item.f}.mp3"></audio><button class="back5">↺ 5びょう もどる</button></div>
+      <div class="btns">
+        <button class="step" data-step="ja">日本語を 見る</button>
+        <button class="step" data-step="en" hidden>こたえ（English）</button>
+      </div>
+      <div class="reveal ja" lang="ja">${esc(item.js)}</div>
+      <div class="reveal en">${esc(item.a)}</div>
+    </div>`;
+  }
+  document.getElementById("gcards").innerHTML = G.map(card).join("");
+  document.getElementById("dcards").innerHTML = D.map(card).join("");
+  document.getElementById("scards").innerHTML = S.map(card).join("");
+
+  document.addEventListener("click", e => {
+    const step = e.target.closest(".step");
+    if(step){
+      const c = step.closest(".card");
+      if(step.dataset.step === "ja"){
+        c.querySelector(".reveal.ja").classList.add("show");
+        c.querySelector('.step[data-step="en"]').hidden = false;
+      }else{
+        c.querySelector(".reveal.en").classList.add("show");
+      }
+      step.hidden = true;
+    }
+    const b = e.target.closest(".back5");
+    if(b){ const a = b.parentElement.querySelector("audio"); a.currentTime = Math.max(0, a.currentTime - 5); }
+  });
+  document.getElementById("closeall").addEventListener("click", () => {
+    document.querySelectorAll("audio").forEach(a => { a.pause(); a.currentTime = 0; });
+    document.querySelectorAll(".reveal.show").forEach(r => r.classList.remove("show"));
+    document.querySelectorAll('.step[data-step="ja"]').forEach(b => b.hidden = false);
+    document.querySelectorAll('.step[data-step="en"]').forEach(b => b.hidden = true);
+  });
+  document.addEventListener("play", e => {
+    document.querySelectorAll("audio").forEach(a => { if(a !== e.target) a.pause(); });
+  }, true);
+</script>
