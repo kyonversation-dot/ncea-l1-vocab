@@ -141,6 +141,13 @@
                padding:8px 11px;font-size:.8rem;margin:0 0 12px;font-family:var(--jp)}
   .items{display:grid;grid-template-columns:repeat(auto-fill,minmax(136px,1fr));gap:6px}
   .numbtn{font:inherit;font-size:.8rem;font-weight:600;border:1px solid var(--line);background:var(--card);color:inherit;border-radius:6px;padding:6px 12px;cursor:pointer}
+  .ghead{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+  .lqMsg{font-size:.85rem;font-weight:600;color:var(--accent)}
+  .group.quiz .item{cursor:pointer;font-family:inherit}
+  .group.quiz .item.ok{font-family:var(--jp);background:var(--accent-soft)}
+  .group.quiz .item.bad{border-color:#c0392b;background:#fbe9e7}
+  .group.quiz .note{display:none}
+  #numList.hide .group.quiz .item.ok span{visibility:visible}
   #numList.hide .item{cursor:pointer}
   #numList.hide .item span{visibility:hidden}
   #numList.hide .item.show span{visibility:visible}
@@ -454,17 +461,105 @@ function stat(){
 
 function renderNum(){
   const box=$("numList"); if(box.dataset.done) return;
-  box.innerHTML = DATA.num.map(g => `<div class="group"><h3>${esc(g.c)}</h3>
+  box.innerHTML = DATA.num.map((g,gi) => `<div class="group" data-g="${gi}"><div class="ghead"><h3>${esc(g.c)}</h3>
+    <span class="lq"><button type="button" class="numbtn lqStart">&#9654; Listen &amp; choose</button></span></div>
     <p class="en">${esc(g.en)}</p>${g.note?`<p class="note">${esc(g.note)}</p>`:""}
-    <div class="items">${g.items.map(i=>`<div class="item">${esc(i.f)}<span>${esc(i.r)}</span></div>`).join("")}</div>
+    <div class="items">${g.items.map((i,ii)=>`<div class="item" data-i="${ii}">${esc(i.f)}<span>${esc(i.r)}</span></div>`).join("")}</div>
     </div>`).join("");
   box.dataset.done="1";
-  box.addEventListener("click", e => { const it=e.target.closest(".item"); if(it && box.classList.contains("hide")) it.classList.toggle("show"); });
+  box.addEventListener("click", e => {
+    const grp=e.target.closest(".group");
+    if (e.target.closest(".lqStart")) return lqStart(grp);
+    if (e.target.closest(".lqAgain")) return lqPlay(grp);
+    if (e.target.closest(".lqStop")) return lqStop(grp);
+    const it=e.target.closest(".item"); if(!it) return;
+    if (grp.classList.contains("quiz")) return lqPick(grp, it);
+    if (box.classList.contains("hide")) it.classList.toggle("show");
+  });
   $("numHide").addEventListener("click", () => {
     const on = box.classList.toggle("hide");
     box.querySelectorAll(".item.show").forEach(x=>x.classList.remove("show"));
     $("numHide").textContent = on ? "Show readings" : "Hide readings";
   });
+}
+
+/* 2026-10-27 (Kiyoko): Listen & choose — the cards turn into English in a random order; hear one reading, tap the matching English; a right answer turns the card back into Japanese. */
+const ORD = n => n + (["th","st","nd","rd"][(n%100>10&&n%100<14)?0:(n%10<4?n%10:0)]);
+const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+function kanjiNum(f){
+  const d={"一":1,"二":2,"三":3,"四":4,"五":5,"六":6,"七":7,"八":8,"九":9}; let n=0, cur=0;
+  for (const ch of f){
+    if (d[ch]) cur=d[ch];
+    else if (ch==="十"){ n+=(cur||1)*10; cur=0; }
+    else if (ch==="百"){ n+=(cur||1)*100; cur=0; }
+    else if (ch==="千"){ n+=(cur||1)*1000; cur=0; }
+    else if (ch==="万"){ n=(n+cur||1)*10000; cur=0; }
+  }
+  return n+cur;
+}
+function numEn(c, it){
+  if (it.f==="はん") return "half past";
+  const n=kanjiNum(it.f), pl=(one,many)=> n===1?`1 ${one}`:`${n} ${many}`;
+  switch(c){
+    case "時": return `${n} o'clock`;
+    case "時間": return pl("hour","hours");
+    case "分": return `${n} minutes`;
+    case "日": return "the "+ORD(n);
+    case "月": return MONTHS[n-1];
+    case "か月": return pl("month","months");
+    case "人": return pl("person","people");
+    case "年": return pl("year","years");
+    case "年生": return `Year ${n}`;
+    case "さい": return n===1?"1 year old":`${n} years old`;
+    case "しゅうかん": return pl("week","weeks");
+    case "ひき": return pl("small animal","small animals");
+    case "時間目": return ORD(n)+" period";
+    case "つ": return pl("thing","things");
+    default: return /えん/.test(it.f) ? `${n.toLocaleString("en-NZ")} yen` : n.toLocaleString("en-NZ");
+  }
+}
+const LQ = {};
+function lqStart(grp){
+  const gi=+grp.dataset.g, g=DATA.num[gi], items=[...grp.querySelectorAll(".item")];
+  grp.classList.add("quiz");
+  const wrap=grp.querySelector(".items");
+  items.sort(()=>Math.random()-.5).forEach(el=>{
+    el.classList.remove("ok","bad","show");
+    el.dataset.ja=el.dataset.ja||el.innerHTML;
+    el.textContent=numEn(g.c, g.items[+el.dataset.i]);
+    wrap.appendChild(el);
+  });
+  grp.querySelector(".lq").innerHTML='<button type="button" class="numbtn lqAgain">&#9654; Play again</button> <button type="button" class="numbtn lqStop">Stop</button> <span class="lqMsg"></span>';
+  LQ[gi]={left: g.items.map((_,i)=>i).sort(()=>Math.random()-.5), now:null};
+  lqNext(grp);
+}
+function lqNext(grp){
+  const st=LQ[+grp.dataset.g];
+  if (!st.left.length){ st.now=null; grp.querySelector(".lqMsg").textContent="All done! ✓"; return; }
+  st.now=st.left.pop(); grp.querySelector(".lqMsg").textContent=""; lqPlay(grp);
+}
+function lqPlay(grp){
+  const gi=+grp.dataset.g, st=LQ[gi]; if(!st||st.now===null) return;
+  if (LQ.audio) LQ.audio.pause();
+  LQ.audio=new Audio(`num-audio/g${gi}-${st.now}.mp3`); LQ.audio.play().catch(()=>{});
+}
+function lqPick(grp, el){
+  const st=LQ[+grp.dataset.g]; if(!st||st.now===null||el.classList.contains("ok")) return;
+  if (+el.dataset.i===st.now){
+    el.classList.add("ok"); el.innerHTML=el.dataset.ja; setTimeout(()=>lqNext(grp), 700);
+  } else {
+    el.classList.add("bad"); setTimeout(()=>el.classList.remove("bad"), 500);
+  }
+}
+function lqStop(grp){
+  if (LQ.audio) LQ.audio.pause();
+  const wrap=grp.querySelector(".items");
+  [...grp.querySelectorAll(".item")].sort((a,b)=>a.dataset.i-b.dataset.i).forEach(el=>{
+    el.classList.remove("ok","bad"); if(el.dataset.ja) el.innerHTML=el.dataset.ja; wrap.appendChild(el);
+  });
+  grp.classList.remove("quiz");
+  grp.querySelector(".lq").innerHTML='<button type="button" class="numbtn lqStart">&#9654; Listen &amp; choose</button>';
+  delete LQ[+grp.dataset.g];
 }
 
 document.addEventListener("keydown", e => {
