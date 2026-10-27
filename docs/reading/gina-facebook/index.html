@@ -105,6 +105,17 @@
   footer{border-top:1px solid var(--hair);padding-top:16px;margin-top:10px;font-size:12.5px;color:var(--faint);line-height:1.6;}
   footer a{color:var(--ai)}
   @media (max-width:560px){ .passage p{font-size:18px;} .wear{grid-template-columns:1fr;gap:4px 0;} .wear input{margin-bottom:10px;} }
+  .gcard{border:1px solid var(--rule);background:var(--card);margin:0 0 10px;}
+  .gcard summary{list-style:none;cursor:pointer;padding:12px 15px;}
+  .gcard summary::-webkit-details-marker{display:none}
+  .gcard .jp{font-family:"Noto Sans JP",sans-serif;font-size:19px;line-height:2;}
+  .gcard .ch{font-size:15.5px;color:var(--muted);margin-top:2px;}
+  .gcard .ch span{display:inline-block;border:1px solid var(--rule);padding:3px 10px;margin:4px 6px 0 0;color:var(--ink);}
+  .gcard .ans{border-top:1px solid var(--hair);padding:10px 15px 12px;font-size:16px;color:var(--ai);font-weight:600;}
+  .gcard .ans .jp{font-size:17px;}
+  .gcard summary:focus-visible{outline:2px solid var(--ai);outline-offset:1px;}
+  .tap{font-size:13px;color:var(--faint);margin:0 0 12px;}
+  .closeall{font:700 13px Archivo,system-ui,sans-serif;letter-spacing:.06em;background:none;border:1px solid var(--rule);color:var(--ink);padding:6px 12px;cursor:pointer;margin:0 0 14px;}
 </style></head><body>
 
 <div class="backbar"><a href="../">&larr; All reading</a></div>
@@ -118,7 +129,7 @@
   </div>
 
   <div class="notice">
-    <strong>HOW TO DO IT.</strong> Read Gina's post (on your printout, or below), then type your answers in English in the boxes. Your answers are saved on this device. When you finish, press <b>Copy my answers</b> and paste them into today's lesson Google Doc.
+    <strong>HOW TO DO IT.</strong> Read Gina's post (on your printout, or below), then type your answers in English in the boxes. After that, do the grammar check (tap cards). Your answers are saved on this device. When you finish, press <b>Copy my answers</b> and paste them into today's lesson Google Doc.
   </div>
 
   <section>
@@ -181,8 +192,54 @@
     </div>
   </section>
 
+  <section id="grammar">
+    <div class="label">3 &nbsp;·&nbsp; ぶんぽう — Grammar check</div>
+    <p class="tap">Choose your answer in your head, then tap the card to check. The first card in each set is from Gina's post.</p>
+    <button class="closeall" type="button" onclick="document.querySelectorAll('details.gcard').forEach(function(d){d.open=false})">Close all</button>
+
+    <div class="q">
+      <div class="q-num">Grammar 1 &nbsp;·&nbsp; もらいます ・ くれます ・ あげます</div>
+      <p class="q-text">Who gave it to whom? &nbsp;<a href="giving.html" style="color:var(--ai);font-weight:600">How it works &rarr;</a></p>
+      <details class="gcard"><summary><div class="jp" lang="ja"><ruby>先生<rt>せんせい</rt></ruby>に くすりを <b>もらって</b>、のんで …</div><div class="ch"><span>A: The teacher gave Gina medicine.</span><span>B: Gina gave the teacher medicine.</span></div></summary><div class="ans">A — Gina <u>received</u> medicine from the teacher. With もらいます, に = from.</div></details>
+      <details class="gcard"><summary><div class="jp" lang="ja">どうきゅうせいが <ruby>私<rt>わたし</rt></ruby>に おかしを <b>くれました</b>。</div><div class="ch"><span>A: I gave my classmate sweets.</span><span>B: My classmate gave me sweets.</span></div></summary><div class="ans">B — くれます = someone gives <u>to me</u>.</div></details>
+      <details class="gcard"><summary><div class="jp" lang="ja"><ruby>私<rt>わたし</rt></ruby>は りゅうがくせいに おみやげを <b>あげました</b>。</div><div class="ch"><span>A: I gave a souvenir to the international student.</span><span>B: The international student gave me a souvenir.</span></div></summary><div class="ans">A — あげます = I give <u>to someone</u>.</div></details>
+      <details class="gcard"><summary><div class="jp" lang="ja"><ruby>私<rt>わたし</rt></ruby>は <ruby>先生<rt>せんせい</rt></ruby>から <ruby>本<rt>ほん</rt></ruby>を <b>もらいました</b>。</div><div class="ch"><span>A: I gave the teacher a book.</span><span>B: The teacher gave me a book.</span></div></summary><div class="ans">B — から = from. I received a book from the teacher.</div></details>
+    </div>
+
+    <div class="q">
+      <div class="q-num">Grammar 2 &nbsp;·&nbsp; 〜く なりました ・ 〜に なりました</div>
+      <p class="q-text">Something changed. Which meaning?</p>
+      <details class="gcard"><summary><div class="jp" lang="ja"><ruby>手<rt>て</rt></ruby>が いたく <b>なりました</b>。</div><div class="ch"><span>A: My hand became sore.</span><span>B: My hand is always sore.</span></div></summary><div class="ans">A — いたい → いたく なりました = became sore.</div></details>
+      <details class="gcard"><summary><div class="jp" lang="ja">きょうは さむく <b>なりました</b>。</div><div class="ch"><span>A: It is not cold today.</span><span>B: It got cold today.</span></div></summary><div class="ans">B — さむい → さむく なりました = got cold.</div></details>
+      <details class="gcard"><summary><div class="jp" lang="ja"><ruby>日本語<rt>にほんご</rt></ruby>が <ruby>上手<rt>じょうず</rt></ruby>に <b>なりました</b>。</div><div class="ch"><span>A: My Japanese got better.</span><span>B: My Japanese is not good.</span></div></summary><div class="ans">A — 上手 → 上手に なりました = got good at it.</div></details>
+    </div>
+
+    <div class="q">
+      <div class="q-num">Grammar 3 &nbsp;·&nbsp; 〜より</div>
+      <p class="q-text">Which one is more …?</p>
+      <details class="gcard"><summary><div class="jp" lang="ja"><ruby>日本<rt>にほん</rt></ruby>の こうこう<ruby>生<rt>せい</rt></ruby>は このクラスの <ruby>生<rt>せい</rt></ruby>と<b>より</b> しずかです。</div><div class="ch"><span>A: The students in Japan are quieter.</span><span>B: Gina's class is quieter.</span></div></summary><div class="ans">A — より = than. The students in Japan are quieter than Gina's class.</div></details>
+      <details class="gcard"><summary><div class="jp" lang="ja">バスは でんしゃ<b>より</b> やすいです。</div><div class="ch"><span>A: The train is cheaper.</span><span>B: The bus is cheaper.</span></div></summary><div class="ans">B — The bus is cheaper than the train.</div></details>
+    </div>
+
+    <div class="q">
+      <div class="q-num">Grammar 4 &nbsp;·&nbsp; 〜ですが、〜 (but)</div>
+      <p class="q-text">Which meaning?</p>
+      <details class="gcard"><summary><div class="jp" lang="ja">きょうしつでは しずか<b>ですが</b>、たいいくかんでは げんきでした。</div><div class="ch"><span>A: Quiet in class, but energetic in the gym.</span><span>B: Quiet in class and in the gym.</span></div></summary><div class="ans">A — ですが = but. The two places are different.</div></details>
+      <details class="gcard"><summary><div class="jp" lang="ja">スポーツが すき<b>ですが</b>、やきゅうは あまり しません。</div><div class="ch"><span>A: I like sport, so I play baseball a lot.</span><span>B: I like sport, but I don't play baseball much.</span></div></summary><div class="ans">B — ですが = but; あまり しません = not much.</div></details>
+    </div>
+
+    <div class="q">
+      <div class="q-num">Grammar 5 &nbsp;·&nbsp; 〜く なかったです ・ あまり 〜ない</div>
+      <p class="q-text">Not … / not very …</p>
+      <details class="gcard"><summary><div class="jp" lang="ja">えい<ruby>語<rt>ご</rt></ruby>は むずかしく <b>なかったです</b>。</div><div class="ch"><span>A: English was not difficult.</span><span>B: English was difficult.</span></div></summary><div class="ans">A — むずかしい → むずかしく なかったです = was not difficult.</div></details>
+      <details class="gcard"><summary><div class="jp" lang="ja">しゅくだいは <b>あまり</b> ありません。</div><div class="ch"><span>A: There is no homework at all.</span><span>B: There is not much homework.</span></div></summary><div class="ans">B — あまり + negative = not much / not very. It does not mean "none".</div></details>
+      <details class="gcard"><summary><div class="jp" lang="ja">としょかんに <b>あまり</b> <ruby>行<rt>い</rt></ruby>きません。</div><div class="ch"><span>A: I don't go to the library very often.</span><span>B: I never go to the library.</span></div></summary><div class="ans">A — あまり 行きません = not very often.</div></details>
+    </div>
+    <p class="q-note">Want more practice? Try the <a href="../../grammar-giving-contrast/" style="color:var(--ai);font-weight:600">extra grammar practice</a> (optional).</p>
+  </section>
+
   <section>
-    <div class="label">3 &nbsp;·&nbsp; When you finish</div>
+    <div class="label">4 &nbsp;·&nbsp; When you finish</div>
     <ol class="steps">
       <li>Press <b>Copy my answers</b>.</li>
       <li>Open today's lesson Google Doc (27 Oct) and paste (Ctrl+V) under <b>Reading answers</b>.</li>
