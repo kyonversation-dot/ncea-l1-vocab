@@ -29,9 +29,9 @@
       {"topic": "〜がほしいです", "done": true, "kiyo": "6 Jun · 5 Jul"}
     ]},
     {"id": "Y11", "label": "Year 11", "items": [
-      {"topic": "Town", "done": false, "kiyo": "24 May · 28 May · 8 Aug · 25 Oct", "school": "Term 1 · My Place"},
+      {"topic": "Town", "done": true, "kiyo": "24 May · 28 May · 8 Aug · 25 Oct", "school": "Term 1 · My Place"},
       {"topic": "〜てもいいですか", "done": true, "kiyo": "6 Aug · 18 Aug", "school": "Term 3 · Book 3"},
-      {"topic": "〜てもいいです", "done": false, "kiyo": "6 Aug · 25 Oct", "school": "Term 3 · Book 3", "link": "../grammar-temoii/"},
+      {"topic": "〜てもいいです", "done": true, "kiyo": "6 Aug · 25 Oct", "school": "Term 3 · Book 3", "link": "../grammar-temoii/"},
       {"topic": "〜てはいけません", "done": true, "kiyo": "6 Aug · 18 Aug · 25 Oct", "school": "Term 3 · Book 3"},
       {"topic": "〜にいきたいです", "done": true},
       {"topic": "Location and position", "done": true, "kiyo": "28 May", "school": "Term 1 · My Place"},
@@ -67,10 +67,10 @@
       {"topic": "すぎます。〜すぎましたから〜がいたいです", "done": true, "kiyo": "3 Oct · 9 Oct", "school": "Term 3 · Book 3"},
       {"topic": "School", "done": false, "kiyo": "14 Jul · 15 Jul", "school": "Term 4 · Book 4 (now)"},
       {"topic": "一番好き", "done": false, "kiyo": "21 Jul · 18 Aug", "school": "Term 4 · Book 4 (now)"},
-      {"topic": "〜ができます", "done": false, "kiyo": "29 Sep · 20 Oct · 25 Oct"},
-      {"topic": "だけ (only)", "done": false, "kiyo": "13 Oct · 18 Oct · 20 Oct · 25 Oct"},
-      {"topic": "よく (often / well)", "done": false, "kiyo": "18 Oct · 20 Oct · 25 Oct"},
-      {"topic": "〜ながら (while)", "done": false, "kiyo": "18 Oct · 20 Oct · 25 Oct"}
+      {"topic": "〜ができます", "done": true, "kiyo": "29 Sep · 20 Oct · 25 Oct"},
+      {"topic": "だけ (only)", "done": true, "kiyo": "13 Oct · 18 Oct · 20 Oct · 25 Oct"},
+      {"topic": "よく (often / well)", "done": true, "kiyo": "18 Oct · 20 Oct · 25 Oct"},
+      {"topic": "〜ながら (while)", "done": true, "kiyo": "18 Oct · 20 Oct · 25 Oct"}
     ]}
   ]
 }
