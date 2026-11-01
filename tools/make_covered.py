@@ -14,13 +14,11 @@ e = html.escape
 
 
 def practice(it):
-    """The materials for this topic: a link, plus Done / Again for Max's report."""
+    """The practice pages for this topic."""
     rows = []
     for mid in it.get("use", []):
         m = DATA["materials"][mid]
-        rows.append('<li class="mat" data-m="%s"><a href="%s" lang="ja">%s</a><span class="acts">'
-                    '<label><input type="checkbox" data-k="done"> Done</label>'
-                    '<label><input type="checkbox" data-k="again"> Again</label></span></li>'
+        rows.append('<li class="mat" data-m="%s"><a href="%s" lang="ja">%s</a></li>'
                     % (e(mid), e(m["href"]), e(m["title"])))
     return '<ul class="mats">%s</ul>' % "".join(rows) if rows else ""
 
@@ -114,16 +112,6 @@ PAGE = """<!doctype html>
   ul.mats{list-style:none;margin:2px 0 0;padding:0;display:flex;flex-direction:column;gap:4px}
   li.mat{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:2px 12px;font-size:.86rem;font-family:var(--jp)}
   li.mat a{color:var(--accent);overflow-wrap:anywhere}
-  .acts{display:flex;gap:12px;font-family:var(--sans);font-size:.78rem;color:var(--muted)}
-  .acts label{display:flex;align-items:center;gap:4px;cursor:pointer;min-height:28px}
-  .acts input{width:16px;height:16px;margin:0;accent-color:var(--accent)}
-  .report{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
-  .report h2{font-size:1.05rem;margin:0}
-  .report p{margin:0;font-size:.85rem;color:var(--muted)}
-  .report .line{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
-  .report button{font:inherit;font-size:.88rem;font-weight:600;border:0;border-radius:6px;padding:7px 14px;background:var(--accent);color:var(--paper);cursor:pointer}
-  .report .count{font-size:.8rem;color:var(--muted)}
-  .report textarea{width:100%%;min-height:150px;font:inherit;font-size:.82rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:8px}
   footer{font-size:.75rem;color:var(--muted);border-top:1px solid var(--line-soft);padding-top:12px}
   footer a{color:var(--accent)}
   @media (max-width:520px){ .summary{grid-template-columns:1fr} }
@@ -146,13 +134,6 @@ PAGE = """<!doctype html>
 
   <div class="summary">%(summary)s</div>
 
-  <section class="report" aria-labelledby="h-report">
-    <h2 id="h-report">Report your practice</h2>
-    <p>Under each topic, tick <b>Done</b> when you have tried a page, and <b>Again</b> if you want to go over it in a lesson. Before each lesson, press the button and paste the report at the top of that day's lesson Doc.</p>
-    <div class="line"><button type="button" id="copy">Copy my report</button><span class="count" id="count" aria-live="polite"></span></div>
-    <textarea id="out" readonly hidden aria-label="Your report"></textarea>
-  </section>
-
   <div class="filters" role="group" aria-label="Show">
     <button type="button" data-f="all" aria-pressed="true">All (%(total)d)</button>
     <button type="button" data-f="todo" aria-pressed="false">Not yet (%(todo)d)</button>
@@ -174,22 +155,6 @@ PAGE = """<!doctype html>
   var f = 'all'; try { f = localStorage.getItem('covered-filter') || 'all'; } catch(e) {}
   apply(f);
 
-  var KEY = 'covered-practice', S = {};
-  try { S = JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e) {}
-  var boxes = document.querySelectorAll('.mat input');
-  function name(li){ return li.querySelector('a').textContent; }
-  function paint(){
-    boxes.forEach(function(b){ b.checked = !!(S[b.closest('.mat').dataset.m] || {})[b.dataset.k]; });
-    var all = {}, d = 0;
-    document.querySelectorAll('.mat').forEach(function(li){ all[li.dataset.m] = 1; });
-    Object.keys(all).forEach(function(m){ if ((S[m] || {}).done) d++; });
-    document.getElementById('count').textContent = d + ' of ' + Object.keys(all).length + ' pages done';
-  }
-  boxes.forEach(function(b){ b.addEventListener('change', function(){
-    var m = b.closest('.mat').dataset.m;
-    S[m] = S[m] || {}; S[m][b.dataset.k] = b.checked;
-    try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e) {}
-    paint();
   }); });
   function report(){
     var seen = {}, done = [], again = [], todo = [];
