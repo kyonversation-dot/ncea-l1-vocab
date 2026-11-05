@@ -96,7 +96,7 @@
       {"topic": "よく (often / well)", "done": true, "kiyo": "18 Oct · 20 Oct · 25 Oct", "use": ["ryokou"]},
       {"topic": "〜ながら (while)", "done": true, "kiyo": "18 Oct · 20 Oct · 25 Oct", "use": ["ryokou"]},
       {"topic": "あげます・もらいます・くれます (giving and receiving)", "done": true, "kiyo": "8 Jul · 11 Aug · 18 Aug · 27 Oct", "school": "Term 2 · Presents", "use": ["gina-g", "giving"]},
-      {"topic": "〜に 〜に いきます (go somewhere to do something)", "done": false, "kiyo": "3 Oct · 9 Oct", "use": ["niiki"]}
+      {"topic": "〜に 〜に いきます (go somewhere to do something)", "done": true, "kiyo": "3 Oct · 9 Oct", "use": ["niiki"]}
     ]}
   ]
 }
