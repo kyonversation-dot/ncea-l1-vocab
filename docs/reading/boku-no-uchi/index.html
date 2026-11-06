@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>ぼくの うち — Reading</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<style>
+  :root{
+    --paper:#FCFCFA; --card:#FFFFFF; --ink:#1B1F2A; --muted:#5A6274;
+    --faint:#818A9C; --rule:#C9CEDA; --hair:#E4E7EE; --ai:#2E4374;
+    --ai-soft:#E9EDF6; --ai-line:#B9C4DD; --warn:#8A5A1E; --warn-soft:#FBF2E2;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#14161C; --card:#1B1E26; --ink:#E7E9EF; --muted:#A3AABB;
+      --faint:#7C8496; --rule:#3A404F; --hair:#2A2F3A; --ai:#93A9DE;
+      --ai-soft:#202634; --ai-line:#3E4A66; --warn:#D9AC6B; --warn-soft:#241E14;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#14161C; --card:#1B1E26; --ink:#E7E9EF; --muted:#A3AABB;
+    --faint:#7C8496; --rule:#3A404F; --hair:#2A2F3A; --ai:#93A9DE;
+    --ai-soft:#202634; --ai-line:#3E4A66; --warn:#D9AC6B; --warn-soft:#241E14;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Source Serif 4","Iowan Old Style",Georgia,serif;
+    font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .backbar{max-width:840px;margin:0 auto;padding:14px 20px 0}
+  .backbar a{font:600 13px Archivo,system-ui,sans-serif;letter-spacing:.04em;color:var(--ai);text-decoration:none}
+  .backbar a:hover{text-decoration:underline}
+  .sheet{max-width:840px;margin:0 auto;padding:0 20px 72px;}
+
+  .band{background:var(--ai);color:#fff;margin:10px -20px 26px;padding:24px 20px 20px;}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .band{background:#232B3D;} }
+  :root[data-theme="dark"] .band{background:#232B3D;}
+  .code{font-family:Archivo,system-ui,sans-serif;font-weight:700;font-size:12px;
+    letter-spacing:.18em;text-transform:uppercase;opacity:.8;}
+  h1{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;font-weight:700;
+    font-size:clamp(25px,4.4vw,34px);line-height:1.25;margin:8px 0 4px;}
+  .band .en{font-family:Archivo,sans-serif;font-weight:600;font-size:14px;opacity:.85;letter-spacing:.02em;}
+
+  .notice{background:var(--warn-soft);border-left:3px solid var(--warn);
+    padding:12px 16px;margin:0 0 28px;font-size:13.5px;color:var(--warn);line-height:1.5;}
+  .notice strong{font-family:Archivo,sans-serif;font-weight:700;letter-spacing:.04em;}
+
+  section{border-top:2px solid var(--ink);padding-top:16px;margin:0 0 38px;}
+  .label{font-family:Archivo,sans-serif;font-weight:700;font-size:12px;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--ai);margin-bottom:8px;}
+  .instr{margin:0 0 14px;max-width:62ch;}
+
+  /* warm-up */
+  .verbs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px;}
+  .verbs span{font-family:"Noto Sans JP",sans-serif;font-size:17px;font-weight:500;
+    background:var(--ai-soft);border:1px solid var(--ai-line);color:var(--ai);padding:5px 12px;}
+  .wear{display:grid;grid-template-columns:minmax(120px,190px) 1fr;gap:10px 14px;align-items:center;max-width:520px;}
+  .wear .item{font-family:"Noto Sans JP",sans-serif;font-size:18px;}
+
+  /* passage */
+  .gloss{border:1px solid var(--rule);padding:11px 15px;margin:0 0 20px;font-size:14px;color:var(--muted);}
+  .gloss b{font-family:Archivo,sans-serif;font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink);display:block;margin-bottom:4px;}
+  .gloss .ja{font-family:"Noto Sans JP",sans-serif;color:var(--ink);}
+  .passage{background:var(--card);border:1px solid var(--rule);padding:18px 20px 6px;}
+  .passage h3{font-family:"Noto Sans JP",sans-serif;font-size:19px;font-weight:700;margin:0 0 12px;}
+  .passage p{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;font-size:19px;
+    line-height:2.35;margin:0 0 16px;}
+  rt{font-size:.5em;color:var(--muted);}
+
+  /* questions */
+  .q{margin:0 0 28px;}
+  .q-num{font-family:Archivo,sans-serif;font-weight:700;font-size:13px;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--ai);margin-bottom:6px;}
+  .q-text{font-size:17px;line-height:1.45;max-width:62ch;margin:0 0 10px;}
+  .q-note{font-size:14.5px;color:var(--muted);margin:-4px 0 10px;}
+  .tablewrap{overflow-x:auto;}
+  table{border-collapse:collapse;width:100%;}
+  th,td{border:1px solid var(--rule);padding:8px;vertical-align:top;text-align:left;}
+  th{font-family:Archivo,sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;
+    background:var(--ai-soft);color:var(--ai);}
+  td.when{font-family:Archivo,sans-serif;font-weight:600;font-size:14px;width:18%;}
+
+  input[type=text],textarea{width:100%;font:16px/1.45 Archivo,system-ui,sans-serif;color:var(--ink);
+    background:var(--card);border:1px solid var(--rule);padding:9px 11px;border-radius:0;}
+  textarea{min-height:110px;resize:vertical;}
+  td textarea{min-height:90px;}
+  .q4 textarea{min-height:170px;}
+  input:focus-visible,textarea:focus-visible{outline:2px solid var(--ai);outline-offset:1px;}
+
+  .hwbar{background:var(--warn);color:#fff;font-family:Archivo,sans-serif;font-weight:700;font-size:13px;
+    letter-spacing:.12em;text-transform:uppercase;padding:9px 14px;margin:0 0 14px;}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .hwbar{color:#14161C;} }
+  :root[data-theme="dark"] .hwbar{color:#14161C;}
+  .steps{margin:0 0 14px;padding-left:22px;max-width:62ch;}
+  .steps li{margin:0 0 6px;}
+  button.copy{font:700 15px Archivo,system-ui,sans-serif;letter-spacing:.04em;background:var(--ai);color:#fff;
+    border:0;padding:12px 22px;cursor:pointer;}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) button.copy{color:#14161C;} }
+  :root[data-theme="dark"] button.copy{color:#14161C;}
+  button.copy:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
+  .copied{font-family:Archivo,sans-serif;font-size:14px;color:var(--ai);margin:10px 0 0;min-height:1.4em;}
+  #fallback{display:none;margin-top:10px;min-height:200px;}
+  footer{border-top:1px solid var(--hair);padding-top:16px;margin-top:10px;font-size:12.5px;color:var(--faint);line-height:1.6;}
+  footer a{color:var(--ai)}
+  @media (max-width:560px){ .passage p{font-size:18px;} .wear{grid-template-columns:1fr;gap:4px 0;} .wear input{margin-bottom:10px;} }
+  .gcard{border:1px solid var(--rule);background:var(--card);margin:0 0 10px;}
+  .gcard summary{list-style:none;cursor:pointer;padding:12px 15px;}
+  .gcard summary::-webkit-details-marker{display:none}
+  .gcard .jp{font-family:"Noto Sans JP",sans-serif;font-size:19px;line-height:2;}
+  .gcard .ch{font-size:15.5px;color:var(--muted);margin-top:2px;}
+  .gcard .ch span{display:inline-block;border:1px solid var(--rule);padding:3px 10px;margin:4px 6px 0 0;color:var(--ink);}
+  .gcard .ans{border-top:1px solid var(--hair);padding:10px 15px 12px;font-size:16px;color:var(--ai);font-weight:600;}
+  .gcard .ans .jp{font-size:17px;}
+  .gcard summary:focus-visible{outline:2px solid var(--ai);outline-offset:1px;}
+  .tap{font-size:13px;color:var(--faint);margin:0 0 12px;}
+  .closeall{font:700 13px Archivo,system-ui,sans-serif;letter-spacing:.06em;background:none;border:1px solid var(--rule);color:var(--ink);padding:6px 12px;cursor:pointer;margin:0 0 14px;}
+</style></head><body>
+
+<div class="backbar"><a href="../">&larr; All reading</a></div>
+<div class="sheet">
+  <div class="band">
+    <div class="code">Level 1 Japanese &nbsp;·&nbsp; 91958 &nbsp;·&nbsp; Reading practice</div>
+    <h1>ぼくの うち</h1>
+    <div class="en">Mark's blog and his host family's comments &nbsp;·&nbsp; from a past NCEA paper (2019)</div>
+  </div>
+  <div class="notice"><strong>HOW TO DO IT.</strong> Read the blog and the comments (on your printout, or below). Then write your answers in English in the lesson Google Doc.</div>
+  <section>
+    <div class="label">1 &nbsp;·&nbsp; よみましょう — Reading</div>
+    <p class="instr">Mark is a New Zealand student about to go on a school trip to Japan. He has written a blog to share with his host family, and they have added some comments.</p>
+    <div class="gloss"><b>Glossed vocabulary</b>
+      <span class="ja" lang="ja">いみ</span> = meaning &nbsp;／&nbsp; <span class="ja" lang="ja">キーウィー</span> = kiwi &nbsp;／&nbsp; <span class="ja" lang="ja">さんぽ</span> = a walk
+    </div>
+    <div class="passage" lang="ja">
+      <h3>ぼくの　うち</h3>
+      <p>ぼくは　キーウィーの　のうじょうに　すんでいます。ニュージーランドでは、キーウィーには　<ruby>三<rt>みっ</rt></ruby>つの　いみが　あります。<ruby>一<rt>ひと</rt></ruby>つ<ruby>目<rt>め</rt></ruby>は　とりの　<ruby>名前<rt>なまえ</rt></ruby>、<ruby>二<rt>ふた</rt></ruby>つ<ruby>目<rt>め</rt></ruby>は　くだものの　<ruby>名前<rt>なまえ</rt></ruby>、<ruby>三<rt>みっ</rt></ruby>つ<ruby>目<rt>め</rt></ruby>は　ニュージーランド<ruby>人<rt>じん</rt></ruby>　です。</p>
+      <p>なつやすみに、かぞくと　うみに　あそびに　<ruby>行<rt>い</rt></ruby>きます。あつい　ですから、<ruby>水<rt>すい</rt></ruby>えいを　したり、つりを　したり　します。ぼくは　さかなが　すきじゃない　です。でも、おとうさんは　<ruby>大<rt>だい</rt></ruby>すき　です。</p>
+      <p>ぼくの　いぬの　<ruby>名前<rt>なまえ</rt></ruby>は　ブルーノ　です。ブルーノは　ぼくの　うちの　にわで　はしったり、あそんだり　します。ぼくと　いっしょに　こうえんに　さんぽに　<ruby>行<rt>い</rt></ruby>きます。うるさい　ですが、かわいい　です。ねこも　いますが、いつも　ねています。つまらない　です。</p>
+      <h3>COMMENTS</h3>
+      <p><b>おとうさん</b><br>いい　ですね。<ruby>私<rt>わたし</rt></ruby>も　つりが　すき　で、したい　ですが、うみから　とおくに　すんでいますから、あまり　できません。さかなは　おいしい　ですね。</p>
+      <p><b>おかあさん</b><br>まいあさ、あさごはんに　キーウィーを　たべます。マークくんも　ニュージーランド<ruby>人<rt>じん</rt></ruby>　ですから、キーウィー　ですね。おもしろい　です。</p>
+      <p><b>けんじ</b><br>ぼくの　うちにも　いぬが　います。でも、にわが　せまい　ですから、あまり　そとに　<ruby>出<rt>で</rt></ruby>ません。いぬは　もう　<ruby>十五才<rt>じゅうごさい</rt></ruby>　だから、あしが　わるくて、おじいさん　です。</p>
+    </div>
+  </section>
+  <section>
+    <div class="label">2 &nbsp;·&nbsp; Questions — answer in English. Use evidence from the text.</div>
+    <div class="q"><div class="q-num">Question (a)</div>
+      <p class="q-text">How does each comment connect to Mark's blog? Complete the table.</p>
+      <div class="tablewrap"><table><thead><tr><th></th><th>What Mark wrote</th><th>What this person says</th></tr></thead>
+      <tbody><tr><td class="when">Host father</td><td></td><td></td></tr><tr><td class="when">Host mother</td><td></td><td></td></tr><tr><td class="when">Kenji</td><td></td><td></td></tr></tbody></table></div>
+    </div>
+    <div class="q"><div class="q-num">Question (b)</div><p class="q-text">Why doesn't Kenji's dog go outside much? Give as many details as you can.</p></div>
+    <div class="q"><div class="q-num">Question (c)</div><p class="q-text">How does Mark feel about his dog and his cat? Explain with evidence from the text.</p></div>
+  </section>
+  <footer>Text from NCEA Level 1 Japanese 90896 (2019), First Text &copy; NZQA. Questions adapted. Used for practice only.</footer>
+</div>
+</body></html>
