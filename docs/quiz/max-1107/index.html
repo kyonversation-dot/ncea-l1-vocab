@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#14795d">
+<title>みじかい もんだい 10</title>
+<style>
+  :root{
+    --ground:#eef1f6; --card:#ffffff; --card-border:#e7ebf0;
+    --ink:#22303f; --ink-soft:#5b6773; --muted:#98a2ae;
+    --accent:#14795d; --accent-ink:#ffffff;
+    --tab-bg:#e4e8ee; --tab-ink:#55606d;
+    --banner-bg:#e9f8f0; --banner-edge:#14795d; --banner-ink:#2f6d56;
+    --reveal-bg:#f3faf7; --reveal-ink:#155f49; --reveal-edge:#bfe6d6;
+    --tag-bg:#fdf1cf; --tag-ink:#8a6a12;
+    --shadow:rgba(30,50,80,.07);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ground:#10161d; --card:#1a2531; --card-border:#26333f;
+      --ink:#e8eef4; --ink-soft:#a9b5c1; --muted:#6f7d8a;
+      --accent:#3fbf92; --accent-ink:#06231a;
+      --tab-bg:#222f3b; --tab-ink:#a9b5c1;
+      --banner-bg:#14261f; --banner-edge:#3fbf92; --banner-ink:#8fdcbf;
+      --reveal-bg:#152a22; --reveal-ink:#8fdcbf; --reveal-edge:#2c5344;
+      --tag-bg:#3a3320; --tag-ink:#e8cf8e;
+      --shadow:rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#eef1f6; --card:#ffffff; --card-border:#e7ebf0;
+    --ink:#22303f; --ink-soft:#5b6773; --muted:#98a2ae;
+    --accent:#14795d; --accent-ink:#ffffff;
+    --tab-bg:#e4e8ee; --tab-ink:#55606d;
+    --banner-bg:#e9f8f0; --banner-edge:#14795d; --banner-ink:#2f6d56;
+    --reveal-bg:#f3faf7; --reveal-ink:#155f49; --reveal-edge:#bfe6d6;
+    --tag-bg:#fdf1cf; --tag-ink:#8a6a12;
+    --shadow:rgba(30,50,80,.07);
+  }
+  :root[data-theme="dark"]{
+    --ground:#10161d; --card:#1a2531; --card-border:#26333f;
+    --ink:#e8eef4; --ink-soft:#a9b5c1; --muted:#6f7d8a;
+    --accent:#3fbf92; --accent-ink:#06231a;
+    --tab-bg:#222f3b; --tab-ink:#a9b5c1;
+    --banner-bg:#14261f; --banner-edge:#3fbf92; --banner-ink:#8fdcbf;
+    --reveal-bg:#152a22; --reveal-ink:#8fdcbf; --reveal-edge:#2c5344;
+    --tag-bg:#3a3320; --tag-ink:#e8cf8e;
+    --shadow:rgba(0,0,0,.35);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ground); color:var(--ink);
+    font-family:"Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic","Meiryo","Noto Sans JP",system-ui,sans-serif;
+    line-height:1.75; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:22px 18px 64px;}
+
+  h1{
+    font-size:1.05rem; font-weight:700; color:var(--ink-soft);
+    text-align:center; margin:4px 0 18px; letter-spacing:.02em;
+  }
+
+  /* tabs */
+  .tabs{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:20px;}
+  .tab{
+    appearance:none; border:none; cursor:pointer;
+    font:inherit; font-weight:700; font-size:.95rem;
+    padding:9px 20px; border-radius:999px;
+    background:var(--tab-bg); color:var(--tab-ink);
+    transition:background .15s, color .15s, transform .05s;
+  }
+  .tab:hover{filter:brightness(.98)}
+  .tab:active{transform:translateY(1px)}
+  .tab[aria-selected="true"]{background:var(--accent); color:var(--accent-ink);}
+  .tab:focus-visible{outline:3px solid var(--accent); outline-offset:2px;}
+
+  /* instruction banner */
+  .banner{
+    background:var(--banner-bg); color:var(--banner-ink);
+    border-left:4px solid var(--banner-edge); border-radius:8px;
+    padding:12px 16px; margin-bottom:18px; font-size:.95rem; font-weight:500;
+  }
+
+  /* cards */
+  .cards{display:flex; flex-direction:column; gap:14px;}
+  .card{
+    background:var(--card); border:1px solid var(--card-border);
+    border-radius:14px; padding:18px 20px; box-shadow:0 2px 10px var(--shadow);
+    cursor:pointer; transition:border-color .15s, box-shadow .15s;
+  }
+  .card:hover{border-color:var(--accent);}
+  .card:focus-visible{outline:3px solid var(--accent); outline-offset:2px;}
+  .card.open{border-color:var(--reveal-edge);}
+  .prompt{font-size:1.18rem; font-weight:600; color:var(--ink); margin:0;}
+  .prompt .en{font-size:1.06rem; font-style:normal; color:var(--ink);}
+  .en2{margin:7px 0 0; font-size:1.02rem; font-weight:500; color:var(--ink-soft);}
+  .tag{
+    display:inline-block; vertical-align:middle; margin-left:8px;
+    background:var(--tag-bg); color:var(--tag-ink);
+    font-size:.72rem; font-weight:700; padding:2px 9px; border-radius:6px;
+  }
+  .cue{
+    display:flex; align-items:center; gap:6px;
+    margin-top:10px; color:var(--muted); font-size:.82rem; font-weight:500;
+  }
+  .cue .hint{color:var(--muted);}
+  .answer{
+    display:none; margin-top:12px; padding:12px 14px;
+    background:var(--reveal-bg); color:var(--reveal-ink);
+    border-radius:10px; font-size:1.08rem; font-weight:600;
+  }
+  .card.open .answer{display:block; animation:pop .18s ease;}
+  .card.open .cue{display:none;}
+  @keyframes pop{from{opacity:0; transform:translateY(-3px)} to{opacity:1; transform:none}}
+  @media (prefers-reduced-motion:reduce){.card.open .answer{animation:none}}
+
+  .foot{display:flex; justify-content:center; margin-top:26px;}
+  .closeall{
+    appearance:none; border:none; cursor:pointer; font:inherit; font-weight:700;
+    color:var(--tab-ink); background:var(--tab-bg);
+    padding:11px 26px; border-radius:999px;
+  }
+  .closeall:hover{filter:brightness(.98)}
+  .closeall:focus-visible{outline:3px solid var(--accent); outline-offset:2px;}
+
+  .panel[hidden]{display:none;}
+  .qen{margin:8px 0 0; font-size:1rem; font-weight:500; color:var(--ink-soft);}
+  .play{
+    appearance:none; border:none; cursor:pointer; font:inherit; font-weight:700;
+    margin-top:10px; padding:7px 16px; border-radius:999px;
+    background:var(--accent); color:var(--accent-ink); font-size:.9rem;
+  }
+  .play:focus-visible{outline:3px solid var(--accent); outline-offset:2px;}
+  .btns{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;}
+  .btns .play{margin-top:0;}
+  .step{
+    appearance:none; cursor:pointer; font:inherit; font-weight:700; font-size:.9rem;
+    padding:7px 16px; border-radius:999px; border:2px solid var(--accent);
+    background:transparent; color:var(--accent);
+  }
+  .step[hidden]{display:none;}
+  .step:focus-visible{outline:3px solid var(--accent); outline-offset:2px;}
+  .reveal{display:none; margin-top:10px; padding:12px 14px; border-radius:10px;
+    background:var(--reveal-bg); color:var(--reveal-ink); font-size:1.06rem; font-weight:600;}
+  .reveal.show{display:block; animation:pop .18s ease;}
+  .listen{cursor:default;}
+  .gloss{background:var(--card); border:1px dashed var(--card-border); border-radius:10px;
+    padding:10px 14px; margin-bottom:16px; font-size:.92rem; color:var(--ink-soft);}
+  .player{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:10px;}
+  .player audio{flex:1 1 260px; min-width:0; height:40px;}
+  .back5{appearance:none; cursor:pointer; font:inherit; font-weight:700; font-size:.85rem;
+    padding:6px 12px; border-radius:999px; border:2px solid var(--accent); background:transparent; color:var(--accent);}
+
+  .sec{font-size:.95rem;font-weight:700;color:var(--accent);margin:26px 0 10px;letter-spacing:.04em}
+  .choices{margin:8px 0 0;padding-left:0;list-style:none;font-size:1rem;color:var(--ink)}
+  .choices li{margin:2px 0}
+  .cgloss{margin:8px 0 0;font-size:.88rem;color:var(--ink-soft);border:1px dashed var(--card-border);border-radius:8px;padding:6px 10px}
+  .map{background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:10px;margin-bottom:14px}
+  .map svg{display:block;width:100%;max-width:420px;height:auto;margin:0 auto}
+  .map .road{fill:var(--tab-bg)}
+  .map .bldg{fill:var(--reveal-bg);stroke:var(--reveal-edge);stroke-width:1.5}
+  .map .opt{fill:var(--tag-bg);stroke:var(--tag-ink);stroke-width:1.5}
+  .map text{fill:var(--ink);font-size:13px;font-weight:700;text-anchor:middle;dominant-baseline:middle}
+  .map .lt{fill:var(--tag-ink);font-size:18px}
+  .pics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0 0}
+  .pics{align-items:center}
+  .pics img{width:100%;height:auto;border-radius:8px;display:block}
+  .say{margin:10px 0 0;padding:10px 14px;border-radius:10px;border:1px dashed var(--card-border);font-size:1.02rem;color:var(--ink)}
+  .rtext{margin:10px 0 0;padding:12px 14px;border-radius:10px;background:var(--ground);font-size:1.12rem;line-height:2;color:var(--ink)}
+</style>
+
+<div class="wrap">
+  <p style="margin:0 0 6px"><a href="../" style="color:var(--ink-soft);font-size:.9rem">← Quizzes</a></p>
+  <h1>みじかい もんだい 10　ききとりと よみもの</h1>
+
+  <div class="banner">▶ を おして きいて、こたえを ノートに かきましょう。1つの もんだいを 3かい きいても いいです。わからない 時は「日本語を 見る」、それでも わからない 時は「こたえ」を おしましょう。</div>
+
+  <div class="sec">はじめに ・ 先生の きのう — Answer in English</div>
+  <div class="cards" id="mcards"></div>
+
+  <div class="sec">A ・ ききとり — Answer in English</div>
+  <div class="cards" id="lcards"></div>
+
+  <div class="sec">B ・ よみもの — Answer in English</div>
+  <div class="cards" id="rcards"></div>
+
+  <div class="foot"><button class="closeall" id="closeall">ぜんぶ とじる</button></div>
+</div>
+
+<script>
+  // 2026-11-06 Max 11/7用。小さい問題をたくさん（形容詞・ペットと〜ひき・食べ物と〜とおもいます／〜から・一番すき＋道案内・値段・日付）。
+  // 音声＝audio/*.mp3（edge-tts −30%）＝tools/make_max1107_audio.py。台本＝_work/AI_Lab_ncea_listening_proto/items/max-1107/
+  const M = [
+    {f:"m0", p:"マーラータン", q:"Listen to Kiyoko sensei.",
+     qs:["Who did she go with, and what did she eat?","What can you choose? How much is 100g?","What did she think of it?"],
+     imgs:["m1","m2","m3"],
+     gl:"Glossed vocabulary：マーラータン = mala-tang (a Chinese soup) ／ グラム = gram ／ からい = spicy",
+     say:["Then answer in Japanese：マックスさんは 何を とりますか。（〜が 一番 すきですから、〜を とります。）","マーラータンは おいしいと おもいますか。（〜と おもいます。〜から。）"],
+     js:"きのう、おかあさんと マーラータンを たべに いきました。マーラータンは ちゅうごくの りょうりです。あたらしい みせです。やさいや にくや めんが たくさん ありました。すきな ものを とります。百グラム 三百九十円です。とても おいしかったです。でも、ちょっと からかったです。また いきたいです。",
+     a:"With her mother. Mala-tang, a Chinese dish, at a new shop. You can choose vegetables, meat and noodles; you take what you like. 100g is 390 yen. It was very delicious, but a bit spicy. She wants to go again."}
+  ];
+  const L = [
+    {f:"l1", p:"1. ペット", q:"What pets does Hamish have? Describe them.",
+     js:"A：ハミッシュさんは ペットを かっていますか。　B：はい、いぬを 三びき かっています。一ぴきは とても 大きいですから、ともだちは こわいと いいます。でも、やさしい いぬです。二ひきは 小さくて、いつも いっしょに あそんでいます。",
+     a:"3 dogs. One is very big, so his friends say it is scary, but it is a kind dog. Two are small and always play together."},
+    {f:"l2", p:"2. のうじょう", q:"Where did Chihiro go, and what animals were there? Why wasn't she scared?",
+     js:"A：ちひろさん、しゅうまつに どこに いきましたか。　B：おじさんの のうじょうに いきました。のうじょうには うしと ひつじが たくさん います。うまも います。私は うまに のりました。その うまは 小さかったですから、こわくなかったです。",
+     a:"Her uncle's farm. Lots of cows and sheep, and horses too. She rode a horse. It was small, so she wasn't scared."},
+    {f:"l3", p:"3. ひるごはん", q:"What food does Noah like most? What is he eating today, and why? How much is it?",
+     js:"A：ノアさん、ひるごはんに 何を たべますか。　B：ぼくは ハンバーガーが いちばん すきです。でも、ハンバーガーは からだに わるいと おもいます。だから、今日は やさいの サンドイッチを たべます。サンドイッチは 六百円です。",
+     a:"Hamburgers. He thinks they are bad for your body, so today he is eating a vegetable sandwich. It is 600 yen."},
+    {f:"l4", p:"4. どうぶつえん", q:"When did Kota go to the zoo? Which animal does he like most, and why? What did his brother say?",
+     js:"A：こうたさん、どうぶつえんに いきましたか。　B：はい、十一月三日に かぞくと いきました。いろいろな どうぶつが いました。ぼくは とりが いちばん すきです。とりは 小さくて、きれいでしたから。でも、おとうとは とりが こわいと いいました。",
+     a:"3 November, with his family. There were all kinds of animals. Birds, because they were small and pretty. His younger brother said birds are scary."},
+    {f:"l5", p:"5. みちあんない", q:"How do you get to the park? Where is it? What can you do there?",
+     gl:"Glossed vocabulary：まっすぐ = straight ahead ／ かど = corner ／ まがります = turn",
+     js:"A：すみません、こうえんは どこですか。　B：まっすぐ いって ください。スーパーの かどを ひだりに まがって ください。こうえんは としょかんの となりです。こうえんでは いぬと あそんでも いいですよ。",
+     a:"Go straight and turn left at the supermarket corner. It is next to the library. You can play with dogs in the park."},
+    {f:"l6", p:"6. 先生", q:"What is Hinata's maths teacher like? What are the lessons like? Why doesn't Hinata have free time?",
+     js:"A：ひなたさんの すうがくの 先生は どんな 人ですか。　B：スミス先生は とても きびしいです。でも、まじめで、あたまが いい 先生です。じゅぎょうは ながいですが、ぜんぜん つまらなくないです。でも、しゅくだいが たくさん ありますから、私は まいにち ひまが ありません。",
+     a:"Mr/Ms Smith is very strict, but serious and smart. The lessons are long, but not boring at all. There is a lot of homework, so Hinata has no free time every day."},
+    {f:"l7", p:"7. おばあさんの うち", q:"What is good and what is not so good about Aroha's grandmother's house?",
+     js:"A：アロハさんの おばあさんの うちは どうですか。　B：おばあさんの うちは とても ふるいです。でんとうてきな うちです。やまの 中に ありますから、なつも すずしいです。でも、ちかくに みせが ありません。ちょっと ふべんです。",
+     a:"Good: it is very old and traditional, and it is in the mountains, so it is cool even in summer. Not so good: there are no shops nearby, so it is a bit inconvenient."}
+  ];
+  const R = [
+    {p:"8. さかな", qs:["(a) How many fish does Waimari have now?","(b) Why does she think the cat ate the fish?"],
+     t:"私の なまえは ワイマリです。私は さかなを かっています。さかなは 五ひき いました。小さくて、いろいろな いろです。でも、せんしゅう 四ひきに なりました。私は とても かなしかったです。おかあさんは ねこが たべたと おもいます。私の うちの ねこは いじわるですから、私も ねこが たべたと おもいます。",
+     a:"(a) Four (there were five).　(b) Her mother thinks the cat ate it, and their cat is mean, so Waimari thinks so too. She was very sad."},
+    {p:"9. ばんごはん", qs:["What is Oliver inviting Chihiro to, and at what time?","What does he say about his family and food?"],
+     t:"オリバーです。今日の よる、うちで ばんごはんを たべませんか。おかあさんは にくと やさいを つくります。ちひろさんは にくが だいじょうぶですか。ぼくと おねえさんは いつも おなじ ものを たべます。でも、おとうとは やさいが きらいですから、にくだけ たべます。ばんごはんは 六時半からです。",
+     a:"Dinner at his house tonight from 6:30. His mother is making meat and vegetables, and he asks if meat is OK for her. He and his older sister always eat the same food, but his younger brother doesn't like vegetables, so he only eats meat."},
+    {p:"10. おとうと（homework）", qs:["Describe the writer's younger brother.","Why don't they have a pet?"],
+     t:"私の おとうとは 十さいです。おとうとは せが ひくいですが、あたまが いいです。いつも おかしい ことを いいますから、うちは いつも にぎやかです。おとうとは いぬが いちばん すきです。でも、うちは 小さいですから、ペットは かっていません。",
+     a:"He is 10. He is short, but smart. He always says funny things, so the house is always lively. He likes dogs most. The house is small, so they don't have a pet."}
+  ];
+
+  function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+  function lcard(item){
+    const gl = item.gl ? `<p class="cgloss">${esc(item.gl)}</p>` : "";
+    return `<div class="card listen">
+      <p class="prompt">${esc(item.p)}</p>
+      <p class="qen">${esc(item.q)}</p>${gl}${item.imgs ? `<div class="pics">${item.imgs.map(x => `<img src="img/${x}.jpg" alt="">`).join("")}</div>` : ""}${item.qs ? item.qs.map(x => `<p class="qen">${esc(x)}</p>`).join("") : ""}
+      <div class="player"><audio controls preload="none" src="audio/${item.f}.mp3"></audio><button class="back5">↺ 5びょう もどる</button></div>
+      <div class="btns">
+        <button class="step" data-step="ja">日本語を 見る</button>
+        <button class="step" data-step="en" hidden>こたえ（English）</button>
+      </div>
+      <div class="reveal ja" lang="ja">${esc(item.js)}</div>
+      <div class="reveal en">${esc(item.a)}</div>
+    </div>`;
+  }
+  function rcard(item){
+    return `<div class="card listen">
+      <p class="prompt">${esc(item.p)}</p>
+      <p class="rtext" lang="ja">${esc(item.t)}</p>
+      ${item.qs.map(x => `<p class="qen">${esc(x)}</p>`).join("")}
+      <div class="btns"><button class="step" data-step="en">こたえ（English）</button></div>
+      <div class="reveal en">${esc(item.a)}</div>
+    </div>`;
+  }
+  document.getElementById("mcards").innerHTML = M.map(lcard).join("");
+  document.querySelector("#mcards .card").insertAdjacentHTML("beforeend", M[0].say.map(x => `<p class="say" lang="ja">${esc(x)}</p>`).join(""));
+  document.getElementById("lcards").innerHTML = L.map(lcard).join("");
+  document.getElementById("rcards").innerHTML = R.map(rcard).join("");
+
+  document.addEventListener("click", e => {
+    const step = e.target.closest(".step");
+    if(step){
+      const c = step.closest(".card");
+      if(step.dataset.step === "ja"){
+        c.querySelector(".reveal.ja").classList.add("show");
+        c.querySelector('.step[data-step="en"]').hidden = false;
+      }else{
+        c.querySelector(".reveal.en").classList.add("show");
+      }
+      step.hidden = true;
+    }
+    const b = e.target.closest(".back5");
+    if(b){ const a = b.parentElement.querySelector("audio"); a.currentTime = Math.max(0, a.currentTime - 5); }
+  });
+  document.getElementById("closeall").addEventListener("click", () => {
+    document.querySelectorAll("audio").forEach(a => { a.pause(); a.currentTime = 0; });
+    document.querySelectorAll(".reveal.show").forEach(r => r.classList.remove("show"));
+    document.querySelectorAll('#lcards .step[data-step="ja"], #mcards .step[data-step="ja"]').forEach(b => b.hidden = false);
+    document.querySelectorAll('#lcards .step[data-step="en"], #mcards .step[data-step="en"]').forEach(b => b.hidden = true);
+    document.querySelectorAll('#rcards .step[data-step="en"]').forEach(b => b.hidden = false);
+  });
+  document.addEventListener("play", e => {
+    document.querySelectorAll("audio").forEach(a => { if(a !== e.target) a.pause(); });
+  }, true);
+</script>
