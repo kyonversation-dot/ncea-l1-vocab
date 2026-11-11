@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Y11 レッスン復習 | 11 Nov 2026 | Counters and animals</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap">
+<style>
+:root{--bg:#f2f6f7;--card:#fff;--ink:#1b2630;--sub:#5b6b78;--line:#d5e0e4;--accent:#0b6e6e;--mark:#ffe58a;--tint:#e3f1f1;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121a20;--card:#1a252d;--ink:#e8eef1;--sub:#9fb0ba;--line:#2c3b45;--accent:#5fd0c8;--mark:#6b5a12;--tint:#1d3338}}
+:root[data-theme="dark"]{--bg:#121a20;--card:#1a252d;--ink:#e8eef1;--sub:#9fb0ba;--line:#2c3b45;--accent:#5fd0c8;--mark:#6b5a12;--tint:#1d3338}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.8 "Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic",sans-serif}
+main{max-width:720px;margin:0 auto;padding:28px 18px 64px}
+header h1{font-size:clamp(46px,14vw,84px);line-height:1.1;margin:8px 0 6px;font-weight:700;letter-spacing:.02em}
+header h1 span{background:linear-gradient(transparent 58%,var(--mark) 58%)}
+header p{margin:0;color:var(--sub)}
+h2{font-size:22px;margin:44px 0 12px;padding-left:12px;border-left:5px solid var(--accent)}
+h3{font-size:16px;margin:20px 0 4px;color:var(--accent)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:12px 0}
+.rule{display:grid;gap:8px}
+.rule div{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.rule b{min-width:5.5em;color:var(--accent)}
+small,.en{color:var(--sub);font-size:14px;line-height:1.5}
+ul.ex{list-style:none;margin:0;padding:0}
+ul.ex li{padding:8px 0;border-bottom:1px solid var(--line)}
+ul.ex li:last-child{border:0}
+ul.ex .en{display:block}
+em{font-style:normal;background:var(--mark);border-radius:3px;padding:0 2px}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:8px 0;padding:10px 16px}
+summary{cursor:pointer;font-weight:500}
+summary:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+details p{margin:6px 0 2px}
+table{width:100%;border-collapse:collapse}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}
+.todo li{margin:6px 0}
+a{color:var(--accent)}
+.review-controls{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 8px}
+.review-controls button{font:inherit;font-size:14px;line-height:1.5;min-height:44px;padding:10px 14px;border:1px solid var(--accent);border-radius:8px;background:var(--card);color:var(--accent);cursor:pointer}
+.review-controls button[aria-pressed="true"]{background:var(--accent);color:var(--bg)}
+.review-controls button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.review-hint{margin:0 0 12px}
+#review-examples ul.ex li{min-height:4.5em}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main id="review-examples">
+<p><a href="../" style="color:var(--sub);font-size:.9rem">← Lesson review</a></p>
+<header>
+<h1><span>かぞえかた</span></h1>
+<p style="font-size:clamp(20px,5vw,28px);font-weight:700;margin:0 0 6px">Counters and animals</p>
+<p>Y11 レッスン復習 | 11 Nov 2026 | Animals, ひき, people, things, ages, time, dates</p>
+</header>
+<div class="review-controls" role="group" aria-label="Example sentence languages">
+<button type="button" id="toggle-ja" aria-controls="review-examples" aria-pressed="false">Hide Japanese</button>
+<button type="button" id="toggle-en" aria-controls="review-examples" aria-pressed="false">Hide English</button>
+</div>
+<p class="review-hint"><small>Let’s see how much you remember! Hide one language and give it a try.</small></p>
+<p id="both-hidden" role="status" hidden><small>Both languages are hidden. Choose a button to show one.</small></p>
+
+<h2>どうぶつ <small>Animals</small></h2>
+<div class="card"><table>
+<tr><td>いぬ</td><td>dog</td></tr>
+<tr><td>ねこ</td><td>cat</td></tr>
+<tr><td>さかな</td><td>fish</td></tr>
+<tr><td>とり</td><td>bird</td></tr>
+<tr><td>うま</td><td>horse</td></tr>
+<tr><td><em>ひつじ</em></td><td>sheep <small>(sheep is the same in English: one sheep, three sheep)</small></td></tr>
+<tr><td>うし</td><td>cow <small>(a live cow. Don’t use the meat word for a live animal.)</small></td></tr>
+<tr><td>うさぎ</td><td>rabbit</td></tr>
+<tr><td>どうぶつ ／ どうぶつえん</td><td>animal ／ zoo</td></tr>
+</table></div>
+
+<h2>ひき <small>Counting animals</small></h2>
+<p><small>Use ひき for small animals and pets. It is the one you need for the exam.</small></p>
+<div class="card"><table>
+<tr><td>いっぴき</td><td>1</td><td>にひき</td><td>2</td></tr>
+<tr><td><em>さんびき</em></td><td>3</td><td>よんひき</td><td>4</td></tr>
+<tr><td>ごひき</td><td>5</td><td><em>ろっぴき</em></td><td>6</td></tr>
+<tr><td>ななひき</td><td>7</td><td><em>はっぴき</em></td><td>8</td></tr>
+<tr><td>きゅうひき</td><td>9</td><td><em>じゅっぴき</em></td><td>10</td></tr>
+<tr><td>なんびき</td><td colspan="3">how many?</td></tr>
+</table>
+<div class="rule" style="margin-top:12px">
+<div><b>ぴき</b><span>1・6・8・10</span></div>
+<div><b>びき</b><span>3 and なん</span></div>
+<div><b>ひき</b><span>2・4・5・7・9</span></div>
+</div></div>
+<div class="card"><ul class="ex">
+<li><span class="ja" lang="ja">いぬが <em>にひき</em> います。</span><span class="en" lang="en">There are two dogs.</span></li>
+<li><span class="ja" lang="ja">ひつじが <em>さんびき</em> います。</span><span class="en" lang="en">There are three sheep.</span></li>
+<li><span class="ja" lang="ja">ねこが <em>いっぴき</em> と うまが <em>いっぴき</em> います。</span><span class="en" lang="en">There is one cat and one horse.</span></li>
+<li><span class="ja" lang="ja">ペットが <em>なんびき</em> いますか。</span><span class="en" lang="en">How many pets are there?</span></li>
+</ul></div>
+
+<h2>人 <small>Counting people</small></h2>
+<div class="card"><table>
+<tr><td><em>ひとり</em></td><td>1 person</td></tr>
+<tr><td><em>ふたり</em></td><td>2 people</td></tr>
+<tr><td>さんにん</td><td>3 people</td></tr>
+<tr><td><em>よにん</em></td><td>4 people</td></tr>
+<tr><td>ごにん・ろくにん</td><td>5, 6 people</td></tr>
+<tr><td>しちにん ／ ななにん</td><td>7 people</td></tr>
+<tr><td>はちにん・きゅうにん・じゅうにん</td><td>8, 9, 10 people</td></tr>
+<tr><td>なんにん</td><td>how many people?</td></tr>
+</table>
+<p><small>Only ひとり, ふたり and よにん are special. The rest are number + にん. People are not ひき: ✕ ねこが ふたり → ○ ねこが にひき.</small></p></div>
+<div class="card"><ul class="ex">
+<li><span class="ja" lang="ja">ともだちが <em>よにん</em> います。</span><span class="en" lang="en">I have four friends.</span></li>
+<li><span class="ja" lang="ja">クラスは <em>なんにん</em> ですか。</span><span class="en" lang="en">How many people are in the class?</span></li>
+</ul></div>
+
+<h2>つ <small>Counting things</small></h2>
+<div class="card"><table>
+<tr><td>ひとつ・ふたつ</td><td>1, 2</td></tr>
+<tr><td><em>みっつ・よっつ</em></td><td>3, 4</td></tr>
+<tr><td>いつつ</td><td>5</td></tr>
+<tr><td><em>むっつ</em></td><td>6</td></tr>
+<tr><td>ななつ</td><td>7</td></tr>
+<tr><td><em>やっつ</em></td><td>8</td></tr>
+<tr><td>ここのつ</td><td>9</td></tr>
+<tr><td><em>とお</em></td><td>10 <small>(only 10 has no つ)</small></td></tr>
+<tr><td>いくつ</td><td>how many?</td></tr>
+</table>
+<p><small>In class we also practised ordering with こ (items such as coffees and hamburgers).</small></p></div>
+<div class="card"><ul class="ex">
+<li><span class="ja" lang="ja">ケーキを <em>みっつ</em> ください。</span><span class="en" lang="en">Three cakes, please.</span></li>
+<li><span class="ja" lang="ja">ケーキを <em>ふたつ</em> と おちゃを <em>みっつ</em> ください。</span><span class="en" lang="en">Two cakes and three teas, please.</span></li>
+</ul></div>
+
+<h2>さい <small>Age</small></h2>
+<div class="card"><table>
+<tr><td><em>20歳</em>（はたち）</td><td>20 years old <small>(special word, not にじゅっさい)</small></td></tr>
+<tr><td>いっさい</td><td>1 year old</td></tr>
+<tr><td>はっさい</td><td>8 years old</td></tr>
+<tr><td>じゅっさい</td><td>10 years old</td></tr>
+<tr><td>きゅうさい</td><td>9 years old <small>(not くさい!)</small></td></tr>
+<tr><td>なんさい</td><td>how old?</td></tr>
+</table></div>
+<div class="card"><ul class="ex">
+<li><span class="ja" lang="ja">いもうとは <em>ろくさい</em> です。</span><span class="en" lang="en">My younger sister is 6.</span></li>
+<li><span class="ja" lang="ja">あには <em>はたち</em> です。</span><span class="en" lang="en">My older brother is 20.</span></li>
+</ul></div>
+
+<h2>じ・ふん <small>Time of day</small></h2>
+<div class="card"><table>
+<tr><td><em>よじ</em></td><td>4:00</td></tr>
+<tr><td><em>しちじ</em></td><td>7:00</td></tr>
+<tr><td><em>くじ</em></td><td>9:00</td></tr>
+<tr><td>ごふん</td><td>5 minutes</td></tr>
+<tr><td><em>じゅっぷん</em></td><td>10 minutes</td></tr>
+<tr><td>〜はん</td><td>half past <small>(さんじはん = 3:30)</small></td></tr>
+</table>
+<p><small>ぷん: 1, 3, 4, 6, 8, 10 (いっぷん・さんぷん・よんぷん・ろっぷん・はっぷん・じゅっぷん). For the exam, 5 and 10 minutes matter most.</small></p></div>
+<div class="card"><ul class="ex">
+<li><span class="ja" lang="ja"><em>にじ じゅっぷん</em>に うちに きて ください。</span><span class="en" lang="en">Please come to my house at 2:10.</span></li>
+<li><span class="ja" lang="ja"><em>よじ</em>に おきます。</span><span class="en" lang="en">I get up at 4 o’clock.</span></li>
+</ul></div>
+
+<h2>じかん・しゅうかん・かげつ・ねん <small>How long</small></h2>
+<div class="card"><table>
+<tr><td>よじかん</td><td>4 hours</td></tr>
+<tr><td>いっしゅうかん・はっしゅうかん・じゅっしゅうかん</td><td>1, 8, 10 weeks</td></tr>
+<tr><td>いっかげつ・ろっかげつ・はっかげつ・じゅっかげつ</td><td>1, 6, 8, 10 months</td></tr>
+<tr><td>よねん</td><td>4 years</td></tr>
+<tr><td>しちねん ／ ななねん</td><td>7 years</td></tr>
+<tr><td><em>くねん ／ きゅうねん</em></td><td>9 years <small>(both are OK)</small></td></tr>
+</table></div>
+<div class="card"><ul class="ex">
+<li><span class="ja" lang="ja">なつやすみは <em>さんしゅうかん</em> です。</span><span class="en" lang="en">The summer holiday is three weeks.</span></li>
+<li><span class="ja" lang="ja">りょこうは <em>にしゅうかん</em> です。</span><span class="en" lang="en">The trip is two weeks.</span></li>
+</ul></div>
+
+<h2>日づけ <small>Dates</small></h2>
+<div class="card"><table>
+<tr><td>ついたち</td><td>1st</td><td>ふつか</td><td>2nd</td></tr>
+<tr><td>みっか</td><td>3rd</td><td>よっか</td><td>4th</td></tr>
+<tr><td>いつか</td><td>5th</td><td>むいか</td><td>6th</td></tr>
+<tr><td>なのか</td><td>7th</td><td>ようか</td><td>8th</td></tr>
+<tr><td>ここのか</td><td>9th</td><td>とおか</td><td>10th</td></tr>
+<tr><td><em>じゅうよっか</em></td><td>14th</td><td><em>はつか</em></td><td>20th</td></tr>
+<tr><td><em>にじゅうよっか</em></td><td>24th</td><td>なんにち</td><td>what day?</td></tr>
+</table>
+<p><small>11th and after follow the normal rule (じゅういちにち, にじゅうごにち). The exceptions are 14th, 20th and 24th. Months: しがつ (April), しちがつ (July), くがつ (September).</small></p></div>
+<div class="card"><ul class="ex">
+<li><span class="ja" lang="ja">たんじょうびは <em>しがつ ようか</em> です。</span><span class="en" lang="en">My birthday is April 8th.</span></li>
+<li><span class="ja" lang="ja"><em>じゅうよっか</em>に どうぶつえんに いきます。</span><span class="en" lang="en">I will go to the zoo on the 14th.</span></li>
+</ul></div>
+
+<h2>れんしゅう <small>Quick check</small></h2>
+<p><small>Say the answer aloud, then open to check.</small></p>
+<details><summary>うちに ねこが 6びき います。</summary><p>ねこが ろっぴき います。<br><small>I have six cats.</small></p></details>
+<details><summary>さかなが 10ぴき います。</summary><p>さかなが じゅっぴき います。<br><small>There are ten fish.</small></p></details>
+<details><summary>ケーキが 8つ あります。</summary><p>ケーキが やっつ あります。<br><small>There are eight cakes.</small></p></details>
+<details><summary>いぬが 1ぴきと さかなが 10ぴき います。ぜんぶで なんびきですか。</summary><p>11ぴき（じゅういっぴき）です。<br><small>1 dog + 10 fish = 11 animals in total.</small></p></details>
+<details><summary>4月8日・14日・20日</summary><p>しがつ ようか・じゅうよっか・はつか</p></details>
+
+<h2>Exam tips <small>Reading</small></h2>
+<div class="card"><ul class="todo">
+<li>First, scan the whole text quickly to get the general idea. Don’t spend long on exact translation yet.</li>
+<li>Then read the questions and work out what information each one asks for.</li>
+<li>Translate while you answer, and fit your translation to the question. Include all the information the question needs.</li>
+</ul></div>
+
+<h2>おすすめ <small>Recommendations</small></h2>
+<p><small>There is no homework this time. You can study everything you need right here. Most of all, spend your time on what you want to practise yourself, especially the things you want to be sure of at the end.</small></p>
+<div class="card"><ul class="todo">
+<li>Look back over the notes and exam preparation your school teacher gave you in the last few weeks. This is the most important one, because your teacher made your exam.</li>
+<li>What we covered together: <a href="https://kyonversation-dot.github.io/ncea-l1-vocab/covered/">Course map</a></li>
+<li>Listening practice: <a href="https://kyonversation-dot.github.io/ncea-l1-vocab/quiz/">Quizzes</a> (including <a href="https://kyonversation-dot.github.io/ncea-l1-vocab/quiz/max-1107/">みじかい もんだい 10</a>)</li>
+<li>Reading practice: <a href="https://kyonversation-dot.github.io/ncea-l1-vocab/reading/">Reading</a></li>
+<li>Vocabulary: <a href="https://kyonversation-dot.github.io/ncea-l1-vocab/">Vocabulary practice</a></li>
+</ul></div>
+</main>
+<script>
+(() => {
+  const examples = document.getElementById('review-examples');
+  const hidden = {ja: false, en: false};
+  const labels = {
+    ja: ['Hide Japanese', 'Show Japanese'],
+    en: ['Hide English', 'Show English']
+  };
+  for (const language of ['ja', 'en']) {
+    const button = document.getElementById('toggle-' + language);
+    button.addEventListener('click', () => {
+      hidden[language] = !hidden[language];
+      for (const line of examples.querySelectorAll('ul.ex .' + language)) {
+        line.hidden = hidden[language];
+      }
+      button.setAttribute('aria-pressed', String(hidden[language]));
+      button.textContent = labels[language][Number(hidden[language])];
+      document.getElementById('both-hidden').hidden = !(hidden.ja && hidden.en);
+    });
+  }
+})();
+</script>
+</body>
+</html>
