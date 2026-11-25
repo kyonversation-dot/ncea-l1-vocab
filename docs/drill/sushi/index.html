@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sushi Shop Drill | Y11</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap">
+<style>
+:root{--bg:#fff8ef;--card:#fff;--ink:#2a2233;--sub:#6e6478;--line:#f1e2d2;--accent:#e8553d;--accent2:#1d9bd1;--mark:#ffd84d;--tint:#fff0e0;--ok:#2e9e5b}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b1724;--card:#262033;--ink:#f3eefa;--sub:#b9aec8;--line:#3a3149;--accent:#ff8a6b;--accent2:#5cc8ff;--mark:#8a6d00;--tint:#2f2640;--ok:#5fd18c}}
+:root[data-theme="dark"]{--bg:#1b1724;--card:#262033;--ink:#f3eefa;--sub:#b9aec8;--line:#3a3149;--accent:#ff8a6b;--accent2:#5cc8ff;--mark:#8a6d00;--tint:#2f2640;--ok:#5fd18c}
+*,*:before,*:after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.7 "Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic",sans-serif}
+main{max-width:720px;margin:0 auto;padding:16px 16px 64px}
+a{color:var(--accent2)}
+h1{font-size:clamp(28px,8vw,40px);margin:8px 0 0}
+.lead{color:var(--sub);font-size:15px;margin:4px 0 16px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.tabs button{font:inherit;font-size:14px;min-height:40px;padding:6px 14px;border:2px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);cursor:pointer}
+.tabs button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;font-weight:700}
+.stage{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:0 3px 0 var(--line)}
+.pattern{background:var(--tint);border-radius:12px;padding:6px 12px;font-size:15px;margin:0 0 12px}
+.pattern b{color:var(--accent)}
+.staff{font-size:15px;color:var(--sub);margin:0 0 4px}
+.staff span{color:var(--ink);font-size:19px;font-weight:500}
+.cue{font-size:clamp(40px,12vw,64px);line-height:1.25;text-align:center;margin:10px 0 2px;word-break:break-word}
+.hint{text-align:center;color:var(--sub);font-size:15px;margin:0 0 14px}
+.answer{min-height:3.2em;text-align:center;font-size:clamp(20px,5.5vw,26px);font-weight:700;border-top:2px dashed var(--line);padding-top:12px}
+.answer .en{display:block;font-size:14px;font-weight:400;color:var(--sub)}
+.say{color:var(--sub);font-weight:400;font-size:16px}
+.row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:14px}
+.row button{font:inherit;font-size:16px;min-height:48px;padding:8px 20px;border-radius:999px;border:2px solid var(--accent2);background:var(--card);color:var(--accent2);cursor:pointer;font-weight:700}
+.row button.main{background:var(--accent);border-color:var(--accent);color:#fff}
+button:focus-visible{outline:3px solid var(--accent2);outline-offset:3px}
+.count{text-align:center;color:var(--sub);font-size:14px;margin-top:10px}
+.row button:disabled{opacity:.35;cursor:default}
+.steps{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:6px}
+.steps button{font:inherit;font-size:14px;width:36px;height:36px;border-radius:50%;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.steps button[aria-current="step"]{background:var(--accent2);border-color:var(--accent2);color:#fff;font-weight:700}
+.note{font-size:14px;color:var(--sub);margin-top:16px}
+</style>
+</head>
+<body>
+<main>
+<p><a href="../../review/2026-11-25/" style="color:var(--sub);font-size:.9rem">← 25 Nov review</a></p>
+<h1>🍣 すしやさんで ドリル</h1>
+<p class="lead">Sushi shop drill. Look at the picture, <b>say the Japanese out loud</b>, then check. Do each part until it feels easy. On Monday we start the lesson in the sushi shop!</p>
+<div class="tabs" id="tabs" role="group" aria-label="Drill parts"></div>
+<section class="stage" aria-live="polite">
+  <p class="pattern" id="pattern"></p>
+  <p class="staff" id="staff" hidden>🧑‍🍳 <span id="staffText"></span> <button type="button" id="staffPlay" aria-label="Listen to the staff" style="font:inherit;font-size:14px;border:0;background:none;cursor:pointer">🔊</button></p>
+  <div class="cue" id="cue"></div>
+  <p class="hint" id="hint"></p>
+  <div class="answer" id="answer"><span class="say">Say it out loud first!</span></div>
+  <div class="row">
+    <button type="button" id="back">◀ Back</button>
+    <button type="button" class="main" id="show">Show answer</button>
+    <button type="button" id="listen">🔊 Listen</button>
+    <button type="button" id="next">Next ▶</button>
+  </div>
+  <p class="count" id="count"></p>
+  <div class="steps" id="steps" role="group" aria-label="Jump to a step"></div>
+</section>
+<p class="note">Tip: say it again after you listen. Speed up each time. 🔊 uses your device’s Japanese voice.</p>
+</main>
+<script>
+(() => {
+const N = ['','ひとつ','ふたつ','みっつ','よっつ','いつつ'];
+const NE = ['','one','two','three','four','five'];
+const P = ['','ひとり','ふたり','さんにん','よにん','ごにん','ろくにん'];
+const FOOD = [
+  {ja:'まぐろ',e:'🐟',en:'tuna'},{ja:'サーモン',e:'🍣',en:'salmon'},{ja:'えび',e:'🦐',en:'prawn',pl:'prawns'},
+  {ja:'たまご',e:'🥚',en:'egg',pl:'eggs'},{ja:'えびの てんぷら',e:'🍤',en:'prawn tempura'},
+  {ja:'やさいの てんぷら',e:'🥦',en:'vegetable tempura'},{ja:'みそしる',e:'🥣',en:'miso soup',pl:'miso soups'}];
+const DRINK = [{ja:'おちゃ',e:'🍵',en:'green tea',pl:'green teas'},{ja:'コーラ',e:'🥤',en:'cola',pl:'colas'},{ja:'ラムネ',e:'🫧',en:'Ramune',pl:'bottles of Ramune'}];
+const w = (f,n) => n>1 && f.pl ? f.pl : f.en;
+const cap = t => t[0].toUpperCase()+t.slice(1);
+const r = a => a[Math.floor(Math.random()*a.length)];
+const ri = (a,b) => a + Math.floor(Math.random()*(b-a+1));
+const two = arr => { const x = r(arr); let y = r(arr); while (y === x) y = r(arr); return [x,y]; };
+const PARTS = [
+ {name:'① なんめいさま', pattern:'<b>〇にん</b>です。', gen(){ const n=ri(1,6);
+   return {staff:'いらっしゃいませ。なんめいさまですか。', cue:'🧑'.repeat(n), hint:n+(n>1?' people':' person'), ja:P[n]+'です。', en:n+(n>1?' people.':' person.')}; }},
+ {name:'② 〜を ください', pattern:'<b>〇〇</b>を <b>〇つ</b> ください。', gen(){ const f=r(FOOD), n=ri(1,5);
+   return {cue:f.e+' × '+n, hint:NE[n]+' '+w(f,n), ja:f.ja+'を '+N[n]+' ください。', en:cap(NE[n]+' '+w(f,n)+', please.')}; }},
+ {name:'③ 〜と〜を', pattern:'<b>〇〇</b>を <b>〇つ</b>と、<b>〇〇</b>を <b>〇つ</b> ください。', gen(){ const [a,b]=two(FOOD), m=ri(1,3), n=ri(1,3);
+   return {cue:a.e+'×'+m+'　'+b.e+'×'+n, hint:NE[m]+' '+w(a,m)+' and '+NE[n]+' '+w(b,n), ja:a.ja+'を '+N[m]+'と、'+b.ja+'を '+N[n]+' ください。', en:cap(NE[m]+' '+w(a,m)+' and '+NE[n]+' '+w(b,n)+', please.')}; }},
+ {name:'④ 〜に します', pattern:'<b>〇〇</b>に します。', gen(){ const drink=Math.random()<.35, f=drink?r(DRINK):r(FOOD.concat([{ja:'おまかせ',e:'👨‍🍳',en:'chef’s choice'}]));
+   return {staff: drink?'おのみものは なにに しますか。':'なにに しますか。', cue:f.e, hint:f.en, ja:f.ja+'に します。', en:'I’ll have '+f.en+'.'}; }},
+ {name:'⑤ すみません', pattern:'すみません、<b>〇〇</b> おねがいします。', gen(){ return r([
+   {cue:'💧×3', hint:'three waters', ja:'すみません、おみずを みっつ おねがいします。', en:'Excuse me, three waters, please.'},
+   {cue:'🥢', hint:'chopsticks', ja:'すみません、おはし おねがいします。', en:'Excuse me, chopsticks, please.'},
+   {cue:'📋🇬🇧', hint:'an English menu', ja:'すみません、えいごの メニュー おねがいします。', en:'Excuse me, an English menu, please.'},
+   {cue:'🍵 +1', hint:'one more tea', ja:'すみません、もう ひとつ おちゃ おねがいします。', en:'Excuse me, one more tea, please.'},
+   {cue:'🍴', hint:'a fork', ja:'すみません、フォーク おねがいします。', en:'Excuse me, a fork, please.'},
+   {cue:'🧾', hint:'the bill', ja:'すみません、おかいけい おねがいします。', en:'Excuse me, the bill, please.'},
+   {cue:'❓🔁', hint:'You didn’t catch it.', ja:'すみません、もういちど おねがいします。', en:'Sorry, once more please.'}]); }},
+ {name:'⑥ わさび・おかいけい', pattern:'Answer the staff.', gen(){ return r([
+   {staff:'わさびは だいじょうぶですか。', cue:'🌿🙅', hint:'You are not good with wasabi.', ja:'わさびは にがてです。', en:'I’m not good with wasabi.'},
+   {staff:'わさびは だいじょうぶですか。', cue:'🌿👍', hint:'Wasabi is fine.', ja:'はい、だいじょうぶです。', en:'Yes, it’s fine.'},
+   {cue:'🍣🚫🌿', hint:'Order: no wasabi, please.', ja:'さびぬきで おねがいします。', en:'Without wasabi, please.'},
+   {cue:'🍣🍣🍣🚫🌿', hint:'All of them without wasabi.', ja:'ぜんぶ さびぬきで おねがいします。', en:'All of them without wasabi, please.'},
+   {staff:'ぜんぶで 3,800えんです。', cue:'💳❓', hint:'Ask if you can pay by card.', ja:'カードで はらっても いいですか。', en:'May I pay by card?'},
+   {cue:'🍽️✨', hint:'You finished eating.', ja:'ごちそうさまでした。', en:'Thank you for the meal.'},
+   {cue:'🍣🙏', hint:'Before you eat.', ja:'いただきます。', en:'(before eating)'}]); }},
+ {name:'⑦ ぜんぶ つなげて', pattern:'The whole order. Answer each line from the staff.', seq:true, gen(i){ const [a,b]=two(FOOD.slice(0,4)), m=ri(1,3), n=ri(1,3), d=r(DRINK), p=ri(2,4);
+   const steps=[
+    {staff:'いらっしゃいませ。なんめいさまですか。', cue:'🧑'.repeat(p), hint:p+' people', ja:P[p]+'です。', en:p+' people.'},
+    {staff:'おのみものは なにに しますか。', cue:d.e+'×'+p, hint:NE[p]+' '+w(d,p), ja:d.ja+'を '+N[p]+' ください。', en:cap(NE[p]+' '+w(d,p)+', please.')},
+    {staff:'ごちゅうもんは？', cue:a.e+'×'+m+'　'+b.e+'×'+n, hint:NE[m]+' '+w(a,m)+' and '+NE[n]+' '+w(b,n), ja:a.ja+'を '+N[m]+'と、'+b.ja+'を '+N[n]+' ください。', en:cap(NE[m]+' '+w(a,m)+' and '+NE[n]+' '+w(b,n)+', please.')},
+    {staff:'かしこまりました。'+a.ja+'を '+N[m]+'と、'+b.ja+'を '+N[n]+'で ございますね。', cue:'✅', hint:'Yes, that’s right.', ja:'はい、そうです。', en:'Yes, that’s right.'},
+    {staff:'わさびは だいじょうぶですか。', cue:'🌿🙅', hint:'No wasabi, please.', ja:'さびぬきで おねがいします。', en:'Without wasabi, please.'},
+    {staff:'おまたせしました。', cue:'🍣🙏', hint:'Before you eat.', ja:'いただきます。', en:'(before eating)'},
+    {cue:'🧾', hint:'Ask for the bill.', ja:'すみません、おかいけい おねがいします。', en:'Excuse me, the bill, please.'},
+    {staff:'ぜんぶで 4,200えんです。', cue:'💳❓', hint:'Ask if you can pay by card.', ja:'カードで はらっても いいですか。', en:'May I pay by card?'},
+    {staff:'はい、どうぞ。', cue:'🍽️✨', hint:'Thank them as you leave.', ja:'ごちそうさまでした。', en:'Thank you for the meal.'}];
+   return steps; }}
+];
+const $ = id => document.getElementById(id);
+let part = 0, item = null, hist = [], pos = -1;
+function speak(t){ try{ speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(t.replace(/[〇]/g,'')); u.lang='ja-JP'; u.rate=.85; const v=speechSynthesis.getVoices().find(x=>x.lang&&x.lang.startsWith('ja')); if(v)u.voice=v; speechSynthesis.speak(u);}catch(e){} }
+function render(){
+  item = hist[pos];
+  $('pattern').innerHTML = PARTS[part].pattern;
+  $('staff').hidden = !item.staff; $('staffText').textContent = item.staff || '';
+  $('cue').textContent = item.cue; $('hint').textContent = item.hint;
+  $('answer').innerHTML = '<span class="say">Say it out loud first!</span>';
+  $('back').disabled = pos === 0;
+  const steps = $('steps'); steps.innerHTML = '';
+  if (item.total){
+    $('count').textContent = 'Step '+item.step+' / '+item.total;
+    for (let k = 1; k <= item.total; k++){ const b=document.createElement('button'); b.type='button'; b.textContent=k; b.setAttribute('aria-label','Step '+k); b.setAttribute('aria-current', k===item.step ? 'step' : 'false'); b.onclick=()=>{ pos = item.start + k - 1; render(); }; steps.appendChild(b); }
+    $('next').textContent = item.step === item.total && pos === hist.length-1 ? 'New order ▶' : 'Next ▶';
+  } else {
+    $('count').textContent = (pos+1)+' / '+hist.length;
+    $('next').textContent = 'Next ▶';
+  }
+  if (item.staff) speak(item.staff);
+}
+function add(){
+  if (PARTS[part].seq){ const order = PARTS[part].gen(), start = hist.length;
+    order.forEach((x,k)=>hist.push(Object.assign(x,{step:k+1,total:order.length,start}))); }
+  else { let x; do { x = PARTS[part].gen(); } while (hist.length && x.ja === hist[hist.length-1].ja); hist.push(x); }
+}
+function next(){ if (pos >= hist.length-1) add(); pos++; render(); }
+function back(){ if (pos > 0){ pos--; render(); } }
+PARTS.forEach((p,i) => { const b=document.createElement('button'); b.type='button'; b.textContent=p.name; b.setAttribute('aria-pressed', i===0);
+  b.onclick=()=>{ part=i; hist=[]; pos=-1; [...$('tabs').children].forEach((c,j)=>c.setAttribute('aria-pressed', j===i)); next(); }; $('tabs').appendChild(b); });
+$('show').onclick = () => { $('answer').innerHTML = ''; const j=document.createElement('span'); j.lang='ja'; j.textContent=item.ja; const e=document.createElement('span'); e.className='en'; e.lang='en'; e.textContent=item.en; $('answer').append(j,e); speak(item.ja); };
+$('listen').onclick = () => speak(item.ja);
+$('staffPlay').onclick = () => speak(item.staff);
+$('next').onclick = next;
+$('back').onclick = back;
+next();
+})();
+</script>
+</body>
+</html>
